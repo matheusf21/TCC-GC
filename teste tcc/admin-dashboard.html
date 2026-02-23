@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Administrador CONSTRUMAX</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100">
+  
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-4">
+          <button id="sidebar-toggle" class="lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+          <h1 class="text-2xl font-bold text-orange-600">CONSTRUMAX</h1>
+          <span class="hidden sm:inline text-gray-500">| Painel Administrativo</span>
+        </div>
+        
+        <div class="flex items-center gap-4">
+          <button class="p-2 rounded-full hover:bg-gray-100 relative">
+            <i data-lucide="bell" class="w-5 h-5 text-gray-600"></i>
+            <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
+          
+          <div class="flex items-center gap-2">
+            <div class="hidden sm:block text-right">
+              <p class="text-sm font-medium text-gray-700" id="admin-name">Administrador</p>
+              <p class="text-xs text-gray-500">Online</p>
+            </div>
+            <button id="user-menu-btn" class="w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center hover:bg-orange-700 transition">
+              <i data-lucide="user" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- User Menu Dropdown -->
+    <div id="user-menu" class="hidden absolute right-4 top-20 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        <i data-lucide="user" class="w-4 h-4 inline mr-2"></i>
+        Meu Perfil
+      </a>
+      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+        <i data-lucide="settings" class="w-4 h-4 inline mr-2"></i>
+        Configurações
+      </a>
+      <hr class="my-2">
+      <a href="#" id="logout-btn" class="block px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+        <i data-lucide="log-out" class="w-4 h-4 inline mr-2"></i>
+        Sair
+      </a>
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 bg-white h-[calc(100vh-4rem)] fixed lg:sticky top-16 shadow-lg transition-transform duration-300 -translate-x-full lg:translate-x-0 z-40">
+      <nav class="p-4 space-y-2">
+        <a href="#dashboard" class="nav-link active flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 transition" data-section="dashboard">
+          <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+          <span>Dashboard</span>
+        </a>
+        
+        <a href="#products" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 transition" data-section="products">
+          <i data-lucide="package" class="w-5 h-5"></i>
+          <span>Produtos</span>
+        </a>
+        
+        <a href="#messages" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 transition" data-section="messages">
+          <i data-lucide="mail" class="w-5 h-5"></i>
+          <span>Mensagens</span>
+          <span class="ml-auto bg-orange-600 text-white text-xs px-2 py-1 rounded-full" id="messages-count">5</span>
+        </a>
+        
+        <a href="#testimonials" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 transition" data-section="testimonials">
+          <i data-lucide="star" class="w-5 h-5"></i>
+          <span>Depoimentos</span>
+        </a>
+        
+        <a href="#orders" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 transition" data-section="orders">
+          <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+          <span>Pedidos</span>
+        </a>
+        
+        <a href="#analytics" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 transition" data-section="analytics">
+          <i data-lucide="bar-chart" class="w-5 h-5"></i>
+          <span>Análises</span>
+        </a>
+        
+        <a href="#settings" class="nav-link flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-orange-50 transition" data-section="settings">
+          <i data-lucide="settings" class="w-5 h-5"></i>
+          <span>Configurações</span>
+        </a>
+        
+        <hr class="my-4">
+        
+        <a href="index.html" class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-gray-100 transition text-gray-600">
+          <i data-lucide="globe" class="w-5 h-5"></i>
+          <span>Ver Site</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-4 sm:p-6 lg:p-8 lg:ml-64">
+      
+      <!-- Dashboard Section -->
+      <section id="section-dashboard" class="content-section">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">Dashboard</h2>
+          <p class="text-gray-600">Bem-vindo ao painel administrativo</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <i data-lucide="package" class="w-6 h-6 text-blue-600"></i>
+              </div>
+              <span class="text-sm text-green-600 font-medium">+12%</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">156</h3>
+            <p class="text-gray-600 text-sm">Total de Produtos</p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <i data-lucide="shopping-cart" class="w-6 h-6 text-green-600"></i>
+              </div>
+              <span class="text-sm text-green-600 font-medium">+8%</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">89</h3>
+            <p class="text-gray-600 text-sm">Pedidos Este Mês</p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                <i data-lucide="mail" class="w-6 h-6 text-orange-600"></i>
+              </div>
+              <span class="text-sm text-red-600 font-medium">5 novas</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">23</h3>
+            <p class="text-gray-600 text-sm">Mensagens</p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+                <i data-lucide="users" class="w-6 h-6 text-purple-600"></i>
+              </div>
+              <span class="text-sm text-green-600 font-medium">+24%</span>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-1">1.2k</h3>
+            <p class="text-gray-600 text-sm">Visitantes Hoje</p>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold mb-4">Atividades Recentes</h3>
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="shopping-cart" class="w-4 h-4 text-green-600"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-800">Novo pedido #1234</p>
+                  <p class="text-xs text-gray-500">Há 5 minutos</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="mail" class="w-4 h-4 text-blue-600"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-800">Nova mensagem de contato</p>
+                  <p class="text-xs text-gray-500">Há 15 minutos</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="package" class="w-4 h-4 text-orange-600"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-800">Produto "Cimento" atualizado</p>
+                  <p class="text-xs text-gray-500">Há 1 hora</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                  <i data-lucide="star" class="w-4 h-4 text-purple-600"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-sm font-medium text-gray-800">Novo depoimento aprovado</p>
+                  <p class="text-xs text-gray-500">Há 2 horas</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-lg shadow p-6">
+            <h3 class="text-lg font-semibold mb-4">Produtos Mais Vendidos</h3>
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 bg-gray-200 rounded"></div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800">Cimento 50kg</p>
+                    <p class="text-xs text-gray-500">45 vendas</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-green-600">R$ 12.450</span>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 bg-gray-200 rounded"></div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800">Tijolo Cerâmico</p>
+                    <p class="text-xs text-gray-500">38 vendas</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-green-600">R$ 9.120</span>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 bg-gray-200 rounded"></div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800">Tinta Branca 18L</p>
+                    <p class="text-xs text-gray-500">32 vendas</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-green-600">R$ 8.960</span>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 bg-gray-200 rounded"></div>
+                  <div>
+                    <p class="text-sm font-medium text-gray-800">Areia Lavada m³</p>
+                    <p class="text-xs text-gray-500">28 vendas</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-green-600">R$ 7.840</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Products Section -->
+      <section id="section-products" class="content-section hidden">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Gestão de Produtos</h2>
+            <p class="text-gray-600">Gerencie todos os produtos do catálogo</p>
+          </div>
+          <button id="add-product-btn" class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition flex items-center gap-2">
+            <i data-lucide="plus" class="w-5 h-5"></i>
+            Adicionar Produto
+          </button>
+        </div>
+
+        <!-- Search and Filter -->
+        <div class="bg-white rounded-lg shadow p-4 mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="md:col-span-2">
+              <input
+                type="text"
+                id="search-products"
+                placeholder="Buscar produtos..."
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none"
+              />
+            </div>
+            <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none">
+              <option value="">Todas Categorias</option>
+              <option value="basicos">Materiais Básicos</option>
+              <option value="ferramentas">Ferramentas</option>
+              <option value="eletrica">Elétrica e Hidráulica</option>
+              <option value="acabamento">Acabamento</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Products Table -->
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Produto</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estoque</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Preço</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body" class="bg-white divide-y divide-gray-200">
+                <!-- Products will be inserted here by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Messages Section -->
+      <section id="section-messages" class="content-section hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">Mensagens</h2>
+          <p class="text-gray-600">Gerencie as mensagens recebidas dos clientes</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead class="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nome</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Telefone</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ações</th>
+                </tr>
+              </thead>
+              <tbody id="messages-table-body" class="bg-white divide-y divide-gray-200">
+                <!-- Messages will be inserted here by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section id="section-testimonials" class="content-section hidden">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
+          <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Depoimentos</h2>
+            <p class="text-gray-600">Gerencie os depoimentos dos clientes</p>
+          </div>
+          <button id="add-testimonial-btn" class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition flex items-center gap-2">
+            <i data-lucide="plus" class="w-5 h-5"></i>
+            Adicionar Depoimento
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="testimonials-grid">
+          <!-- Testimonials will be inserted here by JavaScript -->
+        </div>
+      </section>
+
+      <!-- Other Sections (Placeholders) -->
+      <section id="section-orders" class="content-section hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">Pedidos</h2>
+          <p class="text-gray-600">Gerencie todos os pedidos realizados</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-8 text-center">
+          <i data-lucide="shopping-cart" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
+          <p class="text-gray-600">Funcionalidade em desenvolvimento</p>
+        </div>
+      </section>
+
+      <section id="section-analytics" class="content-section hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">Análises</h2>
+          <p class="text-gray-600">Visualize relatórios e estatísticas</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-8 text-center">
+          <i data-lucide="bar-chart" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
+          <p class="text-gray-600">Funcionalidade em desenvolvimento</p>
+        </div>
+      </section>
+
+      <section id="section-settings" class="content-section hidden">
+        <div class="mb-8">
+          <h2 class="text-3xl font-bold text-gray-800 mb-2">Configurações</h2>
+          <p class="text-gray-600">Configure as preferências do sistema</p>
+        </div>
+        <div class="bg-white rounded-lg shadow p-8 text-center">
+          <i data-lucide="settings" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
+          <p class="text-gray-600">Funcionalidade em desenvolvimento</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Modal for viewing message details -->
+  <div id="message-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-lg max-w-2xl w-full p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold">Detalhes da Mensagem</h3>
+        <button id="close-message-modal" class="text-gray-500 hover:text-gray-700">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <div id="message-details" class="space-y-4">
+        <!-- Message details will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for adding/editing product -->
+  <div id="product-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-lg max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold" id="product-modal-title">Adicionar Produto</h3>
+        <button id="close-product-modal" class="text-gray-500 hover:text-gray-700">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+      <form id="product-form" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Nome do Produto</label>
+          <input type="text" id="product-name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Categoria</label>
+          <select id="product-category" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none">
+            <option value="">Selecione uma categoria</option>
+            <option value="Materiais Básicos">Materiais Básicos</option>
+            <option value="Ferramentas">Ferramentas</option>
+            <option value="Elétrica e Hidráulica">Elétrica e Hidráulica</option>
+            <option value="Acabamento">Acabamento</option>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Estoque</label>
+            <input type="number" id="product-stock" required min="0" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Preço (R$)</label>
+            <input type="number" id="product-price" required min="0" step="0.01" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none">
+          </div>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Descrição</label>
+          <textarea id="product-description" required rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none"></textarea>
+        </div>
+        <div class="flex gap-3 justify-end">
+          <button type="button" id="cancel-product-btn" class="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition">
+            Cancelar
+          </button>
+          <button type="submit" class="px-6 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition">
+            Salvar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Administrador CONSTRUMAX</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center p-4">
+  
+  <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8">
+    <!-- Logo -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-orange-600 mb-2">CONSTRUMAX</h1>
+      <p class="text-gray-600">Painel Administrativo</p>
+    </div>
+
+    <!-- Login Form -->
+    <form id="login-form" class="space-y-6">
+      <!-- Alert Message -->
+      <div id="alert-message" class="hidden p-4 rounded-lg"></div>
+
+      <div>
+        <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+          <i data-lucide="user" class="w-4 h-4 inline mr-1"></i>
+          Usuário
+        </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition"
+          placeholder="Digite seu usuário"
+          autocomplete="username"
+        />
+      </div>
+
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+          <i data-lucide="lock" class="w-4 h-4 inline mr-1"></i>
+          Senha
+        </label>
+        <div class="relative">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-600 focus:border-transparent outline-none transition pr-12"
+            placeholder="Digite sua senha"
+            autocomplete="current-password"
+          />
+          <button
+            type="button"
+            id="toggle-password"
+            class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+          >
+            <i data-lucide="eye" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between">
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            id="remember"
+            class="w-4 h-4 text-orange-600 border-gray-300 rounded focus:ring-orange-500"
+          />
+          <span class="ml-2 text-sm text-gray-600">Lembrar-me</span>
+        </label>
+        <a href="#" class="text-sm text-orange-600 hover:text-orange-700">
+          Esqueceu a senha?
+        </a>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-orange-600 text-white py-3 rounded-lg hover:bg-orange-700 transition-colors font-medium text-lg flex items-center justify-center gap-2"
+      >
+        <i data-lucide="log-in" class="w-5 h-5"></i>
+        Entrar
+      </button>
+    </form>
+
+    <!-- Demo Credentials Info -->
+    <div class="mt-6 p-4 bg-orange-50 rounded-lg border border-orange-200">
+      <p class="text-sm text-orange-800 font-medium mb-2">
+        <i data-lucide="info" class="w-4 h-4 inline mr-1"></i>
+        Credenciais de Demonstração:
+      </p>
+      <p class="text-sm text-orange-700">
+        Usuário: <strong>admin</strong><br>
+        Senha: <strong>admin123</strong>
+      </p>
+    </div>
+
+    <!-- Back to Site -->
+    <div class="mt-6 text-center">
+      <a href="index.html" class="text-sm text-gray-600 hover:text-orange-600 inline-flex items-center gap-1">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Voltar ao site
+      </a>
+    </div>
+  </div>
+
+  <script src="admin-login.js"></script>
+</body>
+</html>
