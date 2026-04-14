@@ -44,6 +44,25 @@
   color: #ff5f13;
 }
 
+/* Nomes dos serviços abaixo da imagem */
+.single-service-cap {
+    text-align: center;  /* centraliza todo o conteúdo */
+}
+
+.service-name {
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 0;
+    color: #1f1f1f;
+    transition: all 0.3s;
+}
+
+/* opcional: hover */
+.single-service-cap:hover .service-name {
+    color: #ff5f13; /* mesma cor do seu tema laranja */
+}
+
 .boxed-btn {
   background: #fff;
   color: #ff5f13 !important;
@@ -399,6 +418,124 @@ hr {
   background: #ff3500;
 }
 
+/* ========== CARROSSEL DE SERVIÇOS - RETANGULAR LARGURA TOTAL ========== */
+.services-slider {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Cada slide */
+.services-slider .single-service-cap {
+    text-align: center;
+    padding: 0 80px;
+}
+
+/* Imagem do serviço - formato retangular, largura total */
+.services-slider .service-img {
+    text-align: center;
+}
+.services-slider .service-img img {
+    width: 100%;              /* ocupa toda a largura do slide */
+    height: 380px;            /* altura fixa para formato retangular (ajuste conforme preferir) */
+    object-fit: cover;        /* corta a imagem para preencher sem distorcer, mantendo a proporção */
+    object-position: center;  /* centraliza o corte */
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    display: block;
+}
+
+/* Nome e descrição do serviço */
+.services-slider .service-name h4 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: #0b1c39;
+}
+.services-slider .service-name p {
+    font-size: 18px;
+    color: #555;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== SETAS (ESQUERDA / DIREITA) ===== */
+.services-slider .slick-prev,
+.services-slider .slick-next {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    background: #ff5f13;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    line-height: 48px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+.services-slider .slick-prev {
+    left: 10px;
+}
+.services-slider .slick-next {
+    right: 10px;
+}
+.services-slider .slick-prev:hover,
+.services-slider .slick-next:hover {
+    background: #0b1c39;
+    color: #ff5f13;
+}
+
+/* Responsivo - ajusta altura em telas menores */
+@media (max-width: 768px) {
+    .services-slider .service-img img {
+        height: 280px;    /* altura um pouco menor em tablet */
+    }
+    .services-slider .service-name h4 {
+        font-size: 24px;
+    }
+    .services-slider .service-name p {
+        font-size: 16px;
+    }
+    .services-slider .slick-prev,
+    .services-slider .slick-next {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-slider .service-img img {
+        height: 200px;    /* altura menor em celular */
+    }
+    .services-slider .service-name h4 {
+        font-size: 20px;
+    }
+    .services-slider .service-name p {
+        font-size: 14px;
+    }
+    .services-slider .slick-prev,
+    .services-slider .slick-next {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        font-size: 18px;
+    }
+    .services-slider .slick-prev {
+        left: 5px;
+    }
+    .services-slider .slick-next {
+        right: 5px;
+    }
+}
 .btn {
   background: #ff5f13;
   color: #fff;

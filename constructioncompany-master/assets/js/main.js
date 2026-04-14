@@ -239,6 +239,35 @@
         });
       }
 
+      // 14. Services Carousel
+var servicesSlider = $('.services-slider');
+if (servicesSlider.length) {
+    servicesSlider.slick({
+        dots: false,
+        infinite: true,
+        speed: 500,
+        autoplay: false,
+        arrows: true,
+        prevArrow: '<button type="button" class="slick-prev"><i class="ti-angle-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next"><i class="ti-angle-right"></i></button>',
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: true
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    arrows: true
+                }
+            }
+        ]
+    });
+}
 
 
 
