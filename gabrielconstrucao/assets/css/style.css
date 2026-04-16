@@ -7152,3 +7152,22 @@ del {
     padding-bottom: 15px;
     margin-bottom: 0;
 }
+
+/* Remove a seta (decorativa) da seção de depoimentos (azul) */
+.testimonial-area::after {
+    display: none;
+}
+
+
+/* Cria um espaçamento branco entre a seção azul e o footer */
+.testimonial-area {
+    margin-bottom: 30px;  /* espaço branco (o fundo da página é branco) */
+    background: #00235b;  /* mantém o azul */
+}
+
+/* Garante que o footer comece exatamente após o espaço branco */
+.footer-area {
+    margin-top: 0;
+    position: relative;
+    z-index: 1;
+}
