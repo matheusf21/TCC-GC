@@ -7061,3 +7061,94 @@ del {
 .switch-wrap {
   margin-bottom: 10px;
 }
+
+/* ========== PRODUTOS CARDS ========== */
+.single-produto-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+.single-produto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+.produto-img {
+    overflow: hidden;
+}
+.produto-img img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+.single-produto-card:hover .produto-img img {
+    transform: scale(1.05);
+}
+.produto-content {
+    padding: 20px;
+    text-align: center;
+}
+.produto-content h4 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #0b1c39;
+}
+.produto-content p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+.btn-orcamento {
+    display: inline-block;
+    background: #ff5f13;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+}
+.btn-orcamento:hover {
+    background: #0b1c39;
+    color: #fff;
+}
+.btn-ver-todos {
+    display: inline-block;
+    background: transparent;
+    color: #ff5f13;
+    border: 2px solid #ff5f13;
+    padding: 12px 35px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+.btn-ver-todos:hover {
+    background: #ff5f13;
+    color: #fff;
+}
+/* Reduzir altura da seção Fale Conosco */
+.contact-with-area.contact-compact {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+}
+
+/* Botão menor para a versão compacta */
+.white-btn.btn-sm {
+    padding: 20px 56px;
+    font-size: 13px;
+}
+
+/* Ajuste do parágrafo (remove o padding extra) */
+.contact-compact p {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+}
