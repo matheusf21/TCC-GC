@@ -22,15 +22,15 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
-        /* Estilo adicional para os cards de contato */
+        /* Estilos para os cards de contato */
         .contact-info-card {
             background: #fff;
-            padding: 25px;
             border-radius: 16px;
+            padding: 35px 20px;
+            text-align: center;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             height: 100%;
-            text-align: center;
         }
 
         .contact-info-card:hover {
@@ -46,15 +46,16 @@
         }
 
         .contact-info-card h3 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: #0b1c39;
         }
 
         .contact-info-card p {
             color: #666;
             margin-bottom: 0;
+            font-size: 14.5px;
         }
 
         .form-control {
@@ -71,17 +72,20 @@
         .contact-title {
             font-size: 36px;
             font-weight: 700;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             position: relative;
             display: inline-block;
+            text-align: center;
+            width: 100%;
         }
 
         .contact-title:after {
             content: '';
             position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -15px;
+            width: 80px;
             height: 3px;
             background: #ff5f13;
         }
@@ -91,6 +95,23 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-enviar {
+            background: #ff5f13;
+            color: #fff;
+            border: none;
+            padding: 12px 35px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-enviar:hover {
+            background: #0b1c39;
+            color: #fff;
         }
 
         @media (max-width: 768px) {
@@ -115,7 +136,7 @@
     </div>
 
     <header>
-        <!-- Header Start -->
+        <!-- Header Start (mesmo do index) -->
         <div class="header-area header-transparent">
             <div class="main-header">
                 <div class="header-top d-none d-lg-block">
@@ -146,7 +167,6 @@
                 <div class="header-bottom header-sticky">
                     <div class="container-fluid">
                         <div class="row align-items-center">
-                            <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
                                     <a href="index.html" class="big-logo"><img src="assets/img/logo/logo.png"
@@ -191,14 +211,13 @@
                 </div>
             </div>
         </div>
-        <!-- Header End -->
     </header>
 
     <main>
         <!-- Banner interno -->
         <div class="slider-area">
             <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
-                data-background="assets/img/hero/about.jpg">
+                data-background="assets/img/banner/bannercontato.png">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
@@ -217,7 +236,7 @@
             </div>
         </div>
 
-        <!-- Seção de contato: formulário + informações (mapa depois) -->
+        <!-- Seção de contato -->
         <section class="contact-section section-padding30">
             <div class="container">
                 <div class="row">
@@ -227,7 +246,7 @@
                 </div>
 
                 <div class="row">
-                    <!-- Formulário -->
+                    <!-- Formulário (esquerda) -->
                     <div class="col-lg-7 mb-5 mb-lg-0">
                         <form class="form-contact contact_form" action="contact_process.php" method="post"
                             id="contactForm" novalidate="novalidate">
@@ -257,48 +276,43 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group mt-3">
-                                <button type="submit" class="btn">Enviar mensagem</button>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn-enviar">Enviar mensagem</button>
                             </div>
                         </form>
                     </div>
 
-                    <!-- Informações de contato (cards) -->
-                    <div class="col-lg-4 offset-lg-1">
+                    <!-- Informações de contato (direita) - apenas Telefone e E-mail -->
+                    <div class="col-lg-5">
                         <div class="row">
-                            <div class="col-12 mb-4">
-                                <div class="contact-info-card">
-                                    <div class="icon"><i class="ti-location-pin"></i></div>
-                                    <h3>Visite-nos</h3>
-                                    <p>Av. Arthur Balsi, Nº620<br>Barra Bonita, SP</p>
-                                </div>
-                            </div>
-                            <div class="col-12 mb-4">
+                            <div class="col-md-6 mb-4">
                                 <div class="contact-info-card">
                                     <div class="icon"><i class="ti-mobile"></i></div>
-                                    <h3>Ligue para nós</h3>
-                                    <p>(14) 99735-4643<br>Seg a Sex 8h às 18h</p>
+                                    <h3>Telefone</h3>
+                                    <p>(14) 99735-4643</p>
+                                    <p>Seg a Sex 8h às 18h</p>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-md-6 mb-4">
                                 <div class="contact-info-card">
                                     <div class="icon"><i class="ti-email"></i></div>
                                     <h3>E-mail</h3>
-                                    <p>gabrielconstrucao1@gmail.com<br>Respondemos em até 24h</p>
+                                    <p>gabrielconstrucao1@gmail.com</p>
+                                    <p>Respondemos em até 24h</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Mapa (agora abaixo do formulário e contatos) -->
+                <!-- Mapa (abaixo, inalterado) -->
                 <div class="row">
                     <div class="col-12">
                         <div class="map-wrapper">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.123456789012!2d-48.56415787903175!3d-22.47355475754921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c6e5e5e5e5e5e5%3A0x5e5e5e5e5e5e5e5e!2sAv.%20Arthur%20Balsi%2C%20620%20-%20Barra%20Bonita%2C%20SP%2C%2017345-000!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
-                                width="100%" height="450" style="border:0; display:block;" allowfullscreen=""
-                                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                                width="100%" height="400" style="border:0; display:block; border-radius: 12px;"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
                         </div>
                     </div>
@@ -308,7 +322,7 @@
     </main>
 
     <footer>
-        <!-- Footer Start (mesmo do index, sem newsletter) -->
+        <!-- Footer Start (mesmo do index) -->
         <div class="footer-main">
             <div class="footer-area footer-padding">
                 <div class="container">
