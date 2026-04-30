@@ -1,30 +1,241 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Construction HTML-5 Template</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="manifest" href="site.webmanifest">
-		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+<html class="no-js" lang="pt-BR">
 
-		<!-- CSS here -->
-            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-            <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-            <link rel="stylesheet" href="assets/css/gijgo.css">
-            <link rel="stylesheet" href="assets/css/slicknav.css">
-            <link rel="stylesheet" href="assets/css/animate.min.css">
-            <link rel="stylesheet" href="assets/css/magnific-popup.css">
-            <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-            <link rel="stylesheet" href="assets/css/themify-icons.css">
-            <link rel="stylesheet" href="assets/css/slick.css">
-            <link rel="stylesheet" href="assets/css/nice-select.css">
-            <link rel="stylesheet" href="assets/css/style.css">
-            <link rel="stylesheet" href="assets/css/responsive.css">
-   </head>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gabriel Construção - Serviços</title>
+    <meta name="description"
+        content="Conheça todos os serviços da Gabriel Construção: terraplanagem, aluguel de andaimes, venda de produtos e muito mais. Qualidade e excelência em obras.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon3.png">
 
-   <body>
+    <!-- CSS here -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/css/slicknav.css">
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/themify-icons.css">
+    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        /* ============================================= */
+        /* ESTILOS EXCLUSIVOS PARA A PÁGINA DE SERVIÇOS  */
+        /* ============================================= */
+
+        /* Cards de resumo (introdução) */
+        .mission-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-card .icon {
+            font-size: 48px;
+            color: #ff5f13;
+            margin-bottom: 20px;
+        }
+
+        .mission-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .mission-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .btn-servico {
+            background: #ff5f13;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 15px;
+            transition: 0.3s;
+            text-decoration: none;
+            border: none;
+        }
+
+        .btn-servico:hover {
+            background: #0b1c39;
+            color: #fff;
+        }
+
+        /* Cards detalhados (imagem ocupa toda altura) */
+        .service-detail-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 50px;
+        }
+
+        .service-detail-card .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+        }
+
+        .service-detail-card [class*="col-"] {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        /* Container da imagem – ocupa toda a altura da coluna */
+        .service-detail-img {
+            flex: 1;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .service-detail-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-detail-card:hover .service-detail-img img {
+            transform: scale(1.03);
+        }
+
+        .service-detail-content {
+            padding: 40px 35px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .service-detail-content h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #0b1c39;
+        }
+
+        .service-detail-content p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .service-features {
+            list-style: none;
+            padding-left: 0;
+            margin: 20px 0;
+        }
+
+        .service-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .service-features li i {
+            color: #ff5f13;
+            font-size: 18px;
+            width: 22px;
+        }
+
+        /* Diferenciais (fundo escuro) */
+        .diff-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .diff-card .icon {
+            font-size: 48px;
+            color: #ff5f13;
+            margin-bottom: 20px;
+        }
+
+        .diff-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .diff-card p {
+            color: #ddd;
+            font-size: 15px;
+        }
+
+        /* FAQ */
+        .faq-item {
+            background: #f9f9fc;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .faq-item h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0b1c39;
+        }
+
+        .faq-item p {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 0;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .service-detail-content {
+                padding: 30px 25px;
+            }
+
+            .service-detail-content h3 {
+                font-size: 24px;
+            }
+
+            .service-detail-img {
+                min-height: 250px;
+            }
+
+            .mission-card h3 {
+                font-size: 22px;
+            }
+
+            .diff-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
     <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -36,101 +247,92 @@
             </div>
         </div>
     </div>
-    <!-- Preloader Start -->
+
+    <!-- Header (padrão, com menu atualizado) -->
     <header>
-        <!-- Header Start -->
-       <div class="header-area header-transparent">
-            <div class="main-header ">
+        <div class="header-area header-transparent">
+            <div class="main-header">
                 <div class="header-top d-none d-lg-block">
-                   <div class="container-fluid">
-                       <div class="col-xl-12">
+                    <div class="container-fluid">
+                        <div class="col-xl-12">
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left">
-                                    <ul>     
-                                        <li>+(123) 1234-567-8901</li>
-                                        <li>info@domain.com</li>
-                                        <li>Mon - Sat 8:00 - 17:30, Sunday - CLOSED</li>
+                                    <ul>
+                                        <li> +55 (14) 99735-4643</li>
+                                        <li>gabrielconstrucao1@gmail.com</li>
                                     </ul>
                                 </div>
                                 <div class="header-info-right">
-                                    <ul class="header-social">    
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                       <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                    <ul class="header-social">
+                                        <li><a href="https://wa.me/5514997354643"><i class="fab fa-whatsapp"></i></a>
+                                        </li>
+                                        <li><a href="https://www.facebook.com/Gabrielconstrucao/?locale=pt_BR"><i
+                                                    class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="https://www.instagram.com/gabri.elconstrucoes/"><i
+                                                    class="fab fa-instagram"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
-                       </div>
-                   </div>
+                        </div>
+                    </div>
                 </div>
-               <div class="header-bottom  header-sticky">
+                <div class="header-bottom header-sticky">
                     <div class="container-fluid">
                         <div class="row align-items-center">
-                            <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                    <!-- logo-1 -->
-                                    <a href="index.html" class="big-logo"><img src="assets/img/logo/logo.png" alt=""></a>
-                                    <!-- logo-2 -->
-                                    <a href="index.html" class="small-logo"><img src="assets/img/logo/loder-logo.png" alt=""></a>
+                                    <a href="index.html" class="big-logo"><img src="assets/img/logo/logo.png"
+                                            alt="Gabriel Construção"></a>
+                                    <a href="index.html" class="small-logo"><img src="assets/img/logo/loder-logo.png"
+                                            alt="Gabriel Construção"></a>
                                 </div>
                             </div>
                             <div class="col-xl-8 col-lg-8 col-md-8">
-                                <!-- Main-menu -->
                                 <div class="main-menu f-right d-none d-lg-block">
-                                    <nav> 
-                                        <ul id="navigation">                                                                                                                   
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="about.html">About</a></li>
-                                            <li><a href="project.html">Projects</a></li>
-                                            <li><a href="services.html">Services</a></li>
-                                            <li><a href="blog.html">Blog</a>
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="about.html">Sobre</a></li>
+                                            <li><a href="blog.html">Produtos</a>
                                                 <ul class="submenu">
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="single-blog.html">Blog Details</a></li>
+                                                    <li><a href="blog.html">Materiais de Construção</a></li>
+                                                    <li><a href="elements.html">Área PET</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Pages</a>
-                                                <ul class="submenu">
-                                                    <li><a href="elements.html">Element</a></li>
-                                                    <li><a href="project_details.html">Projects Details</a></li>
-                                                    <li><a href="services_details.html">Services Details</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="services.html">Serviços</a></li>
+                                            <li><a href="elements.html">Área PET</a></li>
                                         </ul>
                                     </nav>
                                 </div>
-                            </div>             
+                            </div>
                             <div class="col-xl-2 col-lg-2 col-md-3">
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <a href="contact.html" class="btn">Contato</a>
                                 </div>
                             </div>
-                            <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
                         </div>
                     </div>
-               </div>
+                </div>
             </div>
-       </div>
-        <!-- Header End -->
+        </div>
     </header>
+
     <main>
-        <!-- slider Area Start-->
-        <div class="slider-area ">
-            <div class="single-slider hero-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+        <!-- Banner interno -->
+        <div class="slider-area">
+            <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
+                data-background="assets/img/banner/bannerservicos.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap pt-100">
-                                <h2>Services</h2>
-                                <nav aria-label="breadcrumb ">
+                                <h2>Nossos Serviços</h2>
+                                <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Services</a></li> 
+                                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                        <li class="breadcrumb-item"><a href="#">Serviços</a></li>
                                     </ol>
                                 </nav>
                             </div>
@@ -139,233 +341,315 @@
                 </div>
             </div>
         </div>
-        <!-- slider Area End-->
-        <!-- Services Area Start -->
-        <div class="services-area1 section-padding30">
+
+        <!-- Introdução + cards resumo -->
+        <section class="section-padding30">
             <div class="container">
-                <!-- section tittle -->
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle mb-55">
-                            <div class="front-text">
-                                <h2 class="">Our Services</h2>
-                            </div>
-                            <span class="back-text">Services</span>
-                        </div>
+                    <div class="col-12 text-center">
+                        <h2 class="contact-title" style="margin-bottom: 20px;">Soluções completas para sua obra</h2>
+                        <p style="max-width: 800px; margin: 0 auto 50px auto;">Oferecemos serviços de alta qualidade,
+                            com equipe especializada e equipamentos modernos. Do planejamento à execução, cuidamos de
+                            cada detalhe.</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="assets/img/service/servicess1.png" alt="">
+                    <div class="col-md-4 mb-30">
+                        <div class="mission-card">
+                            <div class="icon"><i class="ti-panel"></i></div>
+                            <h3>Terraplanagem</h3>
+                            <p>Preparação de terreno, nivelamento, compactação e movimentação de terra para obras
+                                residenciais e comerciais.</p>
+                            <a href="#terraplanagem" class="btn-servico">Saiba mais</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-30">
+                        <div class="mission-card">
+                            <div class="icon"><i class="ti-layout"></i></div>
+                            <h3>Aluguel de Andaimes</h3>
+                            <p>Andaimes metálicos, torres móveis e equipamentos de segurança para trabalhos em altura.
+                            </p>
+                            <a href="#andaimes" class="btn-servico">Saiba mais</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-30">
+                        <div class="mission-card">
+                            <div class="icon"><i class="ti-shopping-cart"></i></div>
+                            <h3>Venda de Materiais</h3>
+                            <p>Produtos selecionados para sua obra: cimento, tijolos, tintas, tubos, ferragens e muito
+                                mais.</p>
+                            <a href="#venda" class="btn-servico">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DETALHADA: Terraplanagem -->
+        <section id="terraplanagem" class="pt-0 pb-0">
+            <div class="container">
+                <div class="service-detail-card">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <div class="service-detail-img">
+                                <img src="assets/img/service/services1.png" alt="Máquina de terraplanagem">
                             </div>
-                            <div class="service-cap">
-                                <h4><a href="services_details.html">Engineering techniques & implementation</a></h4>
-                                <a href="services_details.html" class="more-btn">Read More <i class="ti-plus"></i></a>
-                            </div>
-                            <div class="service-icon">
-                                <img src="assets/img/icon/services_icon1.png" alt="">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-detail-content">
+                                <h3>Terraplanagem profissional</h3>
+                                <p>Preparamos seu terreno para receber qualquer tipo de construção. Realizamos análise
+                                    de solo, corte, aterro, compactação e nivelamento com precisão. Nossos equipamentos
+                                    modernos garantem eficiência e segurança.</p>
+                                <ul class="service-features">
+                                    <li><i class="ti-check"></i> Análise topográfica detalhada</li>
+                                    <li><i class="ti-check"></i> Execução rápida e dentro do cronograma</li>
+                                    <li><i class="ti-check"></i> Equipe experiente</li>
+                                    <li><i class="ti-check"></i> Máquinas de última geração</li>
+                                </ul>
+                                <a href="contact.html?servico=Terraplanagem" class="btn-servico">Solicitar orçamento</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="assets/img/service/servicess2.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DETALHADA: Aluguel de Andaimes -->
+        <section id="andaimes" class="pt-0 pb-0">
+            <div class="container">
+                <div class="service-detail-card">
+                    <div class="row no-gutters flex-row-reverse">
+                        <div class="col-md-6">
+                            <div class="service-detail-img">
+                                <img src="assets/img/service/service" alt="Andaimes metálicos">
                             </div>
-                            <div class="service-cap">
-                                <h4><a href="services_details.html">Engineering techniques & implementation</a></h4>
-                                <a href="services_details.html" class="more-btn">Read More <i class="ti-plus"></i></a>
-                            </div>
-                            <div class="service-icon">
-                                <img src="assets/img/icon/services_icon1.png" alt="">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-detail-content">
+                                <h3>Aluguel de Andaimes e Equipamentos</h3>
+                                <p>Disponibilizamos andaimes metálicos, torres móveis, bandejas, rodízios e sistemas de
+                                    proteção coletiva. Tudo com manutenção em dia e certificado de segurança.</p>
+                                <ul class="service-features">
+                                    <li><i class="ti-check"></i> Andaimes para fachadas, obras internas e industriais
+                                    </li>
+                                    <li><i class="ti-check"></i> Entrega e retirada no local</li>
+                                    <li><i class="ti-check"></i> Preços competitivos</li>
+                                    <li><i class="ti-check"></i> Suporte técnico para montagem</li>
+                                </ul>
+                                <a href="contact.html?servico=AluguelAndaimes" class="btn-servico">Solicitar
+                                    orçamento</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="assets/img/service/servicess3.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <!-- SEÇÃO DETALHADA: Venda de Produtos -->
+        <section id="venda" class="pt-0 pb-0">
+            <div class="container">
+                <div class="service-detail-card">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <div class="service-detail-img">
+                                <img src="assets/img/service/services3.jpeg" alt="Materiais de construção">
                             </div>
-                            <div class="service-cap">
-                                <h4><a href="services_details.html">Engineering techniques & implementation</a></h4>
-                                <a href="services_details.html" class="more-btn">Read More <i class="ti-plus"></i></a>
-                            </div>
-                            <div class="service-icon">
-                                <img src="assets/img/icon/services_icon1.png" alt="">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-detail-content">
+                                <h3>Venda de Produtos de Qualidade</h3>
+                                <p>Oferecemos materiais de construção selecionados, com origem garantida e melhor
+                                    relação custo-benefício. Cimento, tijolos, tintas, ferragens, tubos e muito mais
+                                    para sua obra.</p>
+                                <ul class="service-features">
+                                    <li><i class="ti-check"></i> Produtos certificados</li>
+                                    <li><i class="ti-check"></i> Entrega rápida na região</li>
+                                    <li><i class="ti-check"></i> Desconto para grandes volumes</li>
+                                    <li><i class="ti-check"></i> Atendimento personalizado</li>
+                                </ul>
+                                <a href="blog.html" class="btn-servico">Ver produtos disponíveis</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="assets/img/service/servicess4.png" alt="">
+                </div>
+            </div>
+        </section>
+
+        <!-- Diferenciais / Por que contratar -->
+        <section class="testimonial-area t-bg pt-90 pb-90" style="background: #0b1c39;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="contact-title" style="color: #fff; margin-bottom: 40px;">Por que contratar a Gabriel
+                            Construção?</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-30">
+                        <div class="diff-card">
+                            <div class="icon"><i class="ti-medall"></i></div>
+                            <h3>Experiência comprovada</h3>
+                            <p>Mais de 150 projetos realizados, com clientes satisfeitos e obras de referência.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-30">
+                        <div class="diff-card">
+                            <div class="icon"><i class="ti-timer"></i></div>
+                            <h3>Cumprimento de prazos</h3>
+                            <p>Planejamento detalhado e gestão eficiente para entregar no tempo combinado.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-30">
+                        <div class="diff-card">
+                            <div class="icon"><i class="ti-credit-card"></i></div>
+                            <h3>Transparência total</h3>
+                            <p>Orçamentos detalhados e sem surpresas. Você sabe exatamente o que está pagando.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section-padding30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="contact-title" style="margin-bottom: 40px;">Dúvidas frequentes</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="faq-item">
+                            <h4>Vocês atendem toda a região de Barra Bonita?</h4>
+                            <p>Sim, atendemos Barra Bonita e cidades próximas como Jaú, Macatuba, Igaraçu do Tietê, Dois
+                                Córregos e região.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>É necessário fazer um contrato para aluguel de andaimes?</h4>
+                            <p>Sim, por questões de segurança e responsabilidade, formalizamos um contrato de locação
+                                com todas as cláusulas de uso.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="faq-item">
+                            <h4>Como faço um orçamento?</h4>
+                            <p>Basta entrar em contato pelo telefone, WhatsApp ou formulário na página de contato. Nossa
+                                equipe irá até o local para avaliar e apresentar a melhor solução.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Os produtos têm garantia?</h4>
+                            <p>Todos os materiais vendidos possuem garantia dos fabricantes. Além disso, oferecemos
+                                suporte na troca caso haja defeito de fábrica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to action -->
+        <section class="contact-with-area contact-compact" data-background="assets/img/gallery/section-bg2.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-2 text-center">
+                        <h2 style="color: #fff; font-size: 32px;">Precisa de um serviço ou material?</h2>
+                        <p style="color: #fff; margin: 20px 0;">Fale com nossos especialistas e receba um atendimento
+                            personalizado.</p>
+                        <a href="contact.html" class="white-btn btn-sm">Solicitar orçamento</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer padrão (sem newsletter) -->
+    <footer>
+        <div class="footer-main">
+            <div class="footer-area footer-padding">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-lg-4 col-md-4 col-sm-8">
+                            <div class="single-footer-caption mb-30">
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="assets/img/logo/logo2_footer.png"
+                                            alt="Gabriel Construção"></a>
+                                </div>
+                                <div class="footer-tittle">
+                                    <div class="footer-pera">
+                                        <p class="info1">Atuamos no setor da construção civil com excelência, oferecendo
+                                            soluções personalizadas para cada cliente.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="service-cap">
-                                <h4><a href="services_details.html">Engineering techniques & implementation</a></h4>
-                                <a href="services_details.html" class="more-btn">Read More <i class="ti-plus"></i></a>
+                        </div>
+                        <div class="col-lg-2 col-md-4 col-sm-5">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Links Rápidos</h4>
+                                    <ul>
+                                        <li><a href="about.html">Sobre</a></li>
+                                        <li><a href="services.html">Serviços</a></li>
+                                        <li><a href="blog.html">Produtos</a></li>
+                                        <li><a href="contact.html">Contato</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="service-icon">
-                                <img src="assets/img/icon/services_icon1.png" alt="">
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-7">
+                            <div class="single-footer-caption mb-50">
+                                <div class="footer-tittle">
+                                    <h4>Contato</h4>
+                                    <div class="footer-pera">
+                                        <p class="info1">Av. Arthur Balsi, Nº620<br>Barra Bonita, SP</p>
+                                    </div>
+                                    <ul>
+                                        <li><a href="#">Telefone: (14) 99735-4643</a></li>
+                                        <li><a href="#">Email: gabrielconstrucao1@gmail.com</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="assets/img/service/servicess5.png" alt="">
-                            </div>
-                            <div class="service-cap">
-                                <h4><a href="services_details.html">Engineering techniques & implementation</a></h4>
-                                <a href="services_details.html" class="more-btn">Read More <i class="ti-plus"></i></a>
-                            </div>
-                            <div class="service-icon">
-                                <img src="assets/img/icon/services_icon1.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-service-cap mb-30">
-                            <div class="service-img">
-                                <img src="assets/img/service/servicess6.png" alt="">
-                            </div>
-                            <div class="service-cap">
-                                <h4><a href="services_details.html">Engineering techniques & implementation</a></h4>
-                                <a href="" class="more-btn">Read More <i class="ti-plus"></i></a>
-                            </div>
-                            <div class="service-icon">
-                                <img src="assets/img/icon/services_icon1.png" alt="">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12">
+                            <div class="footer-copy-right">
+                                <p>Copyright &copy;
+                                    <script>document.write(new Date().getFullYear());</script> Todos os direitos
+                                    reservados | Gabriel Construção
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Services Area End -->
-    </main>
-    <footer>
-        <!-- Footer Start-->
-        <div class="footer-main">
-             <div class="footer-area footer-padding">
-                 <div class="container">
-                     <div class="row  justify-content-between">
-                         <div class="col-lg-4 col-md-4 col-sm-8">
-                             <div class="single-footer-caption mb-30">
-                                 <!-- logo -->
-                                 <div class="footer-logo">
-                                     <a href="index.html"><img src="assets/img/logo/logo2_footer.png" alt=""></a>
-                                 </div>
-                                 <div class="footer-tittle">
-                                     <div class="footer-pera">
-                                         <p class="info1">Lorem ipsum dolor sit amet, consectetur adipisicing elit sed do eiusmod tempor incididunt ut labore.</p>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-lg-2 col-md-4 col-sm-5">
-                             <div class="single-footer-caption mb-50">
-                                 <div class="footer-tittle">
-                                     <h4>Quick Links</h4>
-                                     <ul>
-                                         <li><a href="#">About</a></li>
-                                         <li><a href="#">Services</a></li>
-                                         <li><a href="#">Projects</a></li>
-                                         <li><a href="#">Contact Us</a></li>
-                                     </ul>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-lg-3 col-md-4 col-sm-7">
-                             <div class="single-footer-caption mb-50">
-                                 <div class="footer-tittle">
-                                     <h4>Contact</h4>
-                                     <div class="footer-pera">
-                                         <p class="info1">198 West 21th Street,
-                                             Suite 721 New York,NY 10010</p>
-                                     </div>
-                                     <ul>
-                                         <li><a href="#">Phone: +95 (0) 123 456 789</a></li>
-                                         <li><a href="#">Cell: +95 (0) 123 456 789</a></li>
-                                     </ul>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="col-lg-3 col-md-6 col-sm-8">
-                             <div class="single-footer-caption mb-50">
-                                 <!-- Form -->
-                                 <div class="footer-form">
-                                     <div id="mc_embed_signup">
-                                         <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part" novalidate="true">
-                                             <input type="email" name="EMAIL" id="newsletter-form-email" placeholder=" Email Address " class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = ' Email Address '">
-                                             <div class="form-icon">
-                                                 <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm">
-                                                     SIGN UP
-                                                 </button>
-                                             </div>
-                                             <div class="mt-10 info"></div>
-                                         </form>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                     <!-- Copy-Right -->
-                     <div class="row align-items-center">
-                         <div class="col-xl-12 ">
-                             <div class="footer-copy-right">
-                                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-       </div>
-        <!-- Footer End-->
     </footer>
-   
-	<!-- JS here -->
-	
-		<!-- All JS Custom Plugins Link Here here -->
-        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
-		<!-- Jquery, Popper, Bootstrap -->
-		<script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
-        <script src="./assets/js/popper.min.js"></script>
-        <script src="./assets/js/bootstrap.min.js"></script>
-	    <!-- Jquery Mobile Menu -->
-        <script src="./assets/js/jquery.slicknav.min.js"></script>
 
-		<!-- Jquery Slick , Owl-Carousel Plugins -->
-        <script src="./assets/js/owl.carousel.min.js"></script>
-        <script src="./assets/js/slick.min.js"></script>
-        <!-- Date Picker -->
-        <script src="./assets/js/gijgo.min.js"></script>
-		<!-- One Page, Animated-HeadLin -->
-        <script src="./assets/js/wow.min.js"></script>
-		<script src="./assets/js/animated.headline.js"></script>
-        <script src="./assets/js/jquery.magnific-popup.js"></script>
+    <!-- JS (mantido do template) -->
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/popper.min.js"></script>
+    <script src="./assets/js/bootstrap.min.js"></script>
+    <script src="./assets/js/jquery.slicknav.min.js"></script>
+    <script src="./assets/js/owl.carousel.min.js"></script>
+    <script src="./assets/js/slick.min.js"></script>
+    <script src="./assets/js/gijgo.min.js"></script>
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/animated.headline.js"></script>
+    <script src="./assets/js/jquery.magnific-popup.js"></script>
+    <script src="./assets/js/jquery.scrollUp.min.js"></script>
+    <script src="./assets/js/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/jquery.sticky.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="./assets/js/jquery.counterup.min.js"></script>
+    <script src="./assets/js/contact.js"></script>
+    <script src="./assets/js/jquery.form.js"></script>
+    <script src="./assets/js/jquery.validate.min.js"></script>
+    <script src="./assets/js/mail-script.js"></script>
+    <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="./assets/js/plugins.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
 
-		<!-- Scrollup, nice-select, sticky -->
-        <script src="./assets/js/jquery.scrollUp.min.js"></script>
-        <script src="./assets/js/jquery.nice-select.min.js"></script>
-		<script src="./assets/js/jquery.sticky.js"></script>
-               
-        <!-- counter , waypoint -->
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-        <script src="./assets/js/jquery.counterup.min.js"></script>
-
-        <!-- contact js -->
-        <script src="./assets/js/contact.js"></script>
-        <script src="./assets/js/jquery.form.js"></script>
-        <script src="./assets/js/jquery.validate.min.js"></script>
-        <script src="./assets/js/mail-script.js"></script>
-        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
-        
-		<!-- Jquery Plugins, main Jquery -->	
-        <script src="./assets/js/plugins.js"></script>
-        <script src="./assets/js/main.js"></script>
-        
-    </body>
 </html>
