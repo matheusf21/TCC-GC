@@ -7171,3 +7171,13 @@ del {
     position: relative;
     z-index: 1;
 }
+
+/* Garante que a imagem de fundo cubra toda a área do banner, sem alterar a altura */
+.single-slider.hero-overly.slider-height2 {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat;
+}
+
+/* Não altera a altura – mantém a definição original do template */
+/* A altura já vem do .slider-height2 (590px padrão) */
