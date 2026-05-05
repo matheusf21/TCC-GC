@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Gabriel Construção - Sobre nós</title>
     <meta name="description"
-        content="Conheça a história, valores e equipe da Gabriel Construção. Excelência em engenharia e construção civil desde 2018.">
+        content="Conheça a história da Gabriel Construção: excelência, inovação e compromisso em cada projeto. Mais de 150 obras realizadas com qualidade.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon3.png">
 
@@ -23,191 +23,355 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
-        /* Estilos exclusivos para a página Sobre */
-        .about-hero {
-            background: linear-gradient(135deg, #0b1c39 0%, #1a2a4f 100%);
-            color: #fff;
-            padding: 100px 0;
+        /* ============================================= */
+        /* ESTILOS EXCLUSIVOS – PÁGINA SOBRE (MODERNA)   */
+        /* ============================================= */
+        :root {
+            --primary: #ff5f13;
+            --dark: #0b1c39;
+            --gray-light: #f8f9fc;
+        }
+
+        /* Seção com fundo gradiente suave */
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--gray-light) 0%, #ffffff 100%);
+        }
+
+        /* Títulos das seções com linha decorativa laranja */
+        .section-heading {
             text-align: center;
+            margin-bottom: 60px;
         }
 
-        .about-hero h2 {
-            font-size: 48px;
+        .section-heading h2 {
+            font-size: 42px;
             font-weight: 800;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
             margin-bottom: 20px;
-            color: #fff;
         }
 
-        .about-hero p {
+        .section-heading h2:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 70px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .section-heading p {
             font-size: 18px;
-            max-width: 700px;
+            color: #666;
+            max-width: 600px;
             margin: 0 auto;
-            opacity: 0.9;
         }
 
-        .mission-card {
+        /* Cards de missão/visão/valores com borda decorativa e ícone circular */
+        .mv-card {
             background: #fff;
-            border-radius: 20px;
+            border-radius: 30px;
             padding: 40px 25px;
             text-align: center;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
             height: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            z-index: 1;
         }
 
-        .mission-card:hover {
-            transform: translateY(-5px);
+        .mv-card:hover {
+            transform: translateY(-8px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .mission-card .icon {
-            font-size: 54px;
-            color: #ff5f13;
+        .mv-card .icon {
+            font-size: 56px;
+            color: var(--primary);
             margin-bottom: 25px;
-            display: inline-block;
-        }
-
-        .mission-card h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .timeline-item {
-            display: flex;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        .timeline-year {
-            min-width: 100px;
-            font-size: 28px;
-            font-weight: 800;
-            color: #ff5f13;
-        }
-
-        .timeline-content {
-            padding-left: 20px;
-            border-left: 2px solid #ff5f13;
-        }
-
-        .timeline-content h4 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        /* Estilo para a seção "Nossa história" - título em branco */
-        .support-company-area .section-tittle.section-tittle2 .front-text h2 {
-            color: #0b1c39;
-            /* Mantém escuro para legibilidade sobre fundo claro? Você pediu branco. Vou forçar branco com fundo escuro? */
-        }
-
-        /* Na verdade, o título "Nossa história" está em fundo claro. Para ficar legível em branco, precisaria de fundo escuro. 
-           Vou manter a cor original (escura) que já é legível. Se quiser realmente branco, será necessário mudar o fundo da seção.
-           Como você pediu "mudar a cor para branco", vou aplicar um fundo escuro na seção para contrastar. */
-        .about-history-section {
-            background: #0b1c39;
-            color: #fff;
-            padding: 80px 0;
-        }
-
-        .about-history-section .section-tittle .front-text h2,
-        .about-history-section .section-tittle span.back-text {
-            color: #fff !important;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-        }
-
-        .about-history-section p {
-            color: #ddd;
-        }
-
-        .about-history-section .btn.red-btn2 {
-            background: #ff5f13;
-            color: #fff;
-        }
-
-        /* Ajuste dos cards de depoimento (versão detalhada) */
-        .testimonial-detailed {
-            background: #fff;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-
-        .testimonial-detailed p {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #444;
-            margin-bottom: 20px;
-        }
-
-        .testimonial-detailed .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .testimonial-detailed .author-img {
-            width: 60px;
-            height: 60px;
+            background: rgba(255, 95, 19, 0.1);
+            width: 90px;
+            height: 90px;
+            line-height: 90px;
             border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .testimonial-detailed .author-info h5 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .testimonial-detailed .author-info span {
-            font-size: 14px;
-            color: #ff5f13;
-        }
-
-        .counter-box {
-            background: #f9f9fc;
-            border-radius: 16px;
-            padding: 30px 20px;
-            text-align: center;
+            display: inline-block;
             transition: 0.3s;
         }
 
-        .counter-box .counter-number {
-            font-size: 48px;
-            font-weight: 800;
-            color: #ff5f13;
-            line-height: 1;
+        .mv-card:hover .icon {
+            background: var(--primary);
+            color: #fff;
         }
 
-        .value-badge {
-            background: #ff5f13;
+        .mv-card h3 {
+            font-size: 26px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .mv-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Linha do tempo – estilo premium (funciona em desktop e responsivo) */
+        .timeline-modern {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-modern::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--primary) 80%, transparent);
+            opacity: 0.4;
+        }
+
+        .timeline-item-modern {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .timeline-item-modern:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background: #fff;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-year {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline-year i {
+            font-size: 28px;
+        }
+
+        .timeline-content h4 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .timeline-content p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 18px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 0 0 3px rgba(255, 95, 19, 0.2);
+            top: 30px;
+        }
+
+        /* Placeholder invisível para alinhamento na linha do tempo */
+        .invisible-placeholder {
+            visibility: hidden;
+        }
+
+        /* Bloco de números impactantes */
+        .counter-block {
+            background: var(--dark);
+            border-radius: 30px;
+            padding: 60px 30px;
+            margin: 60px 0;
+        }
+
+        .counter-item {
+            text-align: center;
             color: #fff;
-            padding: 8px 20px;
-            border-radius: 40px;
-            display: inline-block;
+        }
+
+        .counter-number {
+            font-size: 58px;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        /* Cards da equipe – versão elegante */
+        .team-card {
+            background: #fff;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s;
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-img {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-img img {
+            width: 100%;
+            transition: transform 0.5s;
+        }
+
+        .team-card:hover .team-img img {
+            transform: scale(1.08);
+        }
+
+        .team-info {
+            padding: 25px 20px;
+        }
+
+        .team-info h4 {
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .team-info span {
+            color: var(--primary);
             font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .team-social {
+            margin-top: 18px;
+        }
+
+        .team-social a {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: #f5f5f5;
+            line-height: 36px;
+            border-radius: 50%;
+            color: var(--dark);
+            margin: 0 4px;
+            transition: all 0.3s;
+        }
+
+        .team-social a:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* Diferenciais com ícones e texto */
+        .diff-item {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .diff-item:hover {
+            transform: translateY(-5px);
+            background: var(--gray-light);
+        }
+
+        .diff-icon {
+            font-size: 48px;
+            color: var(--primary);
             margin-bottom: 20px;
         }
 
+        /* Depoimentos */
+        .testimonial-carousel .item {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Responsivo – ajustes para telas menores */
         @media (max-width: 768px) {
-            .timeline-item {
+            .section-heading h2 {
+                font-size: 32px;
+            }
+
+            .timeline-modern::before {
+                left: 20px;
+            }
+
+            .timeline-item-modern,
+            .timeline-item-modern:nth-child(even) {
                 flex-direction: column;
+                margin-left: 30px;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+                top: 20px;
             }
 
             .timeline-year {
-                margin-bottom: 10px;
+                justify-content: flex-start;
             }
 
-            .timeline-content {
-                border-left: none;
-                padding-left: 0;
+            .invisible-placeholder {
+                display: none;
             }
 
-            .timeline-content {
-                color: #fff;
+            .mv-card .icon {
+                width: 70px;
+                height: 70px;
+                line-height: 70px;
+                font-size: 40px;
+            }
+
+            .counter-number {
+                font-size: 42px;
+            }
+
+            .team-info h4 {
+                font-size: 20px;
             }
         }
     </style>
@@ -226,8 +390,8 @@
         </div>
     </div>
 
+    <!-- Header (idêntico ao index – com menu atualizado) -->
     <header>
-        <!-- Header Start (padrão do site, com menu já atualizado) -->
         <div class="header-area header-transparent">
             <div class="main-header">
                 <div class="header-top d-none d-lg-block">
@@ -270,14 +434,14 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="about.html">Sobre</a></li>
-                                            <li><a href="blog.html">Produtos</a>
+                                            <li><a href="products.html">Produtos</a>
                                                 <ul class="submenu">
-                                                    <li><a href="blog.html">Materiais de Construção</a></li>
-                                                    <li><a href="elements.html">Área PET</a></li>
+                                                    <li><a href="products.html">Materiais de Construção</a></li>
+                                                    <li><a href="petarea.html">Área PET</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="services.html">Serviços</a></li>
-                                            <li><a href="elements.html">Área PET</a></li>
+                                            <li><a href="petarea.html">Área PET</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -298,7 +462,7 @@
     </header>
 
     <main>
-        <!-- Banner interno Sobre -->
+        <!-- Banner interno Sobre (mantido) -->
         <div class="slider-area">
             <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
                 data-background="assets/img/hero/about.jpg">
@@ -320,340 +484,316 @@
             </div>
         </div>
 
-        <!-- Seção: Nossa história (com fundo escuro e texto branco para melhor contraste) -->
-        <section class="about-history-section">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 mb-30">
-                        <div class="section-tittle section-tittle2 mb-30">
-                            <div class="front-text">
-                                <h2 class="">Nossa história</h2>
-                            </div>
-                            <span class="back-text">Sobre nós</span>
-                        </div>
-                        <p class="pera-top">Fundada em 2018, a <strong>Gabriel Construção</strong> nasceu do sonho de
-                            oferecer obras com qualidade, transparência e inovação. Começamos com pequenas reformas e
-                            hoje somos referência em construção civil na região de Barra Bonita e cidades vizinhas.</p>
-                        <p>Atuamos em obras residenciais, comerciais e industriais, sempre com compromisso e respeito
-                            aos nossos clientes. Ao longo dos anos, construímos uma reputação sólida baseada na entrega
-                            de projetos no prazo e com excelência técnica.</p>
-                        <p>Nossa missão é transformar ideias em realidade, proporcionando espaços funcionais, seguros e
-                            esteticamente agradáveis. Venha fazer parte da nossa história!</p>
-                        <a href="contact.html" class="btn red-btn2 mt-20">Fale conosco</a>
+        <!-- Seção: Nossa História com destaque visual -->
+        <div class="container pt-120 pb-90">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="pr-lg-5">
+                        <h2 class="mt-3" style="font-size: 42px; font-weight: 800;">Construindo sonhos desde 2018</h2>
+                        <p class="lead mt-4">A Gabriel Construção nasceu da paixão por transformar espaços e da vontade
+                            de oferecer obras com qualidade, transparência e inovação.</p>
+                        <p>Começamos com pequenas reformas e hoje somos referência em Barra Bonita e região, atendendo
+                            clientes residenciais, comerciais e industriais. Cada projeto é uma oportunidade de superar
+                            expectativas e entregar excelência.</p>
+                        <p><strong>Nosso diferencial:</strong> unimos tecnologia de ponta, equipe altamente qualificada
+                            e um compromisso inabalável com prazos e orçamentos.</p>
+                        <a href="contact.html" class="btn red-btn2 mt-3">Fale com um especialista →</a>
                     </div>
-                    <div class="col-lg-6 mb-30">
-                        <div class="right-img">
-                            <img src="assets/img/hero/fachadasobre1.png" alt="Gabriel Construção - Estrutura"
-                                class="img-fluid rounded">
-                        </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="assets/img/hero/fachadasobre1.png" alt="Nossa equipe"
+                            class="img-fluid rounded-3 shadow-lg">
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Missão, Visão, Valores (mantido) -->
-        <section class="pb-90 pt-90">
+        <!-- Missão, Visão, Valores com animações -->
+        <div class="gradient-bg py-90">
             <div class="container">
+                <div class="section-heading">
+                    <h2>Nossa essência</h2>
+                    <p>Valores que guiam cada decisão e projeto</p>
+                </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div class="mission-card">
+                    <div class="col-md-4 mb-4">
+                        <div class="mv-card">
                             <div class="icon"><i class="ti-flag-alt"></i></div>
                             <h3>Missão</h3>
                             <p>Oferecer soluções em engenharia e construção com qualidade, inovação e responsabilidade,
-                                superando as expectativas dos clientes.</p>
+                                superando expectativas e contribuindo para o desenvolvimento sustentável.</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div class="mission-card">
+                    <div class="col-md-4 mb-4">
+                        <div class="mv-card">
                             <div class="icon"><i class="ti-eye"></i></div>
                             <h3>Visão</h3>
-                            <p>Ser referência regional em construção civil, reconhecida pela excelência, ética e
-                                compromisso com o desenvolvimento sustentável.</p>
+                            <p>Ser referência regional em construção civil, reconhecida pela excelência técnica, ética e
+                                compromisso com a satisfação total dos clientes.</p>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 mb-30">
-                        <div class="mission-card">
+                    <div class="col-md-4 mb-4">
+                        <div class="mv-card">
                             <div class="icon"><i class="ti-heart"></i></div>
                             <h3>Valores</h3>
-                            <p>Transparência, respeito ao cliente, inovação constante, segurança no trabalho e
-                                compromisso com prazos e qualidade.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Linha do tempo (mantida) -->
-        <section class="testimonial-area t-bg pt-90 pb-90">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center mb-50">
-                        <h2 class="contact-title" style="color: #fff;">Nossa trajetória</h2>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="timeline-item">
-                            <div class="timeline-year">2018</div>
-                            <div class="timeline-content">
-                                <h4>Fundação da Gabriel Construção</h4>
-                                <p>Iniciamos as atividades com foco em reformas residenciais e pequenas obras.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-year">2020</div>
-                            <div class="timeline-content">
-                                <h4>Expansão para obras comerciais</h4>
-                                <p>Primeiros projetos em lojas, escritórios e espaços corporativos.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-year">2022</div>
-                            <div class="timeline-content">
-                                <h4>Novos serviços: andaimes e produtos</h4>
-                                <p>Incorporamos aluguel de andaimes e venda de materiais selecionados.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-year">2024</div>
-                            <div class="timeline-content">
-                                <h4>Inovação e sustentabilidade</h4>
-                                <p>Adotamos práticas sustentáveis e tecnologias modernas em todos os projetos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Números e diferenciais (com valores fixos e legíveis) -->
-        <section class="section-padding30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 mb-30">
-                        <div class="counter-box">
-                            <div class="counter-number">6+</div>
-                            <p>Anos de experiência</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-30">
-                        <div class="counter-box">
-                            <div class="counter-number">150+</div>
-                            <p>Projetos concluídos</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-30">
-                        <div class="counter-box">
-                            <div class="counter-number">120+</div>
-                            <p>Clientes satisfeitos</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-30">
-                        <div class="counter-box">
-                            <div class="counter-number">15</div>
-                            <p>Colaboradores ativos</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-50">
-                    <div class="col-12 text-center">
-                        <span class="value-badge">Diferenciais</span>
-                        <h3 class="mb-40">Por que escolher a Gabriel Construção?</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 mb-30">
-                        <div class="mission-card" style="padding: 30px 20px;">
-                            <div class="icon"><i class="ti-panel"></i></div>
-                            <h4>Materiais de qualidade</h4>
-                            <p>Utilizamos apenas produtos certificados e de fornecedores confiáveis.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-30">
-                        <div class="mission-card" style="padding: 30px 20px;">
-                            <div class="icon"><i class="ti-calendar"></i></div>
-                            <h4>Cumprimento de prazos</h4>
-                            <p>Planejamento rigoroso para entregar sua obra no tempo combinado.</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-30">
-                        <div class="mission-card" style="padding: 30px 20px;">
-                            <div class="icon"><i class="ti-headphone-alt"></i></div>
-                            <h4>Suporte personalizado</h4>
-                            <p>Acompanhamento próximo e atendimento ágil durante todo o projeto.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Equipe (reaproveitada, com 6 membros) -->
-        <div class="team-area section-padding30" style="padding-top: 0;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="section-tittle section-tittle5 mb-50">
-                            <div class="front-text">
-                                <h2 class="">Nossa equipe</h2>
-                            </div>
-                            <span class="back-text">Especialistas</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/team/team1.png" alt="Designer">
-                            </div>
-                            <div class="team-caption">
-                                <span>Designer de Interiores</span>
-                                <h3>Ethan Welch</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/team/team2.png" alt="Engenheiro">
-                            </div>
-                            <div class="team-caption">
-                                <span>Engenheiro Civil</span>
-                                <h3>Ethan Welch</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/team/team3.png" alt="Arquiteto">
-                            </div>
-                            <div class="team-caption">
-                                <span>Arquiteto</span>
-                                <h3>Ethan Welch</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/team/team1.png" alt="Mestre de Obras">
-                            </div>
-                            <div class="team-caption">
-                                <span>Mestre de Obras</span>
-                                <h3>Carlos Mota</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/team/team2.png" alt="Eletricista">
-                            </div>
-                            <div class="team-caption">
-                                <span>Eletricista</span>
-                                <h3>Rafael Dias</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-team mb-30">
-                            <div class="team-img">
-                                <img src="assets/img/team/team3.png" alt="Pedreiro">
-                            </div>
-                            <div class="team-caption">
-                                <span>Pedreiro</span>
-                                <h3>André Lima</h3>
-                            </div>
+                            <p>Transparência, respeito, inovação, segurança, cumprimento de prazos e paixão pelo que
+                                fazemos.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Depoimentos detalhados (versão melhorada) -->
-        <div class="testimonial-area t-bg testimonial-padding" style="background: #0b1c39;">
+        <!-- Linha do tempo criativa (com ícones) -->
+        <div class="container py-90">
+            <div class="section-heading">
+                <h2>Nossa trajetória</h2>
+                <p>Marcos que construíram nossa história</p>
+            </div>
+            <div class="timeline-modern">
+                <!-- 2018 -->
+                <div class="timeline-item-modern">
+                    <div class="timeline-content">
+                        <div class="timeline-year"><i class="ti-calendar"></i> 2018</div>
+                        <h4>Fundação da Gabriel Construção</h4>
+                        <p>Iniciamos as atividades com foco em reformas residenciais e pequenas obras, com apenas 3
+                            colaboradores.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content invisible-placeholder"></div>
+                </div>
+                <!-- 2020 -->
+                <div class="timeline-item-modern">
+                    <div class="timeline-content invisible-placeholder"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year"><i class="ti-stats-up"></i> 2020</div>
+                        <h4>Expansão para obras comerciais</h4>
+                        <p>Primeiros projetos em lojas, escritórios e espaços corporativos. Crescimento de 200% no
+                            portfólio.</p>
+                    </div>
+                </div>
+                <!-- 2022 -->
+                <div class="timeline-item-modern">
+                    <div class="timeline-content">
+                        <div class="timeline-year"><i class="ti-package"></i> 2022</div>
+                        <h4>Novos serviços: andaimes e produtos</h4>
+                        <p>Incorporamos aluguel de andaimes e venda de materiais selecionados, atendendo a demanda do
+                            mercado.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content invisible-placeholder"></div>
+                </div>
+                <!-- 2024 -->
+                <div class="timeline-item-modern">
+                    <div class="timeline-content invisible-placeholder"></div>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year"><i class="ti-world"></i> 2024</div>
+                        <h4>Inovação e sustentabilidade</h4>
+                        <p>Adotamos práticas sustentáveis e tecnologias BIM, reduzindo desperdícios e aumentando a
+                            eficiência.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Números que impressionam -->
+        <div class="container">
+            <div class="counter-block">
+                <div class="row text-center">
+                    <div class="col-md-3 col-6 mb-4 mb-md-0">
+                        <div class="counter-item">
+                            <div class="counter-number">6+</div>
+                            <p>Anos de experiência</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4 mb-md-0">
+                        <div class="counter-item">
+                            <div class="counter-number">150+</div>
+                            <p>Projetos concluídos</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-4 mb-md-0">
+                        <div class="counter-item">
+                            <div class="counter-number">120+</div>
+                            <p>Clientes satisfeitos</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="counter-item">
+                            <div class="counter-number">15</div>
+                            <p>Colaboradores ativos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diferenciais competitivos -->
+        <div class="container py-60">
+            <div class="text-center mb-60">
+                <span class="value-badge">Diferenciais</span>
+                <h2 class="mt-3">Por que escolher a Gabriel Construção?</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="ti-panel"></i></div>
+                        <h4>Materiais de qualidade</h4>
+                        <p>Utilizamos apenas produtos certificados e de fornecedores confiáveis, garantindo durabilidade
+                            e segurança.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="ti-timer"></i></div>
+                        <h4>Cumprimento de prazos</h4>
+                        <p>Planejamento rigoroso e gestão eficiente para entregar sua obra no tempo combinado, sem
+                            surpresas.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="diff-item">
+                        <div class="diff-icon"><i class="ti-headphone-alt"></i></div>
+                        <h4>Suporte personalizado</h4>
+                        <p>Acompanhamento próximo e atendimento ágil durante todo o projeto, do orçamento à entrega
+                            final.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Equipe (com redes sociais e efeitos) -->
+        <div class="gradient-bg py-90">
             <div class="container">
+                <div class="section-heading">
+                    <h2>Nossa equipe</h2>
+                    <p>Profissionais dedicados no que fazem</p>
+                </div>
                 <div class="row">
-                    <div class="col-xl-12">
-                        <div class="section-tittle section-tittle6 mb-50">
-                            <div class="front-text">
-                                <h2 class="">Depoimentos</h2>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="team-card">
+                            <div class="team-img"><img src="assets/img/team/team1.png" alt="Designer"></div>
+                            <div class="team-info">
+                                <h4>Ethan Welch</h4>
+                                <span>Designer de Interiores</span>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                </div>
                             </div>
-                            <span class="back-text">Feedbacks</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="team-card">
+                            <div class="team-img"><img src="assets/img/team/team2.png" alt="Engenheiro"></div>
+                            <div class="team-info">
+                                <h4>Ethan Welch</h4>
+                                <span>Engenheiro Civil</span>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="team-card">
+                            <div class="team-img"><img src="assets/img/team/team3.png" alt="Arquiteto"></div>
+                            <div class="team-info">
+                                <h4>Ethan Welch</h4>
+                                <span>Arquiteto</span>
+                                <div class="team-social">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="team-card">
+                            <div class="team-img"><img src="assets/img/team/team1.png" alt="Mestre de Obras"></div>
+                            <div class="team-info">
+                                <h4>Carlos Mota</h4>
+                                <span>Mestre de Obras</span>
+                                <div class="team-social"><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="team-card">
+                            <div class="team-img"><img src="assets/img/team/team2.png" alt="Eletricista"></div>
+                            <div class="team-info">
+                                <h4>Rafael Dias</h4>
+                                <span>Eletricista</span>
+                                <div class="team-social"><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="team-card">
+                            <div class="team-img"><img src="assets/img/team/team3.png" alt="Pedreiro"></div>
+                            <div class="team-info">
+                                <h4>André Lima</h4>
+                                <span>Pedreiro</span>
+                                <div class="team-social"><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-6 mb-30">
-                        <div class="testimonial-detailed">
-                            <p><i class="ti-quote-left" style="color: #ff5f13; margin-right: 5px;"></i>
-                                "Contratei a Gabriel Construção para a reforma completa da minha casa. Desde o primeiro
-                                contato, fui muito bem atendido. O engenheiro visitou o local, entendeu minhas
-                                necessidades e apresentou um projeto que superou minhas expectativas. A obra foi
-                                entregue antes do prazo e com um acabamento impecável. Destaque para a equipe de
-                                eletricistas e pedreiros, muito profissionais e cuidadosos. Recomendo de olhos
-                                fechados!”
-                            </p>
-                            <div class="testimonial-author">
-                                <img src="assets/img/team/team1.png" alt="João Silva" class="author-img">
-                                <div class="author-info">
-                                    <h5>João Silva</h5>
-                                    <span>Proprietário - Residencial Villa Verde</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mb-30">
-                        <div class="testimonial-detailed">
-                            <p><i class="ti-quote-left" style="color: #ff5f13; margin-right: 5px;"></i>
-                                "A Gabriel Construção foi responsável pela construção do meu salão comercial. O que mais
-                                me impressionou foi a transparência nos custos e o cumprimento do cronograma. Mesmo com
-                                imprevistos comuns em obras, eles sempre me mantiveram informado e buscaram soluções
-                                rápidas. O resultado ficou lindo e a qualidade dos materiais é excelente. Certamente
-                                farei novos projetos com eles.”
-                            </p>
-                            <div class="testimonial-author">
-                                <img src="assets/img/team/team2.png" alt="Maria Oliveira" class="author-img">
-                                <div class="author-info">
-                                    <h5>Maria Oliveira</h5>
-                                    <span>Empresária - Ótica Central</span>
-                                </div>
+            </div>
+        </div>
+        <!-- Depoimentos (carrossel com 3 itens) -->
+        <div class="container py-90">
+            <div class="text-center mb-60">
+                <h2 class="contact-title">O que dizem nossos clientes</h2>
+                <p>Experiências reais que nos motivam</p>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-carousel-item bg-white p-4 rounded-3 shadow-sm">
+                        <i class="ti-quote-left" style="font-size: 30px; color: var(--primary); opacity: 0.5;"></i>
+                        <p class="mt-3">"Excelente trabalho! A equipe da Gabriel Construção entregou nossa obra no prazo
+                            e com qualidade impecável. Recomendo a todos."</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <img src="assets/img/team/team1.png"
+                                style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="João">
+                            <div class="ms-3">
+                                <h5 class="mb-0">João Silva</h5>
+                                <small>Cliente</small>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mt-30">
-                    <div class="col-lg-6 mb-30">
-                        <div class="testimonial-detailed">
-                            <p><i class="ti-quote-left" style="color: #ff5f13; margin-right: 5px;"></i>
-                                "Precisei de um serviço de terraplanagem para o meu sítio e a Gabriel Construção atendeu
-                                prontamente. O preço foi justo, o maquinário moderno e a equipe muito experiente.
-                                Fizeram um serviço rápido e bem feito, nivelando o terreno exatamente como eu precisava.
-                                Recomendo para serviços de grande porte.”
-                            </p>
-                            <div class="testimonial-author">
-                                <img src="assets/img/team/team3.png" alt="Carlos Alberto" class="author-img">
-                                <div class="author-info">
-                                    <h5>Carlos Alberto</h5>
-                                    <span>Produtor Rural</span>
-                                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-carousel-item bg-white p-4 rounded-3 shadow-sm">
+                        <i class="ti-quote-left" style="font-size: 30px; color: var(--primary); opacity: 0.5;"></i>
+                        <p class="mt-3">"Profissionalismo e comprometimento desde o início. Ficamos muito satisfeitos
+                            com o resultado da nossa reforma. Parabéns a toda equipe!"</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <img src="assets/img/team/team2.png"
+                                style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="Maria">
+                            <div class="ms-3">
+                                <h5 class="mb-0">Maria Oliveira</h5>
+                                <small>Cliente</small>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 mb-30">
-                        <div class="testimonial-detailed">
-                            <p><i class="ti-quote-left" style="color: #ff5f13; margin-right: 5px;"></i>
-                                "Aluguei andaimes com a Gabriel Construção para uma obra de fachada. O equipamento
-                                estava em perfeito estado, a entrega foi pontual e a retirada também. O preço foi o
-                                melhor da região. Atendimento nota 10!"
-                            </p>
-                            <div class="testimonial-author">
-                                <img src="assets/img/team/team1.png" alt="Fernanda Lima" class="author-img">
-                                <div class="author-info">
-                                    <h5>Fernanda Lima</h5>
-                                    <span>Arquiteta</span>
-                                </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="testimonial-carousel-item bg-white p-4 rounded-3 shadow-sm">
+                        <i class="ti-quote-left" style="font-size: 30px; color: var(--primary); opacity: 0.5;"></i>
+                        <p class="mt-3">"Atendimento nota 10! Precisava de andaimes com urgência e eles entregaram
+                            rapidamente. Preço justo e equipamentos de qualidade."</p>
+                        <div class="d-flex align-items-center mt-4">
+                            <img src="assets/img/team/team3.png"
+                                style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;"
+                                alt="Fernanda">
+                            <div class="ms-3">
+                                <h5 class="mb-0">Fernanda Lima</h5>
+                                <small>Arquiteta</small>
                             </div>
                         </div>
                     </div>
@@ -676,8 +816,8 @@
         </section>
     </main>
 
+    <!-- Footer (idêntico ao index) -->
     <footer>
-        <!-- Footer Start (padrão, sem newsletter) -->
         <div class="footer-main">
             <div class="footer-area footer-padding">
                 <div class="container">
@@ -703,7 +843,7 @@
                                     <ul>
                                         <li><a href="about.html">Sobre</a></li>
                                         <li><a href="services.html">Serviços</a></li>
-                                        <li><a href="project.html">Projetos</a></li>
+                                        <li><a href="products.html">Produtos</a></li>
                                         <li><a href="contact.html">Contato</a></li>
                                     </ul>
                                 </div>
@@ -740,7 +880,7 @@
         </div>
     </footer>
 
-    <!-- JS here -->
+    <!-- Scripts (mantidos) -->
     <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="./assets/js/popper.min.js"></script>

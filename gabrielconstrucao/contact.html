@@ -22,101 +22,189 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <style>
-        /* Estilos para os cards de contato */
-        .contact-info-card {
+        /* --- NOVOS ESTILOS ÚNICOS PARA A PÁGINA SOBRE --- */
+
+        /* Seção Hero Personalizada */
+        .custom-about-hero {
+            background: linear-gradient(135deg, #0b1c39 0%, #1a2a4f 100%);
+            padding: 60px 0;
+            margin-bottom: 60px;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .custom-about-hero h2 {
+            font-size: 48px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .custom-about-hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Storytelling */
+        .storytelling-section {
+            margin-bottom: 80px;
+        }
+
+        .story-card {
             background: #fff;
-            border-radius: 16px;
-            padding: 35px 20px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .contact-info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        .story-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .contact-info-card .icon {
+        .story-card .story-icon {
+            font-size: 48px;
+            color: #ff5f13;
+            margin-bottom: 25px;
+        }
+
+        .story-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .story-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Propósito e Valores */
+        .purpose-section {
+            background: #f8f9fa;
+            padding: 80px 0;
+            margin: 60px 0;
+            border-radius: 30px;
+        }
+
+        .purpose-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .purpose-card .icon {
             font-size: 48px;
             color: #ff5f13;
             margin-bottom: 20px;
-            display: inline-block;
         }
 
-        .contact-info-card h3 {
+        .purpose-card h4 {
             font-size: 22px;
             font-weight: 700;
             margin-bottom: 15px;
-            color: #0b1c39;
         }
 
-        .contact-info-card p {
+        .purpose-card p {
+            font-size: 15px;
             color: #666;
-            margin-bottom: 0;
-            font-size: 14.5px;
         }
 
-        .form-control {
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            padding: 12px 20px;
+        /* Diferenciais em Grade */
+        .diff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
         }
 
-        .form-control:focus {
-            border-color: #ff5f13;
-            box-shadow: none;
-        }
-
-        .contact-title {
-            font-size: 36px;
-            font-weight: 700;
-            margin-bottom: 50px;
-            position: relative;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-        }
-
-        .contact-title:after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -15px;
-            width: 80px;
-            height: 3px;
-            background: #ff5f13;
-        }
-
-        .map-wrapper {
-            margin-top: 60px;
+        .diff-item {
+            background: #fff;
             border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
 
-        .btn-enviar {
-            background: #ff5f13;
+        .diff-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .diff-item .diff-icon {
+            font-size: 48px;
+            color: #ff5f13;
+            margin-bottom: 20px;
+        }
+
+        .diff-item h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        /* Call to Action Aprimorada */
+        .cta-enhanced {
+            background: linear-gradient(135deg, #ff5f13 0%, #e04a00 100%);
+            border-radius: 50px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-enhanced h3 {
+            font-size: 32px;
+            font-weight: 800;
             color: #fff;
-            border: none;
+            margin-bottom: 20px;
+        }
+
+        .cta-enhanced p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background: #fff;
+            color: #ff5f13;
             padding: 12px 35px;
             border-radius: 40px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
         }
 
-        .btn-enviar:hover {
+        .cta-button:hover {
             background: #0b1c39;
             color: #fff;
+            transform: translateY(-3px);
         }
 
+        /* Responsividade */
         @media (max-width: 768px) {
-            .contact-info-card {
-                margin-bottom: 20px;
+            .custom-about-hero h2 {
+                font-size: 36px;
+            }
+
+            .story-card {
+                padding: 25px;
+            }
+
+            .purpose-section {
+                padding: 50px 20px;
+            }
+
+            .cta-enhanced {
+                padding: 40px 20px;
+            }
+
+            .cta-enhanced h3 {
+                font-size: 24px;
             }
         }
     </style>
@@ -179,16 +267,16 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-											<li><a href="about.html">Sobre</a></li>
-											<li><a href="blog.html">Produtos</a>
-												<ul class="submenu">
-													<li><a href="blog.html">Materiais de Construção</a></li>
-													<li><a href="elements.html">Área Pet</a></li>
-												</ul>
-											</li>
-											<li><a href="services.html">Serviços</a></li>
-											<li><a href="elements.html">Área Pet</a></li>
-										</ul>
+                                            <li><a href="about.html">Sobre</a></li>
+                                            <li><a href="products.html">Produtos</a>
+                                                <ul class="submenu">
+                                                    <li><a href="products.html">Materiais de Construção</a></li>
+                                                    <li><a href="petarea.html">Área Pet</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="services.html">Serviços</a></li>
+                                            <li><a href="petarea.html">Área Pet</a></li>
+                                        </ul>
                                     </nav>
                                 </div>
                             </div>
