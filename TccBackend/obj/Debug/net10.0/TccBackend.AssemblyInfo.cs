@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TccBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+982b6e24ccd227e758de5ae3c42eca4e92ce7470")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dcc4fdc58648c1343f7c50755ee0f178ed621c59")]
 [assembly: System.Reflection.AssemblyProductAttribute("TccBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TccBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
