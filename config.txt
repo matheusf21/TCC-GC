@@ -3,3 +3,5 @@ git config --global user.email matheusferreiradelima21@gmail.com
 
 git config --global user.name NicolasCastro08
 git config --global user.email nicolasferreia2008@gmail.com
+
+cd TccBackend

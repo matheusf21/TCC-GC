@@ -29,6 +29,7 @@ public class MessageController : ControllerBase
     {
         _context.Messages.Add(message);
         _context.SaveChanges();
+
         return Ok(message);
     }
 
@@ -45,5 +46,22 @@ public class MessageController : ControllerBase
         _context.SaveChanges();
 
         return Ok();
+    }
+
+    // TESTE PELO NAVEGADOR
+    [HttpGet("teste")]
+    public IActionResult Teste(string nome, string email, string conteudo)
+    {
+        var message = new Message
+        {
+            Nome = nome,
+            Email = email,
+            Conteudo = conteudo
+        };
+
+        _context.Messages.Add(message);
+        _context.SaveChanges();
+
+        return Ok(message);
     }
 }
