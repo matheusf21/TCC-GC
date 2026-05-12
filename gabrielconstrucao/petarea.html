@@ -22,7 +22,64 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 
 	<style>
-		/* Estilos extras para a página Pet */
+		/* ============================================= */
+		/* ESTILOS EXCLUSIVOS PARA A PÁGINA PET (baseado em products.html) */
+		/* ============================================= */
+
+		/* Barra de filtros e busca */
+		.filter-bar {
+			background: #f9f9f9;
+			padding: 20px;
+			border-radius: 8px;
+			margin-bottom: 40px;
+		}
+
+		.filter-buttons .btn-filter {
+			background: transparent;
+			border: 1px solid #ddd;
+			padding: 8px 20px;
+			margin: 5px;
+			border-radius: 30px;
+			font-size: 14px;
+			font-weight: 500;
+			transition: all 0.3s;
+			color: #333;
+		}
+
+		.filter-buttons .btn-filter:hover,
+		.filter-buttons .btn-filter.active {
+			background: #ff5f13;
+			border-color: #ff5f13;
+			color: #fff;
+		}
+
+		.search-box {
+			position: relative;
+			max-width: 300px;
+			margin-left: auto;
+		}
+
+		.search-box input {
+			width: 100%;
+			padding: 10px 20px;
+			border: 1px solid #ddd;
+			border-radius: 40px;
+			font-size: 14px;
+		}
+
+		.search-box button {
+			position: absolute;
+			right: 5px;
+			top: 5px;
+			background: #ff5f13;
+			border: none;
+			border-radius: 40px;
+			padding: 6px 15px;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		/* Cards de produtos (já existentes, mas com ajustes para se adequarem ao layout) */
 		.pet-produto-card {
 			background: #fff;
 			border-radius: 20px;
@@ -64,6 +121,7 @@
 			border-radius: 30px;
 			font-size: 12px;
 			font-weight: 600;
+			z-index: 2;
 		}
 
 		.pet-produto-content {
@@ -103,6 +161,7 @@
 			letter-spacing: 1px;
 			transition: all 0.3s;
 			border: none;
+			text-decoration: none;
 		}
 
 		.btn-pet:hover {
@@ -110,6 +169,91 @@
 			color: #fff;
 		}
 
+		/* Categoria do produto (etiqueta) */
+		.pet-produto-categoria {
+			display: inline-block;
+			background: #f0f0f0;
+			padding: 4px 12px;
+			border-radius: 20px;
+			font-size: 12px;
+			margin-bottom: 10px;
+			color: #ff5f13;
+			font-weight: 600;
+		}
+
+		/* Sidebar (categorias e produtos em destaque) */
+		.sidebar-widget {
+			background: #fff;
+			border: 1px solid #eee;
+			padding: 25px;
+			margin-bottom: 30px;
+			border-radius: 8px;
+		}
+
+		.sidebar-widget h4 {
+			font-size: 20px;
+			margin-bottom: 20px;
+			font-weight: 700;
+			position: relative;
+			padding-bottom: 10px;
+		}
+
+		.sidebar-widget h4:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 40px;
+			height: 2px;
+			background: #ff5f13;
+		}
+
+		.cat-list li {
+			margin-bottom: 12px;
+		}
+
+		.cat-list li a {
+			color: #555;
+			transition: 0.3s;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.cat-list li a:hover {
+			color: #ff5f13;
+			padding-left: 5px;
+		}
+
+		.recent-product-item {
+			display: flex;
+			margin-bottom: 20px;
+		}
+
+		.recent-product-img {
+			width: 70px;
+			height: 70px;
+			overflow: hidden;
+			border-radius: 8px;
+			margin-right: 15px;
+		}
+
+		.recent-product-img img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.recent-product-info h5 {
+			font-size: 16px;
+			margin-bottom: 5px;
+		}
+
+		.recent-product-info p {
+			font-size: 13px;
+			color: #888;
+		}
+
+		/* Diferenciais (mantidos, sem alterações) */
 		.pet-destaque-bg {
 			background: #f9f9fc;
 			border-radius: 30px;
@@ -134,35 +278,23 @@
 			margin-bottom: 10px;
 		}
 
-		.pet-depoimento {
-			background: #fff;
-			border-radius: 20px;
-			padding: 30px;
-			box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-			text-align: center;
+		/* Remove qualquer interferência – deixa o estilo global do style.css agir */
+		.single-slider.hero-overly.slider-height2 {
+			background-size: cover !important;
+			background-position: center center !important;
+			background-repeat: no-repeat;
 		}
 
-		.pet-depoimento img {
-			width: 70px;
-			height: 70px;
-			border-radius: 50%;
-			object-fit: cover;
-			margin-bottom: 15px;
+		/* Restaura a altura padrão do template e remove min-height reduzido */
+		.slider-height2 {
+			min-height: 590px;
+			/* altura original do template */
 		}
 
-		.pet-depoimento p {
-			font-style: italic;
-			color: #555;
-		}
-
-		.pet-depoimento h5 {
-			margin-top: 15px;
-			font-weight: 700;
-		}
-
+		/* Em telas menores, mantém proporção sem cortar demais */
 		@media (max-width: 768px) {
-			.pet-destaque-bg {
-				padding: 30px 20px;
+			.slider-height2 {
+				min-height: 350px;
 			}
 		}
 	</style>
@@ -276,7 +408,7 @@
 			</div>
 		</div>
 
-		<!-- Seção de produtos para pets -->
+		<!-- Seção de produtos com filtros e busca (layout igual ao products.html) -->
 		<section class="pet-produtos section-padding30">
 			<div class="container">
 				<div class="row">
@@ -286,91 +418,227 @@
 							itens para garantir conforto, saúde e alegria ao seu pet.</p>
 					</div>
 				</div>
+
+				<!-- Filtros e busca -->
+				<div class="filter-bar">
+					<div class="row align-items-center">
+						<div class="col-md-8">
+							<div class="filter-buttons">
+								<button class="btn-filter active" data-filter="all">Todos</button>
+								<button class="btn-filter" data-filter="racao">Ração</button>
+								<button class="btn-filter" data-filter="acessorios">Acessórios</button>
+								<button class="btn-filter" data-filter="higiene">Higiene</button>
+								<button class="btn-filter" data-filter="brinquedos">Brinquedos</button>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="search-box">
+								<input type="text" id="search-input" placeholder="Buscar produto...">
+								<button id="search-btn"><i class="ti-search"></i></button>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="row">
-					<!-- Produto 1 - Ração Premium -->
-					<div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-						<div class="pet-produto-card">
-							<div class="pet-produto-img">
-								<img src="assets/img/pet/racao-premium.jpg" alt="Ração Premium para Cães">
-								<span class="pet-produto-badge">Mais Vendido</span>
+					<!-- Grade de produtos (coluna principal) -->
+					<div class="col-lg-8">
+						<div class="row" id="products-grid">
+							<!-- Produto 1 - Ração Premium (categoria: racao) -->
+							<div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="racao"
+								data-nome="Ração Premium para Cães">
+								<div class="pet-produto-card">
+									<div class="pet-produto-img">
+										<img src="assets/img/pet/racao-premium.jpg" alt="Ração Premium para Cães">
+										<span class="pet-produto-badge">Mais Vendido</span>
+									</div>
+									<div class="pet-produto-content">
+										<span class="pet-produto-categoria">Ração</span>
+										<h4>Ração Premium para Cães</h4>
+										<div class="preco">R$ 129,90</div>
+										<p>Alimento super premium, com altos níveis de proteína e sem corantes
+											artificiais. 10kg.</p>
+										<a href="contact.html?produto=RacaoPremium" class="btn-pet">Tenho interesse</a>
+									</div>
+								</div>
 							</div>
-							<div class="pet-produto-content">
-								<h4>Ração Premium para Cães</h4>
-								<div class="preco">R$ 129,90</div>
-								<p>Alimento super premium, com altos níveis de proteína e sem corantes artificiais.
-									10kg.</p>
-								<a href="contact.html?produto=RacaoPremium" class="btn-pet">Tenho interesse</a>
+							<!-- Produto 2 - Vasilha Antiderrapante (categoria: acessorios) -->
+							<div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="acessorios"
+								data-nome="Vasilha Antiderrapante">
+								<div class="pet-produto-card">
+									<div class="pet-produto-img">
+										<img src="assets/img/pet/vasilha-antiderrapante.jpg"
+											alt="Vasilha Antiderrapante">
+										<span class="pet-produto-badge">Oferta</span>
+									</div>
+									<div class="pet-produto-content">
+										<span class="pet-produto-categoria">Acessórios</span>
+										<h4>Vasilha Antiderrapante</h4>
+										<div class="preco">R$ 39,90</div>
+										<p>Em aço inoxidável, base emborrachada que evita escorregões e tombos.</p>
+										<a href="contact.html?produto=VasilhaAntiderrapante" class="btn-pet">Tenho
+											interesse</a>
+									</div>
+								</div>
+							</div>
+							<!-- Produto 3 - Cama Confortável (categoria: acessorios) -->
+							<div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="acessorios"
+								data-nome="Cama Confortável">
+								<div class="pet-produto-card">
+									<div class="pet-produto-img">
+										<img src="assets/img/pet/cama-pet.jpg" alt="Cama para cães e gatos">
+									</div>
+									<div class="pet-produto-content">
+										<span class="pet-produto-categoria">Acessórios</span>
+										<h4>Cama Confortável</h4>
+										<div class="preco">R$ 89,90</div>
+										<p>Enchimento macio, capa removível e lavável. Tamanhos P, M, G.</p>
+										<a href="contact.html?produto=CamaPet" class="btn-pet">Tenho interesse</a>
+									</div>
+								</div>
+							</div>
+							<!-- Produto 4 - Brinquedo Interativo (categoria: brinquedos) -->
+							<div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="brinquedos"
+								data-nome="Brinquedo Interativo">
+								<div class="pet-produto-card">
+									<div class="pet-produto-img">
+										<img src="assets/img/pet/brinquedo-interativo.jpg" alt="Brinquedo Interativo">
+									</div>
+									<div class="pet-produto-content">
+										<span class="pet-produto-categoria">Brinquedos</span>
+										<h4>Brinquedo Interativo</h4>
+										<div class="preco">R$ 29,90</div>
+										<p>Bola de borracha natural, libera petiscos – estimula a mente do animal.</p>
+										<a href="contact.html?produto=BrinquedoInterativo" class="btn-pet">Tenho
+											interesse</a>
+									</div>
+								</div>
+							</div>
+							<!-- Produto 5 - Kit Higiene (categoria: higiene) -->
+							<div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="higiene"
+								data-nome="Kit Higiene Completo">
+								<div class="pet-produto-card">
+									<div class="pet-produto-img">
+										<img src="assets/img/pet/kit-higiene.jpg" alt="Kit Higiene Pet">
+									</div>
+									<div class="pet-produto-content">
+										<span class="pet-produto-categoria">Higiene</span>
+										<h4>Kit Higiene Completo</h4>
+										<div class="preco">R$ 49,90</div>
+										<p>Shampoo, condicionador, escova e cortador de unhas – tudo em um só pacote.
+										</p>
+										<a href="contact.html?produto=KitHigiene" class="btn-pet">Tenho interesse</a>
+									</div>
+								</div>
+							</div>
+							<!-- Produto 6 - Guia e Coleira Reflectiva (categoria: acessorios) -->
+							<div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="acessorios"
+								data-nome="Guia e Coleira Reflectiva">
+								<div class="pet-produto-card">
+									<div class="pet-produto-img">
+										<img src="assets/img/pet/guia-coleira.jpg" alt="Guia e Coleira">
+									</div>
+									<div class="pet-produto-content">
+										<span class="pet-produto-categoria">Acessórios</span>
+										<h4>Guia e Coleira Reflectiva</h4>
+										<div class="preco">R$ 34,90</div>
+										<p>Nylon resistente, ajustável, com detalhes que refletem à noite.</p>
+										<a href="contact.html?produto=GuiaColeira" class="btn-pet">Tenho interesse</a>
+									</div>
+								</div>
+							</div>
+							<!-- (Adicionamos mais dois produtos para manter a grade cheia e variedade) -->
+							<!-- Produto 7 - Ração para Gatos (categoria: racao) -->
+							<div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="racao"
+								data-nome="Ração Premium para Gatos">
+								<div class="pet-produto-card">
+									<div class="pet-produto-img">
+										<img src="assets/img/pet/racao-gatos.jpg" alt="Ração Premium para Gatos">
+									</div>
+									<div class="pet-produto-content">
+										<span class="pet-produto-categoria">Ração</span>
+										<h4>Ração Premium para Gatos</h4>
+										<div class="preco">R$ 119,90</div>
+										<p>Alimento balanceado com sabor de frango, rico em vitaminas e taurina. 10kg.
+										</p>
+										<a href="contact.html?produto=RacaoGatos" class="btn-pet">Tenho interesse</a>
+									</div>
+								</div>
+							</div>
+							<!-- Produto 8 - Arranhador para Gatos (categoria: acessorios) -->
+							<div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="acessorios"
+								data-nome="Arranhador para Gatos">
+								<div class="pet-produto-card">
+									<div class="pet-produto-img">
+										<img src="assets/img/pet/arranhador.jpg" alt="Arranhador para Gatos">
+									</div>
+									<div class="pet-produto-content">
+										<span class="pet-produto-categoria">Acessórios</span>
+										<h4>Arranhador para Gatos</h4>
+										<div class="preco">R$ 79,90</div>
+										<p>Estrutura resistente com sisal, ideal para entretenimento e saúde das unhas.
+										</p>
+										<a href="contact.html?produto=Arranhador" class="btn-pet">Tenho interesse</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Paginação simulada -->
+						<div class="row">
+							<div class="col-12">
+								<nav class="pagination-area">
+									<ul class="pagination justify-content-center">
+										<li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
+										<li class="page-item active"><a class="page-link" href="#">1</a></li>
+										<li class="page-item"><a class="page-link" href="#">2</a></li>
+										<li class="page-item"><a class="page-link" href="#">3</a></li>
+										<li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+									</ul>
+								</nav>
 							</div>
 						</div>
 					</div>
-					<!-- Produto 2 - Vasilha Antiderrapante -->
-					<div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-						<div class="pet-produto-card">
-							<div class="pet-produto-img">
-								<img src="assets/img/pet/vasilha-antiderrapante.jpg" alt="Vasilha Antiderrapante">
-								<span class="pet-produto-badge">Oferta</span>
-							</div>
-							<div class="pet-produto-content">
-								<h4>Vasilha Antiderrapante</h4>
-								<div class="preco">R$ 39,90</div>
-								<p>Em aço inoxidável, base emborrachada que evita escorregões e tombos.</p>
-								<a href="contact.html?produto=VasilhaAntiderrapante" class="btn-pet">Tenho interesse</a>
-							</div>
+
+					<!-- Sidebar direita -->
+					<div class="col-lg-4">
+						<div class="sidebar-widget">
+							<h4>Categorias</h4>
+							<ul class="list cat-list">
+								<li><a href="#" data-filter-cat="racao">Ração <span>(2)</span></a></li>
+								<li><a href="#" data-filter-cat="acessorios">Acessórios <span>(4)</span></a></li>
+								<li><a href="#" data-filter-cat="higiene">Higiene <span>(1)</span></a></li>
+								<li><a href="#" data-filter-cat="brinquedos">Brinquedos <span>(1)</span></a></li>
+							</ul>
 						</div>
-					</div>
-					<!-- Produto 3 - Cama Confortável -->
-					<div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-						<div class="pet-produto-card">
-							<div class="pet-produto-img">
-								<img src="assets/img/pet/cama-pet.jpg" alt="Cama para cães e gatos">
+
+						<div class="sidebar-widget">
+							<h4>Produtos em Destaque</h4>
+							<div class="recent-product-item">
+								<div class="recent-product-img">
+									<img src="assets/img/pet/racao-premium.jpg" alt="Ração Premium">
+								</div>
+								<div class="recent-product-info">
+									<h5><a href="contact.html?produto=RacaoPremium">Ração Premium para Cães</a></h5>
+									<p>R$ 129,90</p>
+								</div>
 							</div>
-							<div class="pet-produto-content">
-								<h4>Cama Confortável</h4>
-								<div class="preco">R$ 89,90</div>
-								<p>Enchimento macio, capa removível e lavável. Tamanhos P, M, G.</p>
-								<a href="contact.html?produto=CamaPet" class="btn-pet">Tenho interesse</a>
+							<div class="recent-product-item">
+								<div class="recent-product-img">
+									<img src="assets/img/pet/cama-pet.jpg" alt="Cama Pet">
+								</div>
+								<div class="recent-product-info">
+									<h5><a href="contact.html?produto=CamaPet">Cama Confortável</a></h5>
+									<p>R$ 89,90</p>
+								</div>
 							</div>
-						</div>
-					</div>
-					<!-- Produto 4 - Brinquedo Interativo -->
-					<div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-						<div class="pet-produto-card">
-							<div class="pet-produto-img">
-								<img src="assets/img/pet/brinquedo-interativo.jpg" alt="Brinquedo Interativo">
-							</div>
-							<div class="pet-produto-content">
-								<h4>Brinquedo Interativo</h4>
-								<div class="preco">R$ 29,90</div>
-								<p>Bola de borracha natural, libera petiscos – estimula a mente do animal.</p>
-								<a href="contact.html?produto=BrinquedoInterativo" class="btn-pet">Tenho interesse</a>
-							</div>
-						</div>
-					</div>
-					<!-- Produto 5 - Kit Higiene -->
-					<div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-						<div class="pet-produto-card">
-							<div class="pet-produto-img">
-								<img src="assets/img/pet/kit-higiene.jpg" alt="Kit Higiene Pet">
-							</div>
-							<div class="pet-produto-content">
-								<h4>Kit Higiene Completo</h4>
-								<div class="preco">R$ 49,90</div>
-								<p>Shampoo, condicionador, escova e cortador de unhas – tudo em um só pacote.</p>
-								<a href="contact.html?produto=KitHigiene" class="btn-pet">Tenho interesse</a>
-							</div>
-						</div>
-					</div>
-					<!-- Produto 6 - Guia e Coleira -->
-					<div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-						<div class="pet-produto-card">
-							<div class="pet-produto-img">
-								<img src="assets/img/pet/guia-coleira.jpg" alt="Guia e Coleira">
-							</div>
-							<div class="pet-produto-content">
-								<h4>Guia e Coleira Reflectiva</h4>
-								<div class="preco">R$ 34,90</div>
-								<p>Nylon resistente, ajustável, com detalhes que refletem à noite.</p>
-								<a href="contact.html?produto=GuiaColeira" class="btn-pet">Tenho interesse</a>
+							<div class="recent-product-item">
+								<div class="recent-product-img">
+									<img src="assets/img/pet/brinquedo-interativo.jpg" alt="Brinquedo">
+								</div>
+								<div class="recent-product-info">
+									<h5><a href="contact.html?produto=BrinquedoInterativo">Brinquedo Interativo</a></h5>
+									<p>R$ 29,90</p>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -378,7 +646,7 @@
 			</div>
 		</section>
 
-		<!-- Diferenciais / Por que comprar conosco -->
+		<!-- Diferenciais / Por que comprar conosco (mantido) -->
 		<div class="container">
 			<div class="pet-destaque-bg">
 				<div class="row">
@@ -409,40 +677,6 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Depoimentos de clientes (opcional, para preencher vazio) -->
-		<section class="testimonial-area t-bg testimonial-padding" style="background: #00235b;">
-			<div class="container">
-				<div class="row">
-					<div class="col-xl-12">
-						<div class="section-tittle section-tittle6 mb-50">
-							<div class="front-text">
-								<h2 class="">O que dizem nossos clientes</h2>
-							</div>
-							<span class="back-text">Depoimentos</span>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-lg-6 mb-30">
-						<div class="pet-depoimento">
-							<img src="assets/img/pet/cliente1.jpg" alt="Cliente">
-							<p>"Minha cachorra adorou a cama! Ótima qualidade e entrega super rápida. Recomendo!"</p>
-							<h5>Mariana Souza</h5>
-							<span>Tutora da Luna</span>
-						</div>
-					</div>
-					<div class="col-lg-6 mb-30">
-						<div class="pet-depoimento">
-							<img src="assets/img/pet/cliente2.jpg" alt="Cliente">
-							<p>"A ração premium fez muita diferença na pelagem do meu gato. Produto excelente."</p>
-							<h5>Rafael Lima</h5>
-							<span>Tutor do Mingau</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
 
 		<!-- Call to action final -->
 		<section class="contact-with-area contact-compact" data-background="assets/img/gallery/section-bg2.jpg">
@@ -488,7 +722,7 @@
 									<ul>
 										<li><a href="about.html">Sobre</a></li>
 										<li><a href="services.html">Serviços</a></li>
-										<li><a href="project.html">Projetos</a></li>
+										<li><a href="products.html">Produtos</a></li>
 										<li><a href="contact.html">Contato</a></li>
 									</ul>
 								</div>
@@ -551,6 +785,68 @@
 	<script src="./assets/js/jquery.ajaxchimp.min.js"></script>
 	<script src="./assets/js/plugins.js"></script>
 	<script src="./assets/js/main.js"></script>
+
+	<!-- Script de filtro e busca (adaptado para produtos pet) -->
+	<script>
+		$(document).ready(function () {
+			// Filtro por categoria (botões)
+			$('.btn-filter').click(function () {
+				var filterValue = $(this).attr('data-filter');
+				$('.btn-filter').removeClass('active');
+				$(this).addClass('active');
+
+				if (filterValue === 'all') {
+					$('.produto-item').show();
+				} else {
+					$('.produto-item').hide();
+					$('.produto-item[data-categoria="' + filterValue + '"]').show();
+				}
+			});
+
+			// Filtro pela sidebar (categorias)
+			$('.cat-list li a').click(function (e) {
+				e.preventDefault();
+				var cat = $(this).data('filter-cat');
+				if (cat) {
+					$('.btn-filter').removeClass('active');
+					$('.btn-filter[data-filter="' + cat + '"]').addClass('active');
+					$('.produto-item').hide();
+					$('.produto-item[data-categoria="' + cat + '"]').show();
+				}
+			});
+
+			// Busca por nome do produto
+			$('#search-btn').click(function () {
+				performSearch();
+			});
+			$('#search-input').keypress(function (e) {
+				if (e.which == 13) {
+					performSearch();
+				}
+			});
+			function performSearch() {
+				var term = $('#search-input').val().toLowerCase();
+				if (term === '') {
+					var activeFilter = $('.btn-filter.active').data('filter');
+					if (activeFilter === 'all') {
+						$('.produto-item').show();
+					} else {
+						$('.produto-item').hide();
+						$('.produto-item[data-categoria="' + activeFilter + '"]').show();
+					}
+				} else {
+					$('.produto-item').each(function () {
+						var nome = $(this).data('nome').toLowerCase();
+						if (nome.indexOf(term) !== -1) {
+							$(this).show();
+						} else {
+							$(this).hide();
+						}
+					});
+				}
+			}
+		});
+	</script>
 </body>
 
 </html>
