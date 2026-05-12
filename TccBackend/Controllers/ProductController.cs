@@ -47,4 +47,22 @@ public class ProductController : ControllerBase
 
         return Ok();
     }
+
+    // TESTE PELO NAVEGADOR
+    [HttpGet("teste")]
+    public IActionResult Teste()
+    {
+        var product = new Product
+        {
+            Nome = "Teclado Gamer",
+            Descricao = "Teclado mecânico RGB",
+            Imagem = "teclado.jpg",
+            Status = "Disponível"
+        };
+
+        _context.Products.Add(product);
+        _context.SaveChanges();
+
+        return Ok(product);
+    }
 }
