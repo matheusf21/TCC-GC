@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 40px;
+        }
+
+        .container{
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1{
+            margin-bottom: 30px;
+        }
+
+        input, textarea{
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        button{
+            padding: 12px 20px;
+            background: #0b1c39;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .produto{
+            background: #eee;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Painel Administrativo</h1>
+
+        <h2>Cadastrar Produto</h2>
+
+        <input type="text" id="nome" placeholder="Nome do produto">
+
+        <textarea id="descricao" placeholder="Descrição"></textarea>
+
+        <input type="text" id="imagem" placeholder="Imagem">
+
+        <input type="text" id="status" placeholder="Status">
+
+        <button onclick="cadastrarProduto()">
+            Cadastrar
+        </button>
+
+        <hr>
+
+        <h2>Produtos</h2>
+
+        <div id="listaProdutos"></div>
+
+    </div>
+
+<script>
+
+async function carregarProdutos(){
+
+    const response = await fetch("http://localhost:5297/api/product");
+
+    const produtos = await response.json();
+
+    const lista = document.getElementById("listaProdutos");
+
+    lista.innerHTML = "";
+
+    produtos.forEach(produto => {
+
+        lista.innerHTML += `
+
+            <div class="produto">
+
+                <h3>${produto.nome}</h3>
+
+                <p>${produto.descricao}</p>
+
+                <p>${produto.status}</p>
+
+                <button onclick="deletarProduto(${produto.id})">
+                    Excluir
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+async function cadastrarProduto(){
+
+    const produto = {
+
+        nome: document.getElementById("nome").value,
+        descricao: document.getElementById("descricao").value,
+        imagem: document.getElementById("imagem").value,
+        status: document.getElementById("status").value
+
+    };
+
+    await fetch("http://localhost:5297/api/product", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(produto)
+
+    });
+
+    carregarProdutos();
+
+}
+
+async function deletarProduto(id){
+
+    await fetch(`http://localhost:5297/api/product/${id}`, {
+
+        method: "DELETE"
+
+    });
+
+    carregarProdutos();
+
+}
+
+carregarProdutos();
+
+</script>
+
+</body>
+</html>

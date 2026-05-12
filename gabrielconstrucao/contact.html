@@ -303,14 +303,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="map-wrapper">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.123456789012!2d-48.56415787903175!3d-22.47355475754921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c6e5e5e5e5e5e5%3A0x5e5e5e5e5e5e5e5e!2sAv.%20Arthur%20Balsi%2C%20620%20-%20Barra%20Bonita%2C%20SP%2C%2017345-000!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr" 
-                                width="100%" 
-                                height="400" 
-                                style="border:0; display:block; border-radius: 12px;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.123456789012!2d-48.56415787903175!3d-22.47355475754921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c6e5e5e5e5e5e5%3A0x5e5e5e5e5e5e5e5e!2sAv.%20Arthur%20Balsi%2C%20620%20-%20Barra%20Bonita%2C%20SP%2C%2017345-000!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
+                                width="100%" height="400" style="border:0; display:block; border-radius: 12px;"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
                         </div>
                     </div>
@@ -408,6 +404,57 @@
     <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
     <script src="./assets/js/plugins.js"></script>
     <script src="./assets/js/main.js"></script>
+    <script> //PARTE DO BACKEND 
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
+
+            e.preventDefault();
+
+            const nome = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const conteudo = document.getElementById("message").value;
+
+            const mensagem = {
+                nome: nome,
+                email: email,
+                conteudo: conteudo
+            };
+
+            try {
+
+                const response = await fetch("http://localhost:5297/api/message", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(mensagem)
+
+                });
+
+                if (response.ok) {
+
+                    alert("Mensagem enviada com sucesso!");
+
+                    document.getElementById("contactForm").reset();
+
+                } else {
+
+                    alert("Erro ao enviar mensagem.");
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert("Erro na conexão com a API.");
+
+            }
+
+        });
+    </script>
 </body>
 
 </html>
