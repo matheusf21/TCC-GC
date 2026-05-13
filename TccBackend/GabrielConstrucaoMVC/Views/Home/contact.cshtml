@@ -1,0 +1,340 @@
+@{
+    ViewData["Title"] = "Contato";
+}
+
+<style>
+    .contact-info-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 35px 20px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+
+    .contact-info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info-card .icon {
+        font-size: 48px;
+        color: #ff5f13;
+        margin-bottom: 20px;
+        display: inline-block;
+    }
+
+    .contact-info-card h3 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #0b1c39;
+    }
+
+    .contact-info-card p {
+        color: #666;
+        margin-bottom: 0;
+        font-size: 14.5px;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #e0e0e0;
+        padding: 12px 20px;
+    }
+
+    .form-control:focus {
+        border-color: #ff5f13;
+        box-shadow: none;
+    }
+
+    .contact-title {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 50px;
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .contact-title:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -15px;
+        width: 80px;
+        height: 3px;
+        background: #ff5f13;
+    }
+
+    .map-wrapper {
+        margin-top: 60px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-enviar {
+        background: #ff5f13;
+        color: #fff;
+        border: none;
+        padding: 12px 35px;
+        border-radius: 40px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+    }
+
+    .btn-enviar:hover {
+        background: #0b1c39;
+        color: #fff;
+    }
+
+    .single-slider.hero-overly.slider-height2 {
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat;
+    }
+
+    .slider-height2 {
+        min-height: 590px;
+    }
+
+    @@media (max-width: 768px) {
+        .contact-info-card {
+            margin-bottom: 20px;
+        }
+
+        .slider-height2 {
+            min-height: 350px;
+        }
+    }
+</style>
+
+<!-- Preloader Start -->
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="/assets/img/logo/loder-logo.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Preloader End -->
+
+<main>
+
+    <!-- Banner interno -->
+    <div class="slider-area">
+        <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
+             data-background="/assets/img/banner/bannercontato.png">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap pt-100">
+
+                            <h2>Contato</h2>
+
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Contato</a></li>
+                                </ol>
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de contato -->
+    <section class="contact-section section-padding30">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="contact-title">Entre em contato</h2>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!-- Formulário -->
+                <div class="col-lg-7 mb-5 mb-lg-0">
+
+                    <form class="form-contact contact_form"
+                          id="contactForm"
+                          novalidate="novalidate">
+
+                        <div class="row">
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <textarea class="form-control w-100"
+                                              name="message"
+                                              id="message"
+                                              cols="30"
+                                              rows="6"
+                                              placeholder="Digite sua mensagem"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input class="form-control"
+                                           name="name"
+                                           id="name"
+                                           type="text"
+                                           placeholder="Seu nome">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input class="form-control"
+                                           name="email"
+                                           id="email"
+                                           type="email"
+                                           placeholder="Seu e-mail">
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input class="form-control"
+                                           name="subject"
+                                           id="subject"
+                                           type="text"
+                                           placeholder="Assunto">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn-enviar">
+                                Enviar mensagem
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!-- Informações -->
+                <div class="col-lg-5">
+
+                    <div class="row">
+
+                        <div class="col-md-6 mb-4">
+                            <div class="contact-info-card">
+                                <div class="icon"><i class="ti-mobile"></i></div>
+                                <h3>Telefone</h3>
+                                <p>(14) 99735-4643</p>
+                                <p>Seg a Sex 8h às 18h</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div class="contact-info-card">
+                                <div class="icon"><i class="ti-email"></i></div>
+                                <h3>E-mail</h3>
+                                <p>gabrielconstrucao1@gmail.com</p>
+                                <p>Respondemos em até 24h</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mapa -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="map-wrapper">
+
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.123456789012!2d-48.56415787903175!3d-22.47355475754921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c6e5e5e5e5e5e5%3A0x5e5e5e5e5e5e5e5e!2sAv.%20Arthur%20Balsi%2C%20620%20-%20Barra%20Bonita%2C%20SP%2C%2017345-000!5e0!3m2!1spt-BR!2sbr!4v1234567890123!5m2!1spt-BR!2sbr"
+                            width="100%"
+                            height="400"
+                            style="border:0; display:block; border-radius: 12px;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+@section Scripts {
+
+    <script>
+
+        document.getElementById("contactForm").addEventListener("submit", async function (e) {
+
+            e.preventDefault();
+
+            const nome = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const conteudo = document.getElementById("message").value;
+
+            const mensagem = {
+                nome: nome,
+                email: email,
+                conteudo: conteudo
+            };
+
+            try {
+
+                const response = await fetch("http://localhost:5297/api/message", {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(mensagem)
+
+                });
+
+                if (response.ok) {
+
+                    alert("Mensagem enviada com sucesso!");
+
+                    document.getElementById("contactForm").reset();
+
+                } else {
+
+                    alert("Erro ao enviar mensagem.");
+
+                }
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert("Erro na conexão com a API.");
+
+            }
+
+        });
+
+    </script>
+
+}
+

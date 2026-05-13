@@ -1,0 +1,488 @@
+@{
+    ViewData["Title"] = "Serviços";
+}
+
+<style>
+    .mission-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        height: 100%;
+    }
+
+    .mission-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .mission-card .icon {
+        font-size: 48px;
+        color: #ff5f13;
+        margin-bottom: 20px;
+    }
+
+    .mission-card h3 {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+    .mission-card p {
+        color: #666;
+        line-height: 1.5;
+    }
+
+    .btn-servico {
+        background: #ff5f13;
+        color: #fff;
+        padding: 10px 24px;
+        border-radius: 40px;
+        font-weight: 600;
+        font-size: 14px;
+        display: inline-block;
+        margin-top: 15px;
+        transition: 0.3s;
+        text-decoration: none;
+        border: none;
+    }
+
+    .btn-servico:hover {
+        background: #0b1c39;
+        color: #fff;
+    }
+
+    .service-detail-card {
+        background: #fff;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        margin-bottom: 50px;
+    }
+
+    .service-detail-card .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+    }
+
+    .service-detail-card [class*="col-"] {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .service-detail-img {
+        flex: 1;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .service-detail-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .service-detail-card:hover .service-detail-img img {
+        transform: scale(1.03);
+    }
+
+    .service-detail-content {
+        padding: 40px 35px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .service-detail-content h3 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #0b1c39;
+    }
+
+    .service-detail-content p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    .service-features {
+        list-style: none;
+        padding-left: 0;
+        margin: 20px 0;
+    }
+
+    .service-features li {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 15px;
+    }
+
+    .service-features li i {
+        color: #ff5f13;
+        font-size: 18px;
+        width: 22px;
+    }
+
+    .diff-card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 30px 20px;
+        text-align: center;
+        transition: 0.3s;
+        height: 100%;
+    }
+
+    .diff-card .icon {
+        font-size: 48px;
+        color: #ff5f13;
+        margin-bottom: 20px;
+    }
+
+    .diff-card h3 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .diff-card p {
+        color: #ddd;
+        font-size: 15px;
+    }
+
+    .faq-item {
+        background: #f9f9fc;
+        border-radius: 16px;
+        padding: 25px;
+        margin-bottom: 25px;
+    }
+
+    .faq-item h4 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #0b1c39;
+    }
+
+    .faq-item p {
+        font-size: 15px;
+        color: #555;
+        margin-bottom: 0;
+    }
+
+    .single-slider.hero-overly.slider-height2 {
+        background-size: cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat;
+    }
+
+    .slider-height2 {
+        min-height: 590px;
+    }
+
+    @@media (max-width: 768px) {
+        .service-detail-content {
+            padding: 30px 25px;
+        }
+
+        .service-detail-content h3 {
+            font-size: 24px;
+        }
+
+        .service-detail-img {
+            min-height: 250px;
+        }
+
+        .mission-card h3 {
+            font-size: 22px;
+        }
+
+        .diff-card {
+            margin-bottom: 20px;
+        }
+
+        .slider-height2 {
+            min-height: 350px;
+        }
+    }
+</style>
+
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="/assets/img/logo/loder-logo.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <div class="slider-area">
+        <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
+             data-background="/assets/img/banner/bannerservicos.png">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap pt-100">
+                            <h2>Nossos Serviços</h2>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Serviços</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section-padding30">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="contact-title" style="margin-bottom: 20px;">Soluções completas para sua obra</h2>
+                    <p style="max-width: 800px; margin: 0 auto 50px auto;">
+                        Oferecemos serviços de alta qualidade, com equipe especializada e equipamentos modernos.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-30">
+                    <div class="mission-card">
+                        <div class="icon"><i class="ti-panel"></i></div>
+                        <h3>Terraplanagem</h3>
+                        <p>Preparação de terreno, nivelamento e compactação.</p>
+                        <a href="#terraplanagem" class="btn-servico">Saiba mais</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-30">
+                    <div class="mission-card">
+                        <div class="icon"><i class="ti-layout"></i></div>
+                        <h3>Aluguel de Andaimes</h3>
+                        <p>Andaimes metálicos e equipamentos de segurança.</p>
+                        <a href="#andaimes" class="btn-servico">Saiba mais</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-30">
+                    <div class="mission-card">
+                        <div class="icon"><i class="ti-shopping-cart"></i></div>
+                        <h3>Venda de Materiais</h3>
+                        <p>Produtos selecionados para sua obra.</p>
+                        <a href="#venda" class="btn-servico">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="terraplanagem" class="pt-0 pb-0">
+        <div class="container">
+            <div class="service-detail-card">
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <div class="service-detail-img">
+                            <img src="/assets/img/service/services1.png" alt="Terraplanagem">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="service-detail-content">
+                            <h3>Terraplanagem profissional</h3>
+                            <p>Preparamos seu terreno para qualquer tipo de construção.</p>
+
+                            <ul class="service-features">
+                                <li><i class="ti-check"></i> Análise topográfica</li>
+                                <li><i class="ti-check"></i> Execução rápida</li>
+                                <li><i class="ti-check"></i> Equipe experiente</li>
+                                <li><i class="ti-check"></i> Máquinas modernas</li>
+                            </ul>
+
+                            <a href="/Home/Contact?servico=Terraplanagem" class="btn-servico">
+                                Solicitar orçamento
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="andaimes" class="pt-0 pb-0">
+        <div class="container">
+            <div class="service-detail-card">
+                <div class="row no-gutters flex-row-reverse">
+                    <div class="col-md-6">
+                        <div class="service-detail-img">
+                            <img src="/assets/img/service/servicess2.png" alt="Andaimes">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="service-detail-content">
+                            <h3>Aluguel de Andaimes</h3>
+                            <p>Andaimes metálicos, torres móveis e proteção coletiva.</p>
+
+                            <ul class="service-features">
+                                <li><i class="ti-check"></i> Andaimes certificados</li>
+                                <li><i class="ti-check"></i> Entrega no local</li>
+                                <li><i class="ti-check"></i> Suporte técnico</li>
+                                <li><i class="ti-check"></i> Excelente custo-benefício</li>
+                            </ul>
+
+                            <a href="/Home/Contact?servico=Andaimes" class="btn-servico">
+                                Solicitar orçamento
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="venda" class="pt-0 pb-0">
+        <div class="container">
+            <div class="service-detail-card">
+                <div class="row no-gutters">
+                    <div class="col-md-6">
+                        <div class="service-detail-img">
+                            <img src="/assets/img/service/services3.jpeg" alt="Materiais">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="service-detail-content">
+                            <h3>Venda de Produtos</h3>
+                            <p>Materiais de construção selecionados e com qualidade garantida.</p>
+
+                            <ul class="service-features">
+                                <li><i class="ti-check"></i> Produtos certificados</li>
+                                <li><i class="ti-check"></i> Entrega rápida</li>
+                                <li><i class="ti-check"></i> Atendimento especializado</li>
+                                <li><i class="ti-check"></i> Descontos para grandes volumes</li>
+                            </ul>
+
+                            <a href="/Home/Products" class="btn-servico">
+                                Ver produtos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-area t-bg pt-90 pb-90" style="background: #0b1c39;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="contact-title" style="color: #fff; margin-bottom: 40px;">
+                        Por que contratar a Gabriel Construção?
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-30">
+                    <div class="diff-card">
+                        <div class="icon"><i class="ti-medall"></i></div>
+                        <h3>Experiência</h3>
+                        <p>Mais de 150 projetos concluídos.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-30">
+                    <div class="diff-card">
+                        <div class="icon"><i class="ti-timer"></i></div>
+                        <h3>Pontualidade</h3>
+                        <p>Compromisso com prazos e qualidade.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-30">
+                    <div class="diff-card">
+                        <div class="icon"><i class="ti-credit-card"></i></div>
+                        <h3>Transparência</h3>
+                        <p>Orçamentos claros e sem surpresas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding30">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="contact-title" style="margin-bottom: 40px;">
+                        Dúvidas frequentes
+                    </h2>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="faq-item">
+                        <h4>Vocês atendem toda a região?</h4>
+                        <p>Sim, atendemos Barra Bonita e cidades próximas.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>Como funciona o aluguel?</h4>
+                        <p>Formalizamos contrato de locação para segurança.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="faq-item">
+                        <h4>Como solicitar orçamento?</h4>
+                        <p>Entre em contato pelo WhatsApp ou formulário.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h4>Os produtos possuem garantia?</h4>
+                        <p>Sim, todos possuem garantia do fabricante.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-with-area contact-compact"
+             data-background="/assets/img/gallery/section-bg2.jpg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <h2 style="color: #fff; font-size: 32px;">
+                        Precisa de um serviço ou material?
+                    </h2>
+
+                    <p style="color: #fff; margin: 20px 0;">
+                        Fale com nossos especialistas.
+                    </p>
+
+                    <a href="/Home/Contact" class="white-btn btn-sm">
+                        Solicitar orçamento
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

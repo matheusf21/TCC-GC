@@ -5,3 +5,21 @@ git config --global user.name NicolasCastro08
 git config --global user.email nicolasferreia2008@gmail.com
 
 cd TccBackend
+
+cd GabrielConstrucaoMVC
+
+--links para abrir as paginas do site
+
+http://localhost:5259/
+
+http://localhost:5259/Home/About
+
+http://localhost:5259/Home/Services
+
+http://localhost:5259/Home/Products
+
+http://localhost:5259/Home/PetArea
+
+http://localhost:5259/Home/Contact
+
+
