@@ -10,6 +10,8 @@ cd GabrielConstrucaoMVC
 
 --links para abrir as paginas do site
 
+dotnet run
+
 http://localhost:5259/
 
 http://localhost:5259/Home/About
@@ -22,4 +24,5 @@ http://localhost:5259/Home/PetArea
 
 http://localhost:5259/Home/Contact
 
+dotnet watch run
 
