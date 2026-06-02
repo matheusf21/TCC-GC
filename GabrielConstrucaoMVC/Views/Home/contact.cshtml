@@ -171,6 +171,13 @@
                 <!-- Formulário -->
                 <div class="col-lg-7 mb-5 mb-lg-0">
 
+                    @if (TempData["Sucesso"] != null)
+                    {
+                        <div class="alert alert-success text-center mb-4">
+                            @TempData["Sucesso"]
+                        </div>
+                    }
+
                     <form asp-controller="Message" asp-action="Enviar" method="post" class="form-contact contact_form"
                           id="contactForm" novalidate="novalidate">
 
@@ -262,61 +269,5 @@
 
 </main>
 
-@section Scripts {
 
-    <script>
-
-        document.getElementById("contactForm").addEventListener("submit", async function (e) {
-
-            e.preventDefault();
-
-            const nome = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const conteudo = document.getElementById("message").value;
-
-            const mensagem = {
-                nome: nome,
-                email: email,
-                conteudo: conteudo
-            };
-
-            try {
-
-                const response = await fetch("http://localhost:5297/api/message", {
-
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify(mensagem)
-
-                });
-
-                if (response.ok) {
-
-                    alert("Mensagem enviada com sucesso!");
-
-                    document.getElementById("contactForm").reset();
-
-                } else {
-
-                    alert("Erro ao enviar mensagem.");
-
-                }
-
-            } catch (error) {
-
-                console.error(error);
-
-                alert("Erro na conexão com a API.");
-
-            }
-
-        });
-
-    </script>
-
-}
 

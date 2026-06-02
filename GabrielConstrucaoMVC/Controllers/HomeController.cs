@@ -1,11 +1,19 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using GabrielConstrucaoMVC.Models;
+using GabrielConstrucaoMVC.Data;
 
 namespace GabrielConstrucaoMVC.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly AppDbContext _context;
+
+    public HomeController(AppDbContext context)
+    {
+        _context = context;
+    }
+
     public IActionResult Index()
     {
         return View();
@@ -39,6 +47,15 @@ public class HomeController : Controller
     public IActionResult Services()
     {
         return View();
+    }
+
+    public IActionResult AdminMessages()
+    {
+        var mensagens = _context.Messages
+            .OrderByDescending(m => m.DataEnvio)
+            .ToList();
+
+        return View(mensagens);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

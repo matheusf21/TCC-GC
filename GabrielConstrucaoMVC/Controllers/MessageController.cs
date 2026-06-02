@@ -16,14 +16,10 @@ namespace GabrielConstrucaoMVC.Controllers
         [HttpPost]
         public IActionResult Enviar(Message message)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Messages.Add(message);
-                _context.SaveChanges();
+            _context.Messages.Add(message);
+            _context.SaveChanges();
 
-                return RedirectToAction("Contact", "Home");
-            }
-
+            TempData["Sucesso"] = "Mensagem enviada com sucesso!";
             return RedirectToAction("Contact", "Home");
         }
     }

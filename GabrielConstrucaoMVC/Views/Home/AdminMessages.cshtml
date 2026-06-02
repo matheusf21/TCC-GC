@@ -1,0 +1,75 @@
+@model List<GabrielConstrucaoMVC.Models.Message>
+
+@{
+    ViewData["Title"] = "Mensagens Recebidas";
+}
+
+<style>
+    .admin-messages {
+        padding: 160px 40px 80px;
+        background: #f5f5f5;
+        min-height: 70vh;
+    }
+
+    .admin-messages h2 {
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        color: #0b1c39;
+    }
+
+    .admin-table {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .admin-table table {
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+    .admin-table th {
+        background: #0b1c39;
+        color: #fff;
+        padding: 15px;
+    }
+
+    .admin-table td {
+        padding: 15px;
+        vertical-align: top;
+        border-bottom: 1px solid #eee;
+    }
+</style>
+
+<section class="admin-messages">
+    <h2>Mensagens Recebidas</h2>
+
+    <div class="admin-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Assunto</th>
+                    <th>Mensagem</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var mensagem in Model)
+                {
+                    <tr>
+                        <td>@mensagem.Nome</td>
+                        <td>@mensagem.Email</td>
+                        <td>@mensagem.Assunto</td>
+                        <td>@mensagem.Conteudo</td>
+                        <td>@mensagem.DataEnvio.ToString("dd/MM/yyyy HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

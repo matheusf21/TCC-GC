@@ -22,5 +22,7 @@ http://localhost:5259/Home/PetArea
 
 http://localhost:5259/Home/Contact
 
+http://localhost:5259/Home/AdminMessages
+
 dotnet watch run
 
