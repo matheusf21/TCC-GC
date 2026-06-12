@@ -22,7 +22,7 @@
         background: #fff;
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
     }
 
     .admin-table table {
@@ -55,6 +55,7 @@
                     <th>Assunto</th>
                     <th>Mensagem</th>
                     <th>Data</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
 
@@ -67,6 +68,16 @@
                         <td>@mensagem.Assunto</td>
                         <td>@mensagem.Conteudo</td>
                         <td>@mensagem.DataEnvio.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            <form asp-action="ExcluirMensagem" asp-controller="Home" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@mensagem.Id" />
+
+                                <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Deseja realmente excluir esta mensagem?');">
+                                    Excluir
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 }
             </tbody>

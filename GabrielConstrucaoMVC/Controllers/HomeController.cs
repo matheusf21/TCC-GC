@@ -7,6 +7,19 @@ namespace GabrielConstrucaoMVC.Controllers;
 
 public class HomeController : Controller
 {
+    [HttpPost]
+    public IActionResult ExcluirMensagem(int id)
+    {
+        var mensagem = _context.Messages.Find(id);
+
+        if (mensagem != null)
+        {
+            _context.Messages.Remove(mensagem);
+            _context.SaveChanges();
+        }
+
+        return RedirectToAction("AdminMessages");
+    }
     private readonly AppDbContext _context;
 
     public HomeController(AppDbContext context)

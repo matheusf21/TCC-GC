@@ -22,6 +22,27 @@ namespace GabrielConstrucaoMVC.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("GabrielConstrucaoMVC.Models.Admin", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Senha")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Usuario")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("GabrielConstrucaoMVC.Models.Message", b =>
                 {
                     b.Property<int>("Id")
