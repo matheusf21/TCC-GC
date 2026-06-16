@@ -7,19 +7,6 @@ namespace GabrielConstrucaoMVC.Controllers;
 
 public class HomeController : Controller
 {
-    [HttpPost]
-    public IActionResult ExcluirMensagem(int id)
-    {
-        var mensagem = _context.Messages.Find(id);
-
-        if (mensagem != null)
-        {
-            _context.Messages.Remove(mensagem);
-            _context.SaveChanges();
-        }
-
-        return RedirectToAction("AdminMessages");
-    }
     private readonly AppDbContext _context;
 
     public HomeController(AppDbContext context)
@@ -62,8 +49,34 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Login()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Login(string usuario, string senha)
+    {
+        var admin = _context.Admins
+            .FirstOrDefault(a => a.Usuario == usuario && a.Senha == senha);
+
+        if (admin != null)
+        {
+            HttpContext.Session.SetString("AdminLogado", "true");
+            return RedirectToAction("AdminMessages");
+        }
+
+        ViewBag.Erro = "Usuário ou senha inválidos.";
+        return View();
+    }
+
     public IActionResult AdminMessages()
     {
+        if (HttpContext.Session.GetString("AdminLogado") != "true")
+        {
+            return RedirectToAction("Login");
+        }
+
         var mensagens = _context.Messages
             .OrderByDescending(m => m.DataEnvio)
             .ToList();
@@ -71,7 +84,25 @@ public class HomeController : Controller
         return View(mensagens);
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    [HttpPost]
+    public IActionResult ExcluirMensagem(int id)
+    {
+        if (HttpContext.Session.GetString("AdminLogado") != "true")
+        {
+            return RedirectToAction("Login");
+        }
+
+        var mensagem = _context.Messages.Find(id);
+
+        if (mensagem != null)
+        {
+            _context.Messages.Remove(mensagem);
+            _context.SaveChanges();
+        }
+
+        return RedirectToAction("AdminMessages");
+    }
+
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

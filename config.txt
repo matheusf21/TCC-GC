@@ -24,6 +24,11 @@ http://localhost:5259/Home/Contact
 
 http://localhost:5259/Home/AdminMessages
 
+http://localhost:5259/Home/Login
+
+Usuário: admin
+Senha: 123456
+
 dotnet watch run
 
 BAIXAR BANCO DE DADOS:

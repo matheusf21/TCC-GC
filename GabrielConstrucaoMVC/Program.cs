@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using GabrielConstrucaoMVC.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddSession();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -25,6 +26,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseSession();
 app.UseAuthorization();
 
 app.MapStaticAssets();
