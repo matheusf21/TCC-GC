@@ -1,0 +1,61 @@
+@model IEnumerable<GabrielConstrucaoMVC.Models.Produto>
+
+@{
+    ViewData["Title"] = "Administrar Produtos";
+}
+
+@section Styles {
+    <style>
+        .pagina-admin-produtos {
+            padding-top: 140px !important;
+            padding-bottom: 50px;
+            min-height: 600px;
+        }
+    </style>
+}
+
+<div class="pagina-admin-produtos">
+    <div class="container">
+
+        <h1>Administrar Produtos</h1>
+
+        <p>Gerencie os produtos exibidos no site.</p>
+
+        <a asp-action="Cadastrar" class="btn btn-success mb-3">
+            Cadastrar Produto
+        </a>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-info">
+                Nenhum produto cadastrado.
+            </div>
+        }
+        else
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                        <th>Mais vendido</th>
+                        <th>Fora de estoque</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var produto in Model)
+                    {
+                        <tr>
+                            <td>@produto.Nome</td>
+                            <td>@produto.Categoria</td>
+                            <td>@(produto.MaisVendido ? "Sim" : "Não")</td>
+                            <td>@(produto.ForaDeEstoque ? "Sim" : "Não")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+
+    </div>
+</div>

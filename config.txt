@@ -24,6 +24,8 @@ http://localhost:5259/Home/Contact
 
 http://localhost:5259/Home/AdminMessages
 
+localhost:5259/Produtos
+
 http://localhost:5259/Home/Login
 
 Usuário: admin
