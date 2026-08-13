@@ -72,5 +72,64 @@ namespace GabrielConstrucaoMVC.Controllers
             return View(produto);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(Produto produto)
+        {
+            if (HttpContext.Session.GetString("AdminLogado") != "true")
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(produto);
+            }
+
+            _context.Produtos.Update(produto);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Excluir(int id)
+        {
+            if (HttpContext.Session.GetString("AdminLogado") != "true")
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var produto = _context.Produtos.Find(id);
+
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            return View(produto);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ExcluirConfirmado(int id)
+        {
+            if (HttpContext.Session.GetString("AdminLogado") != "true")
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var produto = _context.Produtos.Find(id);
+
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            _context.Produtos.Remove(produto);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

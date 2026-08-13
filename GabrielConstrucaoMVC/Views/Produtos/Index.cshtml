@@ -10,6 +10,47 @@
             padding-top: 140px !important;
             padding-bottom: 50px;
             min-height: 600px;
+
+            .coluna-acoes {
+                width: 220px;
+                text-align: center !important;
+                vertical-align: middle !important;
+            }
+
+            .acoes-produto {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 6px;
+                width: 100%;
+                flex-wrap: nowrap;
+            }
+
+            .botao-acao {
+                display: inline-block;
+                padding: 8px 14px;
+                border-radius: 4px;
+                color: white !important;
+                text-decoration: none !important;
+                font-size: 13px;
+                line-height: 1.2;
+            }
+
+            .editar-produto {
+                background-color: #f0ad4e;
+            }
+
+            .excluir-produto {
+                background-color: #dc3545;
+            }
+
+            .editar-produto:hover {
+                background-color: #d99632;
+            }
+
+            .excluir-produto:hover {
+                background-color: #bb2d3b;
+            }
         }
     </style>
 }
@@ -33,13 +74,14 @@
         }
         else
         {
-            <table class="table table-striped">
+            <table class="table table-striped tabela-produtos">
                 <thead>
                     <tr>
                         <th>Nome</th>
                         <th>Categoria</th>
                         <th>Mais vendido</th>
                         <th>Fora de estoque</th>
+                        <th class="coluna-acoes">Ações</th>
                     </tr>
                 </thead>
 
@@ -51,10 +93,23 @@
                             <td>@produto.Categoria</td>
                             <td>@(produto.MaisVendido ? "Sim" : "Não")</td>
                             <td>@(produto.ForaDeEstoque ? "Sim" : "Não")</td>
+
+                            <td class="coluna-acoes">
+                                <div class="acoes-produto">
+                                    <a asp-action="Editar" asp-route-id="@produto.Id" class="botao-acao editar-produto">
+                                        Editar
+                                    </a>
+
+                                    <a asp-action="Excluir" asp-route-id="@produto.Id" class="botao-acao excluir-produto">
+                                        Excluir
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
+
         }
 
     </div>

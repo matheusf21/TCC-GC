@@ -1,0 +1,74 @@
+@model GabrielConstrucaoMVC.Models.Produto
+
+@{
+    ViewData["Title"] = "Editar Produto";
+}
+
+@section Styles {
+    <style>
+        .pagina-editar-produto {
+            padding-top: 140px !important;
+            padding-bottom: 50px;
+            min-height: 600px;
+        }
+    </style>
+}
+
+<div class="pagina-editar-produto">
+    <div class="container">
+
+        <h1>Editar Produto</h1>
+
+        <p>Altere os dados do produto.</p>
+
+        <form asp-action="Editar" method="post">
+            <input asp-for="Id" type="hidden" />
+
+            <div class="mb-3">
+                <label asp-for="Nome" class="form-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Descricao" class="form-label"></label>
+                <textarea asp-for="Descricao"
+                          class="form-control"
+                          rows="4"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Categoria" class="form-label"></label>
+                <input asp-for="Categoria" class="form-control" />
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="MaisVendido" class="form-check-input" />
+
+                <label asp-for="MaisVendido" class="form-check-label">
+                    Mais vendido
+                </label>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="ForaDeEstoque" class="form-check-input" />
+
+                <label asp-for="ForaDeEstoque" class="form-check-label">
+                    Fora de estoque
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Salvar Alterações
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Voltar
+            </a>
+
+        </form>
+
+    </div>
+</div>

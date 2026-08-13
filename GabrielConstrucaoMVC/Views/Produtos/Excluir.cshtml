@@ -1,0 +1,43 @@
+@model GabrielConstrucaoMVC.Models.Produto
+
+@{
+    ViewData["Title"] = "Excluir Produto";
+}
+
+@section Styles {
+    <style>
+        .pagina-excluir-produto {
+            padding-top: 140px !important;
+            padding-bottom: 50px;
+            min-height: 600px;
+        }
+    </style>
+}
+
+<div class="pagina-excluir-produto">
+    <div class="container">
+
+        <h1>Excluir Produto</h1>
+
+        <div class="alert alert-warning">
+            Tem certeza de que deseja excluir este produto?
+        </div>
+
+        <p><strong>Nome:</strong> @Model.Nome</p>
+        <p><strong>Categoria:</strong> @Model.Categoria</p>
+
+        <form asp-action="ExcluirConfirmado" method="post">
+            <input asp-for="Id" type="hidden" />
+
+            <button type="submit" class="btn btn-danger">
+                Confirmar Exclusão
+            </button>
+
+            <a asp-action="Index" class="btn btn-secondary">
+                Cancelar
+            </a>
+        </form>
+
+
+    </div>
+</div>
