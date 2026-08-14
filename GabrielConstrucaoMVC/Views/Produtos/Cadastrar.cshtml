@@ -21,7 +21,7 @@
 
         <p>Preencha os dados do produto.</p>
 
-        <form asp-action="Cadastrar" method="post">
+        <form asp-action="Cadastrar" method="post" enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label asp-for="Nome" class="form-label"></label>
@@ -39,6 +39,16 @@
                 <label asp-for="Categoria" class="form-label"></label>
                 <input asp-for="Categoria" class="form-control" />
                 <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label for="Imagem" class="form-label">Imagem do produto</label>
+                <input type="file"
+                        id="imagem"
+                        name="imagem"
+                        class="form-control"
+                        accept=".jpg,.jpeg,.png,.webp">
+                       
             </div>
 
             <div class="form-check mb-3">
