@@ -7,10 +7,14 @@ namespace GabrielConstrucaoMVC.Controllers
     public class ProdutosController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProdutosController(AppDbContext context)
+        public ProdutosController(
+            AppDbContext context,
+            IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -37,11 +41,65 @@ namespace GabrielConstrucaoMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Cadastrar(Produto produto)
+        public IActionResult Cadastrar(Produto produto, IFormFile? imagem)
         {
             if (HttpContext.Session.GetString("AdminLogado") != "true")
             {
                 return RedirectToAction("Login", "Home");
+            }
+
+            if (imagem != null && imagem.Length > 0)
+            {
+                string extensao = Path.GetExtension(imagem.FileName).ToLower();
+
+                string[] extensoesPermitidas =
+                {
+            ".jpg",
+            ".jpeg",
+            ".png",
+            ".webp"
+        };
+
+                if (!extensoesPermitidas.Contains(extensao))
+                {
+                    ModelState.AddModelError(
+                        "NomeImagem",
+                        "Selecione uma imagem JPG, JPEG, PNG ou WEBP."
+                    );
+                }
+                else if (imagem.Length > 5 * 1024 * 1024)
+                {
+                    ModelState.AddModelError(
+                        "NomeImagem",
+                        "A imagem deve possuir no máximo 5 MB."
+                    );
+                }
+                else
+                {
+                    string nomeArquivo = Guid.NewGuid().ToString() + extensao;
+
+                    string pastaImagens = Path.Combine(
+                        _webHostEnvironment.WebRootPath,
+                        "uploads",
+                        "produtos"
+                    );
+
+                    Directory.CreateDirectory(pastaImagens);
+
+                    string caminhoCompleto = Path.Combine(
+                        pastaImagens,
+                        nomeArquivo
+                    );
+
+                    using (var arquivo = new FileStream(
+                        caminhoCompleto,
+                        FileMode.Create))
+                    {
+                        imagem.CopyTo(arquivo);
+                    }
+
+                    produto.NomeImagem = nomeArquivo;
+                }
             }
 
             if (!ModelState.IsValid)
