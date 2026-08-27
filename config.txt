@@ -32,6 +32,7 @@ Usuário: admin
 Senha: 123456
 
 dotnet watch run
+dotnet watch run --no-hot-reload
 
 BAIXAR BANCO DE DADOS:
 
