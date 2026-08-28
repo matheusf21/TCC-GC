@@ -1,4 +1,4 @@
-
+@model IEnumerable<GabrielConstrucaoMVC.Models.Produto>
 @{
     ViewData["Title"] = "Produtos";
 }
@@ -159,7 +159,7 @@
     }
 
     @@media (max-width: 768px) {
-        .filter-bar .row > div {
+        .filter-bar .row>div {
             margin-bottom: 15px;
         }
 
@@ -234,187 +234,86 @@
 
             <div class="row">
                 <!-- Grade de produtos -->
+
                 <div class="col-lg-8">
+
                     <div class="row" id="products-grid">
-                        <!-- Produto 1 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="construcao" data-nome="Cimento">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/construcaofoto.png" alt="Cimento">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Construção</span>
-                                    <h4>Cimento CP-II</h4>
-                                    <p>Saco de 50kg, alta resistência, ideal para obras estruturais.</p>
-                                    <a href="/Home/Contact?produto=Cimento" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Produto 2 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="construcao" data-nome="Tijolo">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/construcaofoto.png" alt="Tijolo">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Construção</span>
-                                    <h4>Tijolo Baiano</h4>
-                                    <p>Lote com 1000 unidades, furos horizontais, excelente isolamento.</p>
-                                    <a href="/Home/Contact?produto=Tijolo" class="btn-orcamento">Solicitar orçamento</a>
+                        @if (!Model.Any())
+                        {
+                            <div class="col-12">
+                                <div class="alert alert-info">
+                                    Nenhum produto disponível no momento.
                                 </div>
                             </div>
-                        </div>
+                        }
+                        else
+                        {
+                            @foreach (var produto in Model)
+                            {
+                                var categoriaFiltro = produto.Categoria
+                                    .ToLower()
+                                    .Replace("ç", "c")
+                                    .Replace("ã", "a")
+                                    .Replace("á", "a")
+                                    .Replace("é", "e")
+                                    .Replace("í", "i")
+                                    .Replace("ó", "o")
+                                    .Replace("ú", "u");
 
-                        <!-- Produto 3 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="encanamento" data-nome="Tubo PVC">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/encanamentofoto.png" alt="Tubo PVC">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Encanamento</span>
-                                    <h4>Tubo PVC 100mm</h4>
-                                    <p>Barra de 6m, para esgoto e águas pluviais.</p>
-                                    <a href="/Home/Contact?produto=TuboPVC" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="@categoriaFiltro"
+                                     data-nome="@produto.Nome.ToLower()">
 
-                        <!-- Produto 4 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="encanamento" data-nome="Registro">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/encanamentofoto.png" alt="Registro">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Encanamento</span>
-                                    <h4>Registro de Gaveta</h4>
-                                    <p>1/2 polegada, latão cromado, para água quente/fria.</p>
-                                    <a href="/Home/Contact?produto=Registro" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                                    <div class="single-produto-card mb-30">
 
-                        <!-- Produto 5 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="acabamento" data-nome="Tinta">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/lareacabemntofoto.png" alt="Tinta">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Acabamento</span>
-                                    <h4>Tinta Acrílica Fosca</h4>
-                                    <p>Lata 18L, cor neve, acabamento premium para paredes.</p>
-                                    <a href="/Home/Contact?produto=Tinta" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                                        <div class="produto-img">
 
-                        <!-- Produto 6 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="acabamento" data-nome="Piso">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/lareacabemntofoto.png" alt="Piso">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Acabamento</span>
-                                    <h4>Porcelanato Acetinado</h4>
-                                    <p>Caixa com 5 peças (60x60cm), tons claros.</p>
-                                    <a href="/Home/Contact?produto=Piso" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                                            
+                                            @if (!string.IsNullOrEmpty(produto.NomeImagem))
+                                            {
+                                                <img src alt="@produto.Nome" />
+                                            }
+                                            else
+                                            {
+                                                <div class="produto-sem-imagem">
+                                                    Sem imagem
+                                                </div>
+                                            }
 
-                        <!-- Produto 7 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="eletrica" data-nome="Fio">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/construcaofoto.png" alt="Fio">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Elétrica</span>
-                                    <h4>Fio Flexível 2,5mm²</h4>
-                                    <p>Rolo de 100m, cobre puro, 750V.</p>
-                                    <a href="/Home/Contact?produto=Fio" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                                        </div>
 
-                        <!-- Produto 8 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="eletrica" data-nome="Interruptor">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/construcaofoto.png" alt="Interruptor">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Elétrica</span>
-                                    <h4>Interruptor Simples</h4>
-                                    <p>Cor branca, 10A, sobrepor.</p>
-                                    <a href="/Home/Contact?produto=Interruptor" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                                        <div class="produto-content">
 
-                        <!-- Produto 9 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="ferramentas" data-nome="Furadeira">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/encanamentofoto.png" alt="Furadeira">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Ferramentas</span>
-                                    <h4>Furadeira de Impacto</h4>
-                                    <p>700W, mandril 13mm, bivolt.</p>
-                                    <a href="/Home/Contact?produto=Furadeira" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                                            <span class="produto-categoria">
+                                                @produto.Categoria
+                                            </span>
 
-                        <!-- Produto 10 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="ferramentas" data-nome="Serra">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/encanamentofoto.png" alt="Serra">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Ferramentas</span>
-                                    <h4>Serra Circular</h4>
-                                    <p>1200W, lâmina 7 1/4 pol., corte preciso.</p>
-                                    <a href="/Home/Contact?produto=Serra" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                                            <h4>@produto.Nome</h4>
 
-                        <!-- Produto 11 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="construcao" data-nome="Areia">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/construcaofoto.png" alt="Areia">
-                                </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Construção</span>
-                                    <h4>Areia Média Lavada</h4>
-                                    <p>Metro cúbico, para concreto e reboco.</p>
-                                    <a href="/Home/Contact?produto=Areia" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                                            <p>@produto.Descricao</p>
 
-                        <!-- Produto 12 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="acabamento" data-nome="Verniz">
-                            <div class="single-produto-card mb-30">
-                                <div class="produto-img">
-                                    <img src="/assets/img/offers/lareacabemntofoto.png" alt="Verniz">
+                                            @if (produto.ForaDeEstoque)
+                                            {
+                                                <span class="produto-fora-estoque">
+                                                    Fora de estoque
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="Home" asp-action="Contact" asp-route-produto="@produto.Id"
+                                                   class="btn-orcamento">
+                                                    Solicitar orçamento
+                                                </a>
+                                            }
+
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div class="produto-content">
-                                    <span class="produto-categoria">Acabamento</span>
-                                    <h4>Verniz Marítimo</h4>
-                                    <p>Lata 900ml, alto brilho, proteção UV.</p>
-                                    <a href="/Home/Contact?produto=Verniz" class="btn-orcamento">Solicitar orçamento</a>
-                                </div>
-                            </div>
-                        </div>
+                            }
+                        }
+
                     </div>
 
                     <!-- Paginação simulada -->
@@ -422,17 +321,35 @@
                         <div class="col-12">
                             <nav class="pagination-area">
                                 <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+
+                                    <li class="page-item disabled">
+                                        #Anterior</a>
+                                    </li>
+
+                                    <li class="page-item active">
+                                        #1</a>
+                                    </li>
+
+                                    <li class="page-item">
+                                        #2</a>
+                                    </li>
+
+                                    <li class="page-item">
+                                        #3</a>
+                                    </li>
+
+                                    <li class="page-item">
+                                        #Próximo</a>
+                                    </li>
+
                                 </ul>
                             </nav>
                         </div>
                     </div>
+
                 </div>
 
+               
                 <!-- Sidebar direita -->
                 <div class="col-lg-4">
                     <div class="sidebar-widget">

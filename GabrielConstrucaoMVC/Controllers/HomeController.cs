@@ -31,7 +31,9 @@ public class HomeController : Controller
 
     public IActionResult Products()
     {
-        return View();
+        var produtos = _context.Produtos.ToList();
+
+        return View(produtos);
     }
 
     public IActionResult PetArea()
