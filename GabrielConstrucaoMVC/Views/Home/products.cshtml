@@ -234,7 +234,6 @@
 
             <div class="row">
                 <!-- Grade de produtos -->
-
                 <div class="col-lg-8">
 
                     <div class="row" id="products-grid">
@@ -252,14 +251,18 @@
                             @foreach (var produto in Model)
                             {
                                 var categoriaFiltro = produto.Categoria
-                                    .ToLower()
-                                    .Replace("ç", "c")
-                                    .Replace("ã", "a")
-                                    .Replace("á", "a")
-                                    .Replace("é", "e")
-                                    .Replace("í", "i")
-                                    .Replace("ó", "o")
-                                    .Replace("ú", "u");
+                                    .Trim()
+                                     .ToLowerInvariant();
+
+                                categoriaFiltro = categoriaFiltro switch
+                                {
+                                    "construção" => "construcao",
+                                    "encanamento" => "encanamento",
+                                    "acabamento" => "acabamento",
+                                    "elétrica" => "eletrica",
+                                    "ferramentas" => "ferramentas",
+                                    _ => categoriaFiltro
+                                };
 
                                 <div class="col-xl-6 col-lg-6 col-md-6 produto-item" data-categoria="@categoriaFiltro"
                                      data-nome="@produto.Nome.ToLower()">
@@ -267,11 +270,10 @@
                                     <div class="single-produto-card mb-30">
 
                                         <div class="produto-img">
-
-                                            
                                             @if (!string.IsNullOrEmpty(produto.NomeImagem))
                                             {
-                                                <img src alt="@produto.Nome" />
+                                                <img src="/uploads/produtos/@produto.NomeImagem" alt="@produto" />
+
                                             }
                                             else
                                             {
@@ -279,7 +281,6 @@
                                                     Sem imagem
                                                 </div>
                                             }
-
                                         </div>
 
                                         <div class="produto-content">
@@ -319,104 +320,116 @@
                     <!-- Paginação simulada -->
                     <div class="row">
                         <div class="col-12">
-                            <nav class="pagination-area">
+                            <nav class="pagination-area" aria-label="Paginação de produtos">
+
                                 <ul class="pagination justify-content-center">
 
                                     <li class="page-item disabled">
-                                        #Anterior</a>
-                                    </li>
+                                        #
+                                        Anterior
+                                    </a>
+                                </li>
 
-                                    <li class="page-item active">
-                                        #1</a>
-                                    </li>
+                                <li class="page-item active">
+                                    #
+                                    1
+                                </a>
+                            </li>
 
-                                    <li class="page-item">
-                                        #2</a>
-                                    </li>
+                            <li class="page-item">
+                                #
+                                2
+                            </a>
+                        </li>
 
-                                    <li class="page-item">
-                                        #3</a>
-                                    </li>
+                        <li class="page-item">
+                            #
+                            3
+                        </a>
+                    </li>
 
-                                    <li class="page-item">
-                                        #Próximo</a>
-                                    </li>
+                    <li class="page-item">
+                        #
+                        Próximo
+                    </a>
+                </li>
 
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+            </ul>
 
-                </div>
+        </nav>
+    </div>
+</div>
+
+</div>
 
                
-                <!-- Sidebar direita -->
-                <div class="col-lg-4">
-                    <div class="sidebar-widget">
-                        <h4>Categorias</h4>
-                        <ul class="list cat-list">
-                            <li><a href="#" data-filter-cat="construcao">Construção <span>(4)</span></a></li>
-                            <li><a href="#" data-filter-cat="encanamento">Encanamento <span>(2)</span></a></li>
-                            <li><a href="#" data-filter-cat="acabamento">Acabamento <span>(3)</span></a></li>
-                            <li><a href="#" data-filter-cat="eletrica">Elétrica <span>(2)</span></a></li>
-                            <li><a href="#" data-filter-cat="ferramentas">Ferramentas <span>(2)</span></a></li>
-                        </ul>
-                    </div>
+<!-- Sidebar direita -->
+<div class="col-lg-4">
+    <div class="sidebar-widget">
+        <h4>Categorias</h4>
+        <ul class="list cat-list">
+            <li><a href="#" data-filter-cat="construcao">Construção <span>(4)</span></a></li>
+            <li><a href="#" data-filter-cat="encanamento">Encanamento <span>(2)</span></a></li>
+            <li><a href="#" data-filter-cat="acabamento">Acabamento <span>(3)</span></a></li>
+            <li><a href="#" data-filter-cat="eletrica">Elétrica <span>(2)</span></a></li>
+            <li><a href="#" data-filter-cat="ferramentas">Ferramentas <span>(2)</span></a></li>
+        </ul>
+    </div>
 
-                    <div class="sidebar-widget">
-                        <h4>Produtos em Destaque</h4>
+    <div class="sidebar-widget">
+        <h4>Produtos em Destaque</h4>
 
-                        <div class="recent-product-item">
-                            <div class="recent-product-img">
-                                <img src="/assets/img/offers/construcaofoto.png" alt="Cimento">
-                            </div>
-                            <div class="recent-product-info">
-                                <h5><a href="/Home/Contact?produto=Cimento">Cimento CP-II</a></h5>
-                                <p>Construção</p>
-                            </div>
-                        </div>
-
-                        <div class="recent-product-item">
-                            <div class="recent-product-img">
-                                <img src="/assets/img/offers/encanamentofoto.png" alt="Tubo PVC">
-                            </div>
-                            <div class="recent-product-info">
-                                <h5><a href="/Home/Contact?produto=TuboPVC">Tubo PVC 100mm</a></h5>
-                                <p>Encanamento</p>
-                            </div>
-                        </div>
-
-                        <div class="recent-product-item">
-                            <div class="recent-product-img">
-                                <img src="/assets/img/offers/lareacabemntofoto.png" alt="Tinta">
-                            </div>
-                            <div class="recent-product-info">
-                                <h5><a href="/Home/Contact?produto=Tinta">Tinta Acrílica</a></h5>
-                                <p>Acabamento</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="recent-product-item">
+            <div class="recent-product-img">
+                <img src="/assets/img/offers/construcaofoto.png" alt="Cimento">
+            </div>
+            <div class="recent-product-info">
+                <h5><a href="/Home/Contact?produto=Cimento">Cimento CP-II</a></h5>
+                <p>Construção</p>
             </div>
         </div>
-    </section>
 
-    <!-- Call to action final -->
-    <section class="contact-with-area contact-compact" data-background="/assets/img/gallery/section-bg2.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2 text-center">
-                    <h2 style="color: #fff; font-size: 32px; font-weight: 700;">
-                        Ficou interessado em algum produto?
-                    </h2>
-                    <p style="color: #fff; margin: 20px 0;">
-                        Entre em contato conosco e faça seu pedido. Atendemos também pelo WhatsApp.
-                    </p>
-                    <a href="/Home/Contact" class="white-btn btn-sm">Falar com consultor</a>
-                </div>
+        <div class="recent-product-item">
+            <div class="recent-product-img">
+                <img src="/assets/img/offers/encanamentofoto.png" alt="Tubo PVC">
+            </div>
+            <div class="recent-product-info">
+                <h5><a href="/Home/Contact?produto=TuboPVC">Tubo PVC 100mm</a></h5>
+                <p>Encanamento</p>
             </div>
         </div>
-    </section>
+
+        <div class="recent-product-item">
+            <div class="recent-product-img">
+                <img src="/assets/img/offers/lareacabemntofoto.png" alt="Tinta">
+            </div>
+            <div class="recent-product-info">
+                <h5><a href="/Home/Contact?produto=Tinta">Tinta Acrílica</a></h5>
+                <p>Acabamento</p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Call to action final -->
+<section class="contact-with-area contact-compact" data-background="/assets/img/gallery/section-bg2.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <h2 style="color: #fff; font-size: 32px; font-weight: 700;">
+                    Ficou interessado em algum produto?
+                </h2>
+                <p style="color: #fff; margin: 20px 0;">
+                    Entre em contato conosco e faça seu pedido. Atendemos também pelo WhatsApp.
+                </p>
+                <a href="/Home/Contact" class="white-btn btn-sm">Falar com consultor</a>
+            </div>
+        </div>
+    </div>
+</section>
 </main>
 
 @section Scripts {
