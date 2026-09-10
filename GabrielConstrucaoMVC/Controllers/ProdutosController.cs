@@ -205,7 +205,10 @@ namespace GabrielConstrucaoMVC.Controllers
 
             produtoExistente.Nome = produto.Nome;
             produtoExistente.Descricao = produto.Descricao;
+            produtoExistente.Area = produto.Area;
             produtoExistente.Categoria = produto.Categoria;
+            produtoExistente.Preco = produto.Preco;
+            produtoExistente.UnidadeMedida = produto.UnidadeMedida;
             produtoExistente.MaisVendido = produto.MaisVendido;
             produtoExistente.ForaDeEstoque = produto.ForaDeEstoque;
 

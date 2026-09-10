@@ -83,6 +83,10 @@ namespace GabrielConstrucaoMVC.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Area")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Categoria")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -102,6 +106,13 @@ namespace GabrielConstrucaoMVC.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("NomeImagem")
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("UnidadeMedida")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
