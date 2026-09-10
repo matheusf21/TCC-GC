@@ -7,60 +7,61 @@
 @section Styles {
     <style>
         .imagem-produto-admin {
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 5px;
+        width: 70px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 5px;
         }
 
         .pagina-admin-produtos {
-            padding-top: 140px !important;
-            padding-bottom: 50px;
-            min-height: 600px;
+        padding-top: 140px !important;
+        padding-bottom: 50px;
+        min-height: 600px;
         }
 
-            .coluna-acoes {
-                width: 220px;
-                text-align: center !important;
-                vertical-align: middle !important;
-            }
-
-            .acoes-produto {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 6px;
-                width: 100%;
-                flex-wrap: nowrap;
-            }
-
-            .botao-acao {
-                display: inline-block;
-                padding: 8px 14px;
-                border-radius: 4px;
-                color: white !important;
-                text-decoration: none !important;
-                font-size: 13px;
-                line-height: 1.2;
-            }
-
-            .editar-produto {
-                background-color: #f0ad4e;
-            }
-
-            .excluir-produto {
-                background-color: #dc3545;
-            }
-
-            .editar-produto:hover {
-                background-color: #d99632;
-            }
-
-            .excluir-produto:hover {
-                background-color: #bb2d3b;
-            }
+        .coluna-acoes {
+        width: 220px;
+        text-align: center !important;
+        vertical-align: middle !important;
         }
-    </style>
+
+        .acoes-produto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        width: 100%;
+        flex-wrap: nowrap;
+        }
+
+        .botao-acao {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 4px;
+        color: white !important;
+        text-decoration: none !important;
+        font-size: 13px;
+        line-height: 1.2;
+        }
+
+        .editar-produto {
+        background-color: #f0ad4e;
+        }
+
+        .excluir-produto {
+        background-color: #dc3545;
+        }
+
+        .editar-produto:hover {
+        background-color: #d99632;
+        }
+
+        .excluir-produto:hover {
+        background-color: #bb2d3b;
+        }
+
+    }
+</style>
 }
 
 <div class="pagina-admin-produtos">
@@ -88,6 +89,9 @@
                         <th>Imagem</th>
                         <th>Nome</th>
                         <th>Categoria</th>
+                        <th>Área</th>
+                        <th>Preço</th>
+                        <th>Unidade</th>
                         <th>Mais vendido</th>
                         <th>Fora de estoque</th>
                         <th class="coluna-acoes">Ações</th>
@@ -112,6 +116,9 @@
 
                             <td>@produto.Nome</td>
                             <td>@produto.Categoria</td>
+                            <td>@produto.Area</td>
+                            <td>@produto.Preco.ToString("C2")</td>
+                            <td>@produto.UnidadeMedida</td>
                             <td>@(produto.MaisVendido ? "Sim" : "Não")</td>
                             <td>@(produto.ForaDeEstoque ? "Sim" : "Não")</td>
 

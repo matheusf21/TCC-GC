@@ -31,7 +31,9 @@ public class HomeController : Controller
 
     public IActionResult Products()
     {
-        var produtos = _context.Produtos.ToList();
+        var produtos = _context.Produtos
+            .Where(produto => produto.Area == "Construção")
+            .ToList();
 
         return View(produtos);
     }

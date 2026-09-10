@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GabrielConstrucaoMVC.Models
 {
@@ -20,6 +21,8 @@ namespace GabrielConstrucaoMVC.Models
 
         [Required(ErrorMessage = "O preço do produto é obrigatório.")]
         [Range(0.01, double.MaxValue, ErrorMessage = "O preço deve ser maior que zero.")]
+        [Column(TypeName = "decimal(10,2)")]
+
         public decimal Preco { get; set; }
 
         [Required(ErrorMessage = "A unidade de medida é obrigatória.")]

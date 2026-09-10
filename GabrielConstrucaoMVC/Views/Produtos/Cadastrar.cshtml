@@ -66,18 +66,6 @@
             </div>
 
             <div class="mb-3">
-                <label asp-for="Area" class="form-label">Área do produto</label>
-
-                <select asp-for="Area" class="form-control">
-                    <option value="">Selecione uma área</option>
-                    <option value="Construção">Construção</option>
-                    <option value="Pet">Pet</option>
-                </select>
-
-                <span asp-validation-for="Area" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
                 <label asp-for="Categoria" class="form-label"></label>
 
                 <select asp-for="Categoria" class="form-control">
@@ -90,37 +78,6 @@
                 </select>
 
                 <span asp-validation-for="Categoria" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Preco" class="form-label">Preço</label>
-
-                <input asp-for="Preco" class="form-control" type="number" min="0.01" step="0.01" />
-
-                <span asp-validation-for="Preco" class="text-danger"></span>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="UnidadeMedida" class="form-label">
-                    Unidade de medida
-                </label>
-
-                <select asp-for="UnidadeMedida" class="form-control">
-                    <option value="">Selecione uma unidade</option>
-                    <option value="Unidade">Unidade</option>
-                    <option value="Saco">Saco</option>
-                    <option value="Caixa">Caixa</option>
-                    <option value="Pacote">Pacote</option>
-                    <option value="Quilograma">Quilograma</option>
-                    <option value="Litro">Litro</option>
-                    <option value="Metro">Metro</option>
-                    <option value="Metro quadrado">Metro quadrado</option>
-                    <option value="Metro cúbico">Metro cúbico</option>
-                    <option value="Rolo">Rolo</option>
-                    <option value="Lata">Lata</option>
-                </select>
-
-                <span asp-validation-for="UnidadeMedida" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
