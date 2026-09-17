@@ -1,8 +1,13 @@
 using GabrielConstrucaoMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using GabrielConstrucaoMVC.Models;
+using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
+var culturaBrasileira = new CultureInfo("pt-BR");
+
+CultureInfo.DefaultThreadCurrentCulture = culturaBrasileira;
+CultureInfo.DefaultThreadCurrentUICulture = culturaBrasileira;
 builder.Services.AddSession();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(

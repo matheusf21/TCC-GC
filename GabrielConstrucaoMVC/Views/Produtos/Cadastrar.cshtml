@@ -83,7 +83,8 @@
             <div class="mb-3">
                 <label asp-for="Preco" class="form-label">Preço</label>
 
-                <input asp-for="Preco" class="form-control" type="number" min="0.01" step="0.01" />
+                <input asp-for="Preco" class="form-control" type="text" inputmode="decimal"
+                       placeholder="Exemplo: 29,99" />
 
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>

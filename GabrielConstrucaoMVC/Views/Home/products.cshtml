@@ -168,6 +168,82 @@
             max-width: 100%;
         }
     }
+
+    .produto-preco {
+        color: #ff5f13;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .produto-preco span {
+        color: #777;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .produto-img {
+        width: 100%;
+        height: 260px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 15px;
+    }
+
+    .produto-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain !important;
+        display: block;
+    }
+
+    .produto-img {
+        width: 100%;
+        height: 260px;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .produto-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain !important;
+        display: block;
+    }
+
+    .produto-img {
+        position: relative;
+    }
+
+    .selo-mais-vendido {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 2;
+        padding: 6px 12px;
+        border-radius: 20px;
+        background-color: #ff5f13;
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .produto-fora-estoque {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #dc3545;
+        color: white;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
 </style>
 
 <!-- Preloader Start -->
@@ -270,6 +346,13 @@
                                     <div class="single-produto-card mb-30">
 
                                         <div class="produto-img">
+                                            @if (produto.MaisVendido)
+                                            {
+                                                <span class="selo-mais-vendido">
+                                                    Mais vendido
+                                                </span>
+                                            }
+
                                             @if (!string.IsNullOrEmpty(produto.NomeImagem))
                                             {
                                                 <img src="/uploads/produtos/@produto.NomeImagem" alt="@produto" />
@@ -290,6 +373,11 @@
                                             </span>
 
                                             <h4>@produto.Nome</h4>
+
+                                            <div class="produto-preco">
+                                                @produto.Preco.ToString("C2")
+                                                <span>/ @produto.UnidadeMedida</span>
+                                            </div>
 
                                             <p>@produto.Descricao</p>
 
@@ -316,53 +404,86 @@
                         }
 
                     </div>
-               
-<!-- Sidebar direita -->
-<div class="col-lg-4">
-    <div class="sidebar-widget">
-        <h4>Categorias</h4>
-        <ul class="list cat-list">
-            <li><a href="#" data-filter-cat="construcao">Construção <span>(4)</span></a></li>
-            <li><a href="#" data-filter-cat="encanamento">Encanamento <span>(2)</span></a></li>
-            <li><a href="#" data-filter-cat="acabamento">Acabamento <span>(3)</span></a></li>
-            <li><a href="#" data-filter-cat="eletrica">Elétrica <span>(2)</span></a></li>
-            <li><a href="#" data-filter-cat="ferramentas">Ferramentas <span>(2)</span></a></li>
-        </ul>
-    </div>
+                </div>
 
-    <div class="sidebar-widget">
-        <h4>Produtos em Destaque</h4>
+                <!-- Sidebar direita -->
+                <div class="col-lg-4">
+                    <div class="sidebar-widget">
+                        <h4>Categorias</h4>
+                        <ul class="list cat-list">
+                            <li>
+                                Construção
+                                <span>(@(Model.Count(p => p.Categoria == "Construção")))</span>
+                            </a>
+                        </li>
 
-        <div class="recent-product-item">
-            <div class="recent-product-img">
-                <img src="/assets/img/offers/construcaofoto.png" alt="Cimento">
-            </div>
-            <div class="recent-product-info">
-                <h5><a href="/Home/Contact?produto=Cimento">Cimento CP-II</a></h5>
-                <p>Construção</p>
-            </div>
-        </div>
+                        <li>
+                            Encanamento
+                            <span>(@(Model.Count(p => p.Categoria == "Encanamento")))</span>
+                        </a>
+                    </li>
 
-        <div class="recent-product-item">
-            <div class="recent-product-img">
-                <img src="/assets/img/offers/encanamentofoto.png" alt="Tubo PVC">
-            </div>
-            <div class="recent-product-info">
-                <h5><a href="/Home/Contact?produto=TuboPVC">Tubo PVC 100mm</a></h5>
-                <p>Encanamento</p>
-            </div>
-        </div>
+                    <li>
+                        Acabamento
+                        <span>(@(Model.Count(p => p.Categoria == "Acabamento")))</span>
+                    </a>
+                </li>
 
-        <div class="recent-product-item">
-            <div class="recent-product-img">
-                <img src="/assets/img/offers/lareacabemntofoto.png" alt="Tinta">
+                <li>
+                    Elétrica
+                    <span>(@(Model.Count(p => p.Categoria == "Elétrica")))</span>
+                </a>
+            </li>
+
+            <li>
+                Ferramentas
+                <span>(@(Model.Count(p => p.Categoria == "Ferramentas")))</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div class="sidebar-widget">
+    <h4>Produtos em Destaque</h4>
+
+    @{
+        var produtosDestaque = Model
+            .Where(produto => produto.MaisVendido)
+            .Take(3)
+            .ToList();
+    }
+
+    @if (produtosDestaque.Any())
+    {
+        @foreach (var produto in produtosDestaque)
+        {
+            <div class="recent-product-item">
+
+                <div class="recent-product-img">
+                    @if (!string.IsNullOrEmpty(produto.NomeImagem))
+                    {
+                        <img src="/uploads/produtos/@produto.NomeImagem" alt="@produto.Nome" />
+
+                    }
+                    else
+                    {
+                        <span>Sem imagem</span>
+                    }
+                </div>
+
+                <div class="recent-product-info">
+                    <h5>@produto.Nome</h5>
+                    <p>@produto.Categoria</p>
+                </div>
+
             </div>
-            <div class="recent-product-info">
-                <h5><a href="/Home/Contact?produto=Tinta">Tinta Acrílica</a></h5>
-                <p>Acabamento</p>
-            </div>
-        </div>
-    </div>
+        }
+    }
+    else
+    {
+        <p>Nenhum produto em destaque.</p>
+    }
+</div>
 </div>
 </div>
 </div>
