@@ -40,7 +40,11 @@ public class HomeController : Controller
 
     public IActionResult PetArea()
     {
-        return View();
+        var produtosPet = _context.Produtos
+            .Where(produto => produto.Area == "Pet")
+            .ToList();
+
+        return View(produtosPet);
     }
 
     public IActionResult About()

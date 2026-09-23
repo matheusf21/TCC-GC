@@ -1,3 +1,4 @@
+@model IEnumerable<GabrielConstrucaoMVC.Models.Produto>
 @{
     ViewData["Title"] = "Área Pet";
 }
@@ -78,7 +79,10 @@
     .pet-produto-img img {
         width: 100%;
         height: 220px;
-        object-fit: cover;
+        object-fit: contain;
+        background-color: #fff;
+        padding: 12px;
+        display: block;
         transition: transform 0.4s ease;
     }
 
@@ -264,12 +268,39 @@
         min-height: 590px;
     }
 
+    .unidade-preco {
+        color: #777;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .produto-sem-imagem {
+        width: 100%;
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f4f4f4;
+        color: #777;
+    }
+
+    .produto-fora-estoque {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #dc3545;
+        color: #ffffff;
+        border-radius: 30px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
     @@media (max-width: 768px) {
         .slider-height2 {
             min-height: 350px;
         }
 
-        .filter-bar .row > div {
+        .filter-bar .row>div {
             margin-bottom: 15px;
         }
 
@@ -354,137 +385,102 @@
                 <!-- Grade de produtos -->
                 <div class="col-lg-8">
                     <div class="row" id="products-grid">
-                        <!-- Produto 1 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="racao" data-nome="Ração Premium para Cães">
-                            <div class="pet-produto-card">
-                                <div class="pet-produto-img">
-                                    <img src="/assets/img/pet/racao-premium.jpg" alt="Ração Premium para Cães">
-                                    <span class="pet-produto-badge">Mais Vendido</span>
-                                </div>
-                                <div class="pet-produto-content">
-                                    <span class="pet-produto-categoria">Ração</span>
-                                    <h4>Ração Premium para Cães</h4>
-                                    <div class="preco">R$ 129,90</div>
-                                    <p>Alimento super premium, com altos níveis de proteína e sem corantes artificiais. 10kg.</p>
-                                    <a href="/Home/Contact?produto=RacaoPremium" class="btn-pet">Tenho interesse</a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Produto 2 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="acessorios" data-nome="Vasilha Antiderrapante">
-                            <div class="pet-produto-card">
-                                <div class="pet-produto-img">
-                                    <img src="/assets/img/pet/vasilha-antiderrapante.jpg" alt="Vasilha Antiderrapante">
-                                    <span class="pet-produto-badge">Oferta</span>
-                                </div>
-                                <div class="pet-produto-content">
-                                    <span class="pet-produto-categoria">Acessórios</span>
-                                    <h4>Vasilha Antiderrapante</h4>
-                                    <div class="preco">R$ 39,90</div>
-                                    <p>Em aço inoxidável, base emborrachada que evita escorregões e tombos.</p>
-                                    <a href="/Home/Contact?produto=VasilhaAntiderrapante" class="btn-pet">Tenho interesse</a>
+                        @if (!Model.Any())
+                        {
+                            <div class="col-12">
+                                <div class="alert alert-info">
+                                    Nenhum produto Pet disponível no momento.
                                 </div>
                             </div>
-                        </div>
+                        }
+                        else
+                        {
+                            @foreach (var produto in Model)
+                            {
+                                var categoriaFiltro = produto.Categoria
+                                    .Trim()
+                                    .ToLowerInvariant();
 
-                        <!-- Produto 3 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="acessorios" data-nome="Cama Confortável">
-                            <div class="pet-produto-card">
-                                <div class="pet-produto-img">
-                                    <img src="/assets/img/pet/cama-pet.jpg" alt="Cama para cães e gatos">
-                                </div>
-                                <div class="pet-produto-content">
-                                    <span class="pet-produto-categoria">Acessórios</span>
-                                    <h4>Cama Confortável</h4>
-                                    <div class="preco">R$ 89,90</div>
-                                    <p>Enchimento macio, capa removível e lavável. Tamanhos P, M, G.</p>
-                                    <a href="/Home/Contact?produto=CamaPet" class="btn-pet">Tenho interesse</a>
-                                </div>
-                            </div>
-                        </div>
+                                categoriaFiltro = categoriaFiltro switch
+                                {
+                                    "ração" => "racao",
+                                    "rações" => "racao",
+                                    "acessórios" => "acessorios",
+                                    "higiene" => "higiene",
+                                    "brinquedos" => "brinquedos",
+                                    "medicamentos" => "medicamentos",
+                                    _ => categoriaFiltro
+                                };
 
-                        <!-- Produto 4 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="brinquedos" data-nome="Brinquedo Interativo">
-                            <div class="pet-produto-card">
-                                <div class="pet-produto-img">
-                                    <img src="/assets/img/pet/brinquedo-interativo.jpg" alt="Brinquedo Interativo">
-                                </div>
-                                <div class="pet-produto-content">
-                                    <span class="pet-produto-categoria">Brinquedos</span>
-                                    <h4>Brinquedo Interativo</h4>
-                                    <div class="preco">R$ 29,90</div>
-                                    <p>Bola de borracha natural, libera petiscos – estimula a mente do animal.</p>
-                                    <a href="/Home/Contact?produto=BrinquedoInterativo" class="btn-pet">Tenho interesse</a>
-                                </div>
-                            </div>
-                        </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="@categoriaFiltro"
+                                     data-nome="@produto.Nome.ToLowerInvariant()">
 
-                        <!-- Produto 5 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="higiene" data-nome="Kit Higiene Completo">
-                            <div class="pet-produto-card">
-                                <div class="pet-produto-img">
-                                    <img src="/assets/img/pet/kit-higiene.jpg" alt="Kit Higiene Pet">
-                                </div>
-                                <div class="pet-produto-content">
-                                    <span class="pet-produto-categoria">Higiene</span>
-                                    <h4>Kit Higiene Completo</h4>
-                                    <div class="preco">R$ 49,90</div>
-                                    <p>Shampoo, condicionador, escova e cortador de unhas – tudo em um só pacote.</p>
-                                    <a href="/Home/Contact?produto=KitHigiene" class="btn-pet">Tenho interesse</a>
-                                </div>
-                            </div>
-                        </div>
+                                    <div class="pet-produto-card">
 
-                        <!-- Produto 6 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="acessorios" data-nome="Guia e Coleira Reflectiva">
-                            <div class="pet-produto-card">
-                                <div class="pet-produto-img">
-                                    <img src="/assets/img/pet/guia-coleira.jpg" alt="Guia e Coleira">
-                                </div>
-                                <div class="pet-produto-content">
-                                    <span class="pet-produto-categoria">Acessórios</span>
-                                    <h4>Guia e Coleira Reflectiva</h4>
-                                    <div class="preco">R$ 34,90</div>
-                                    <p>Nylon resistente, ajustável, com detalhes que refletem à noite.</p>
-                                    <a href="/Home/Contact?produto=GuiaColeira" class="btn-pet">Tenho interesse</a>
-                                </div>
-                            </div>
-                        </div>
+                                        <div class="pet-produto-img">
 
-                        <!-- Produto 7 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="racao" data-nome="Ração Premium para Gatos">
-                            <div class="pet-produto-card">
-                                <div class="pet-produto-img">
-                                    <img src="/assets/img/pet/racao-gatos.jpg" alt="Ração Premium para Gatos">
-                                </div>
-                                <div class="pet-produto-content">
-                                    <span class="pet-produto-categoria">Ração</span>
-                                    <h4>Ração Premium para Gatos</h4>
-                                    <div class="preco">R$ 119,90</div>
-                                    <p>Alimento balanceado com sabor de frango, rico em vitaminas e taurina. 10kg.</p>
-                                    <a href="/Home/Contact?produto=RacaoGatos" class="btn-pet">Tenho interesse</a>
-                                </div>
-                            </div>
-                        </div>
+                                            @if (produto.MaisVendido)
+                                            {
+                                                <span class="pet-produto-badge">
+                                                    Mais vendido
+                                                </span>
+                                            }
 
-                        <!-- Produto 8 -->
-                        <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="acessorios" data-nome="Arranhador para Gatos">
-                            <div class="pet-produto-card">
-                                <div class="pet-produto-img">
-                                    <img src="/assets/img/pet/arranhador.jpg" alt="Arranhador para Gatos">
+                                            @if (!string.IsNullOrEmpty(produto.NomeImagem))
+                                            {
+                                                <img src="/uploads/produtos/@produto.NomeImagem" alt="@produto" />
+                                            }
+                                            else
+                                            {
+                                                <div class="produto-sem-imagem">
+                                                    Sem imagem
+                                                </div>
+                                            }
+
+                                        </div>
+
+                                        <div class="pet-produto-content">
+
+                                            <span class="pet-produto-categoria">
+                                                @produto.Categoria
+                                            </span>
+
+                                            <h4>@produto.Nome</h4>
+
+                                            <div class="preco">
+                                                @produto.Preco.ToString("C2")
+                                                <span class="unidade-preco">
+                                                    / @produto.UnidadeMedida
+                                                </span>
+                                            </div>
+
+                                            <p>@produto.Descricao</p>
+                                            @if (produto.ForaDeEstoque)
+                                            {
+                                                <span class="produto-fora-estoque">
+                                                    Fora de estoque
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="Home" asp-action="Contact" asp-route-produto="@produto.Id"
+                                                   class="btn-orcamento">
+                                                    Solicitar orçamento
+                                                </a>
+                                            }
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div class="pet-produto-content">
-                                    <span class="pet-produto-categoria">Acessórios</span>
-                                    <h4>Arranhador para Gatos</h4>
-                                    <div class="preco">R$ 79,90</div>
-                                    <p>Estrutura resistente com sisal, ideal para entretenimento e saúde das unhas.</p>
-                                    <a href="/Home/Contact?produto=Arranhador" class="btn-pet">Tenho interesse</a>
-                                </div>
-                            </div>
-                        </div>
+                            }
+                        }
+
                     </div>
 
+                    
+                
                     <!-- Paginação simulada -->
                     <div class="row">
                         <div class="col-12">

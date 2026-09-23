@@ -93,11 +93,21 @@
 
                 <select asp-for="Categoria" class="form-control">
                     <option value="">Selecione uma categoria</option>
-                    <option value="Construção">Construção</option>
-                    <option value="Encanamento">Encanamento</option>
-                    <option value="Acabamento">Acabamento</option>
-                    <option value="Elétrica">Elétrica</option>
-                    <option value="Ferramentas">Ferramentas</option>
+
+                    <optgroup label="Construção">
+                        <option value="Construção">Construção</option>
+                        <option value="Encanamento">Encanamento</option>
+                        <option value="Acabamento">Acabamento</option>
+                        <option value="Elétrica">Elétrica</option>
+                        <option value="Ferramentas">Ferramentas</option>
+                    </optgroup>
+
+                    <optgroup label="Área Pet">
+                        <option value="Ração">Ração</option>
+                        <option value="Acessórios">Acessórios</option>
+                        <option value="Higiene">Higiene</option>
+                        <option value="Brinquedos">Brinquedos</option>
+                    </optgroup>
                 </select>
 
                 <span asp-validation-for="Categoria" class="text-danger"></span>
