@@ -28,6 +28,8 @@ localhost:5259/Produtos
 
 http://localhost:5259/Home/Login
 
+http://localhost:5259/Home/Dashboard
+
 Usuário: admin
 Senha: 123456
 

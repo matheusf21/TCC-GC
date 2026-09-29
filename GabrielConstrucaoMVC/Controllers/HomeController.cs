@@ -71,13 +71,14 @@ public class HomeController : Controller
         if (admin != null)
         {
             HttpContext.Session.SetString("AdminLogado", "true");
-            return RedirectToAction("AdminMessages");
+
+            return RedirectToAction("Dashboard", "Home");
         }
 
         ViewBag.Erro = "Usuário ou senha inválidos.";
+
         return View();
     }
-
     public IActionResult AdminMessages()
     {
         if (HttpContext.Session.GetString("AdminLogado") != "true")
@@ -114,5 +115,22 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+
+    public IActionResult Logout()
+    {
+        HttpContext.Session.Remove("AdminLogado");
+
+        return RedirectToAction("Index", "Home");
+    }
+
+    public IActionResult Dashboard()
+    {
+        if (HttpContext.Session.GetString("AdminLogado") != "true")
+        {
+            return RedirectToAction("Login");
+        }
+
+        return View();
     }
 }

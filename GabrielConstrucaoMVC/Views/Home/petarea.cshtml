@@ -481,20 +481,7 @@
 
                     
                 
-                    <!-- Paginação simulada -->
-                    <div class="row">
-                        <div class="col-12">
-                            <nav class="pagination-area">
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled"><a class="page-link" href="#">Anterior</a></li>
-                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">Próximo</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
+                   
                 </div>
 
                 <!-- Sidebar direita -->
@@ -502,102 +489,130 @@
                     <div class="sidebar-widget">
                         <h4>Categorias</h4>
                         <ul class="list cat-list">
-                            <li><a href="#" data-filter-cat="racao">Ração <span>(2)</span></a></li>
-                            <li><a href="#" data-filter-cat="acessorios">Acessórios <span>(4)</span></a></li>
-                            <li><a href="#" data-filter-cat="higiene">Higiene <span>(1)</span></a></li>
-                            <li><a href="#" data-filter-cat="brinquedos">Brinquedos <span>(1)</span></a></li>
-                        </ul>
+                            <li>
+                                Ração
+                                <span>(@(Model.Count(p => p.Categoria == "Ração")))</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            Acessórios
+                            <span>(@(Model.Count(p => p.Categoria == "Acessórios")))</span>
+                        </a>
+                    </li>
+
+                    <li>
+
+                        Higiene
+                        <span>(@(Model.Count(p => p.Categoria == "Higiene")))</span>
+                    </a>
+                </li>
+
+                <li>
+
+                    Brinquedos
+                    <span>(@(Model.Count(p => p.Categoria == "Brinquedos")))</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="sidebar-widget">
+        <h4>Produtos em Destaque</h4>
+
+        @{
+            var produtosDestaque = Model
+                .Where(produto => produto.MaisVendido)
+                .Take(3)
+                .ToList();
+        }
+
+        @if (produtosDestaque.Any())
+        {
+            @foreach (var produto in produtosDestaque)
+            {
+                <div class="recent-product-item">
+
+                    <div class="recent-product-img">
+                        @if (!string.IsNullOrEmpty(produto.NomeImagem))
+                        {
+                            <img src="/uploads/produtos/@produto.NomeImagem" alt="@produto.Nome" />
+                        }
+                        else
+                        {
+                            <span>Sem imagem</span>
+                        }
                     </div>
 
-                    <div class="sidebar-widget">
-                        <h4>Produtos em Destaque</h4>
-
-                        <div class="recent-product-item">
-                            <div class="recent-product-img">
-                                <img src="/assets/img/pet/racao-premium.jpg" alt="Ração Premium">
-                            </div>
-                            <div class="recent-product-info">
-                                <h5><a href="/Home/Contact?produto=RacaoPremium">Ração Premium para Cães</a></h5>
-                                <p>R$ 129,90</p>
-                            </div>
-                        </div>
-
-                        <div class="recent-product-item">
-                            <div class="recent-product-img">
-                                <img src="/assets/img/pet/cama-pet.jpg" alt="Cama Pet">
-                            </div>
-                            <div class="recent-product-info">
-                                <h5><a href="/Home/Contact?produto=CamaPet">Cama Confortável</a></h5>
-                                <p>R$ 89,90</p>
-                            </div>
-                        </div>
-
-                        <div class="recent-product-item">
-                            <div class="recent-product-img">
-                                <img src="/assets/img/pet/brinquedo-interativo.jpg" alt="Brinquedo">
-                            </div>
-                            <div class="recent-product-info">
-                                <h5><a href="/Home/Contact?produto=BrinquedoInterativo">Brinquedo Interativo</a></h5>
-                                <p>R$ 29,90</p>
-                            </div>
-                        </div>
+                    <div class="recent-product-info">
+                        <h5>@produto.Nome</h5>
+                        <p>@produto.Preco.ToString("C2")</p>
                     </div>
+
+                </div>
+            }
+        }
+        else
+        {
+            <p>Nenhum produto em destaque.</p>
+        }
+    </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Diferenciais -->
+<div class="container">
+    <div class="pet-destaque-bg">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="contact-title" style="margin-bottom: 40px;">Por que escolher nossos produtos?</h2>
+            </div>
+
+            <div class="col-md-4">
+                <div class="pet-icon-feature">
+                    <div class="icon"><i class="ti-shield"></i></div>
+                    <h4>Qualidade Garantida</h4>
+                    <p>Trabalhamos somente com marcas reconhecidas e produtos testados.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Diferenciais -->
-    <div class="container">
-        <div class="pet-destaque-bg">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h2 class="contact-title" style="margin-bottom: 40px;">Por que escolher nossos produtos?</h2>
+            <div class="col-md-4">
+                <div class="pet-icon-feature">
+                    <div class="icon"><i class="ti-truck"></i></div>
+                    <h4>Entrega Rápida</h4>
+                    <p>Enviamos para toda a região com segurança e pontualidade.</p>
                 </div>
+            </div>
 
-                <div class="col-md-4">
-                    <div class="pet-icon-feature">
-                        <div class="icon"><i class="ti-shield"></i></div>
-                        <h4>Qualidade Garantida</h4>
-                        <p>Trabalhamos somente com marcas reconhecidas e produtos testados.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="pet-icon-feature">
-                        <div class="icon"><i class="ti-truck"></i></div>
-                        <h4>Entrega Rápida</h4>
-                        <p>Enviamos para toda a região com segurança e pontualidade.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="pet-icon-feature">
-                        <div class="icon"><i class="ti-announcement"></i></div>
-                        <h4>Suporte Especializado</h4>
-                        <p>Nossa equipe tira dúvidas e ajuda na escolha do produto ideal.</p>
-                    </div>
+            <div class="col-md-4">
+                <div class="pet-icon-feature">
+                    <div class="icon"><i class="ti-announcement"></i></div>
+                    <h4>Suporte Especializado</h4>
+                    <p>Nossa equipe tira dúvidas e ajuda na escolha do produto ideal.</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Call to action final -->
-    <section class="contact-with-area contact-compact" data-background="/assets/img/gallery/section-bg2.jpg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2 text-center">
-                    <h2 style="color: #fff; font-size: 32px; font-weight: 700;">
-                        Ficou interessado em algum produto?
-                    </h2>
-                    <p style="color: #fff; margin: 20px 0;">
-                        Entre em contato conosco e faça seu pedido. Atendemos também pelo WhatsApp.
-                    </p>
-                    <a href="/Home/Contact" class="white-btn btn-sm">Falar com consultor</a>
-                </div>
+<!-- Call to action final -->
+<section class="contact-with-area contact-compact" data-background="/assets/img/gallery/section-bg2.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <h2 style="color: #fff; font-size: 32px; font-weight: 700;">
+                    Ficou interessado em algum produto?
+                </h2>
+                <p style="color: #fff; margin: 20px 0;">
+                    Entre em contato conosco e faça seu pedido. Atendemos também pelo WhatsApp.
+                </p>
+                <a href="/Home/Contact" class="white-btn btn-sm">Falar com consultor</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </main>
 
 @section Scripts {

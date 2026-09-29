@@ -75,6 +75,11 @@
             Cadastrar Produto
         </a>
 
+        <a asp-controller="Home" asp-action="Logout" class="btn btn-danger mb-3">
+            Sair
+        </a>
+        
+
         @if (!Model.Any())
         {
             <div class="alert alert-info">
