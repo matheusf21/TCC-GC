@@ -40,6 +40,82 @@
         .dashboard-card .btn {
             min-width: 170px;
         }
+
+        .dashboard-numero {
+            margin: 15px 0;
+            color: #ff5f13;
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .dashboard-grafico {
+            padding: 30px;
+            background-color: #ffffff;
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .dashboard-grafico h3 {
+            margin-bottom: 8px;
+            color: #0b1c39;
+            font-size: 22px;
+        }
+
+        .dashboard-grafico>p {
+            margin-bottom: 30px;
+            color: #666666;
+        }
+
+        .grafico-barras {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 15px;
+            height: 280px;
+        }
+
+        .grafico-coluna {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            min-width: 45px;
+        }
+
+        .grafico-valor {
+            margin-bottom: 6px;
+            color: #0b1c39;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .grafico-area-barra {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            width: 55px;
+            height: 210px;
+            background-color: #f3f3f3;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+
+        .grafico-barra {
+            width: 100%;
+            min-height: 3px;
+            background-color: #ff5f13;
+            border-radius: 8px 8px 0 0;
+            transition: height 0.3s ease;
+        }
+
+        .grafico-data {
+            margin-top: 8px;
+            color: #666666;
+            font-size: 13px;
+        }
     </style>
 }
 
@@ -52,8 +128,7 @@
         </div>
 
         <div class="row">
-
-            <div class="col-md-6 mb-4">
+            <div class="col-md-8 mb-4">
                 <div class="dashboard-card">
                     <h3>Produtos</h3>
 
@@ -68,26 +143,105 @@
                 </div>
             </div>
 
-            <div class="col-md-6 mb-4">
+            <div class="col-md-4 mb-4">
                 <div class="dashboard-card">
-                    <h3>Mensagens</h3>
+                    <h3>Total de contatos</h3>
+
+                    <div class="dashboard-numero">
+                        @ViewBag.TotalContatosWhatsApp
+                    </div>
 
                     <p>
-                        Consulte as mensagens enviadas pelos visitantes
-                        através da página de contato.
+                        Total de contatos iniciados pelo site
+                        através do WhatsApp.
                     </p>
-
-                    <a asp-controller="Home" asp-action="AdminMessages" class="btn btn-primary">
-                        Ver Mensagens
-                    </a>
                 </div>
             </div>
 
-        </div>
+            <div class="col-md-4 mb-4">
+                <div class="dashboard-card">
+                    <h3>Contatos hoje</h3>
 
-        <a asp-controller="Home" asp-action="Logout" class="btn btn-danger">
-            Sair
-        </a>
+                    <div class="dashboard-numero">
+                        @ViewBag.ContatosHoje
+                    </div>
 
-    </div>
-</div>
+                    <p>
+                        Contatos iniciados pelo site durante o dia de hoje.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="dashboard-card">
+                    <h3>Contatos neste mês</h3>
+
+                    <div class="dashboard-numero">
+                        @ViewBag.ContatosMes
+                    </div>
+
+                    <p>
+                        Contatos iniciados pelo site durante o mês atual.
+                    </p>
+                </div>
+            </div>
+
+            @{
+                var rotulosGrafico =
+                    ViewBag.RotulosGrafico as List<string> ?? new List<string>();
+
+                var valoresGrafico =
+                    ViewBag.ValoresGrafico as List<int> ?? new List<int>();
+
+                var maiorValor = valoresGrafico.Any()
+                    ? valoresGrafico.Max()
+                    : 0;
+            }
+
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="dashboard-grafico">
+
+                        <h3>Contatos iniciados nos últimos 7 dias</h3>
+
+                        <p>
+                            Quantidade de pessoas que acessaram o WhatsApp
+                            através do site em cada dia.
+                        </p>
+
+                        <div class="grafico-barras">
+
+                            @for (int i = 0; i < rotulosGrafico.Count; i++)
+                            {
+                                var valor = valoresGrafico[i];
+
+                                var altura = maiorValor > 0
+                                    ? (valor * 100 / maiorValor)
+                                    : 0;
+
+                                <div class="grafico-coluna">
+
+                                    <span class="grafico-valor">
+                                        @valor
+                                    </span>
+
+                                    <div class="grafico-area-barra">
+                                        <div class="grafico-barra" style="height: @(altura)%;">
+                                        </div>
+                                    </div>
+
+                                    <span class="grafico-data">
+                                        @rotulosGrafico[i]
+                                    </span>
+
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+           

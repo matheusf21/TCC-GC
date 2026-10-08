@@ -43,6 +43,22 @@ namespace GabrielConstrucaoMVC.Migrations
                     b.ToTable("Admins");
                 });
 
+            modelBuilder.Entity("GabrielConstrucaoMVC.Models.ContatoWhatsApp", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataContato")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContatosWhatsApp");
+                });
+
             modelBuilder.Entity("GabrielConstrucaoMVC.Models.Message", b =>
                 {
                     b.Property<int>("Id")
@@ -109,7 +125,7 @@ namespace GabrielConstrucaoMVC.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<string>("UnidadeMedida")
                         .IsRequired()

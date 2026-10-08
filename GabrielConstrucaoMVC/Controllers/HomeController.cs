@@ -131,6 +131,66 @@ public class HomeController : Controller
             return RedirectToAction("Login");
         }
 
+        var hoje = DateTime.Today;
+        var amanha = hoje.AddDays(1);
+
+        var inicioMes = new DateTime(
+            hoje.Year,
+            hoje.Month,
+            1
+        );
+
+        ViewBag.TotalContatosWhatsApp =
+            _context.ContatosWhatsApp.Count();
+
+        ViewBag.ContatosHoje =
+            _context.ContatosWhatsApp.Count(contato =>
+                contato.DataContato >= hoje &&
+                contato.DataContato < amanha
+            );
+
+        ViewBag.ContatosMes =
+            _context.ContatosWhatsApp.Count(contato =>
+                contato.DataContato >= inicioMes
+            );
+
+        var inicioGrafico = hoje.AddDays(-6);
+
+        var contatosUltimosDias = _context.ContatosWhatsApp
+            .Where(contato =>
+                contato.DataContato >= inicioGrafico &&
+                contato.DataContato < amanha)
+            .ToList();
+
+        var rotulosGrafico = new List<string>();
+        var valoresGrafico = new List<int>();
+
+        for (int i = 0; i < 7; i++)
+        {
+            var data = inicioGrafico.AddDays(i);
+
+            rotulosGrafico.Add(data.ToString("dd/MM"));
+
+            valoresGrafico.Add(
+                contatosUltimosDias.Count(contato =>
+                    contato.DataContato.Date == data.Date)
+            );
+        }
+
+        ViewBag.RotulosGrafico = rotulosGrafico;
+        ViewBag.ValoresGrafico = valoresGrafico;
+
         return View();
+    }
+
+    [HttpPost]
+    public IActionResult RegistrarContatoWhatsApp()
+    {
+        var contato = new ContatoWhatsApp();
+
+        _context.ContatosWhatsApp.Add(contato);
+        _context.SaveChanges();
+
+        return Ok();
     }
 }

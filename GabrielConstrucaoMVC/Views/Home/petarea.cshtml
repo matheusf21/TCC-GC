@@ -308,6 +308,34 @@
             margin-left: 0;
             max-width: 100%;
         }
+
+        .controle-quantidade {
+            display: flex;
+            justify-content: center;
+            margin: 12px 0 10px;
+        }
+
+        .quantidade-produto {
+            width: 75px;
+            height: 36px;
+            padding: 5px 8px;
+            border: 1px solid #dddddd;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .total-produto {
+            margin-bottom: 14px;
+            color: #555555;
+            font-size: 14px;
+        }
+
+        .total-produto .valor-total {
+            color: #ff5f13;
+            font-size: 18px;
+        }
     }
 </style>
 
@@ -416,7 +444,8 @@
                                 <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="@categoriaFiltro"
                                      data-nome="@produto.Nome.ToLowerInvariant()">
 
-                                    <div class="pet-produto-card">
+                                    <div class="pet-produto-card"
+                                         data-produto-preco="@produto.Preco.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)">
 
                                         <div class="pet-produto-img">
 
@@ -464,9 +493,25 @@
                                             }
                                             else
                                             {
+                                                <div class="controle-quantidade">
+                                                    <input type="number" class="quantidade-produto" value="1" min="1" step="1"
+                                                           aria-label="Quantidade de @produto.Nome" />
+                                                </div>
+
+                                                <div class="total-produto">
+                                                    Total estimado:
+                                                    <strong class="valor-total">
+                                                        @produto.Preco.ToString("C2")
+                                                    </strong>
+                                                </div>
+
+                                                <a asp-controller="Home" asp-action="Contact" class="btn-pet">
+                                                    Entrar em contato
+                                                </a>
+                                                
                                                 <a asp-controller="Home" asp-action="Contact" asp-route-produto="@produto.Id"
                                                    class="btn-orcamento">
-                                                    Solicitar orçamento
+                                                    Entrar em contato
                                                 </a>
                                             }
                                         </div>
@@ -677,6 +722,37 @@
                     });
                 }
             }
+        });
+
+        $('.pet-produto-card').each(function () {
+            const card = this;
+            const campoQuantidade = card.querySelector('.quantidade-produto');
+            const elementoTotal = card.querySelector('.valor-total');
+
+            if (!campoQuantidade || !elementoTotal) {
+                return;
+            }
+
+            function atualizarTotal() {
+                const preco = parseFloat(card.dataset.produtoPreco);
+                let quantidade = parseInt(campoQuantidade.value);
+
+                if (isNaN(quantidade) || quantidade < 1) {
+                    quantidade = 1;
+                    campoQuantidade.value = 1;
+                }
+
+                const total = preco * quantidade;
+
+                elementoTotal.textContent = total.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                });
+            }
+
+            campoQuantidade.addEventListener('input', atualizarTotal);
+
+            atualizarTotal();
         });
     </script>
 }

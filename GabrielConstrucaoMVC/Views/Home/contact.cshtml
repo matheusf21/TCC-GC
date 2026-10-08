@@ -112,6 +112,32 @@
         .slider-height2 {
             min-height: 350px;
         }
+
+        .whatsapp-form {
+            padding: 30px;
+            background-color: #ffffff;
+            border: 1px solid #eeeeee;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .whatsapp-form h3 {
+            margin-bottom: 12px;
+            color: #0b1c39;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .whatsapp-form>p {
+            margin-bottom: 25px;
+            color: #666666;
+        }
+
+        .whatsapp-form label {
+            margin-bottom: 8px;
+            color: #0b1c39;
+            font-weight: 600;
+        }
     }
 </style>
 
@@ -168,59 +194,49 @@
 
             <div class="row">
 
-                <!-- Formulário -->
+                <!-- Contato pelo WhatsApp -->
                 <div class="col-lg-7 mb-5 mb-lg-0">
 
-                    @if (TempData["Sucesso"] != null)
-                    {
-                        <div class="alert alert-success text-center mb-4">
-                            @TempData["Sucesso"]
+                    <div class="whatsapp-form">
+
+                        <h3>Fale conosco pelo WhatsApp</h3>
+
+                        <p>
+                            Informe seu nome e escreva livremente como podemos ajudar.
+                            Ao continuar, o WhatsApp será aberto com a mensagem preenchida.
+                        </p>
+
+                        <div id="mensagem-validacao" class="alert alert-danger" style="display: none;">
                         </div>
-                    }
 
-                    <form asp-controller="Message" asp-action="Enviar" method="post" class="form-contact contact_form"
-                          id="contactForm" novalidate="novalidate">
+                        <div class="form-group">
+                            <label for="nome-whatsapp">
+                                Seu nome
+                            </label>
 
-                        <div class="row">
+                            <input type="text" id="nome-whatsapp" class="form-control" maxlength="100"
+                                   placeholder="Digite seu nome" />
+                        </div>
 
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <textarea class="form-control w-100" name="Conteudo" id="message" cols="30" rows="6"
-                                              placeholder="Digite sua mensagem"></textarea>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="mensagem-whatsapp">
+                                Como podemos ajudar?
+                            </label>
 
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="Nome" id="name" type="text"
-                                           placeholder="Seu nome">
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <input class="form-control" name="Email" id="email" type="email"
-                                           placeholder="Seu e-mail">
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <input class="form-control" name="Assunto" id="subject" type="text"
-                                           placeholder="Assunto">
-                                </div>
-                            </div>
-
+                            <textarea id="mensagem-whatsapp" class="form-control w-100" rows="7" maxlength="1000"
+                                      placeholder="Escreva sua mensagem"></textarea>
                         </div>
 
                         <div class="form-group text-center">
-                            <button type="submit" class="btn-enviar">
-                                Enviar mensagem
+                            <button type="button" id="botao-whatsapp" class="btn-enviar">
+                                Continuar pelo WhatsApp
                             </button>
                         </div>
 
-                    </form>
+                    </div>
+
                 </div>
+                
 
                 <!-- Informações -->
                 <div class="col-lg-5">
@@ -268,6 +284,56 @@
     </section>
 
 </main>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const botaoWhatsApp =
+                document.getElementById('botao-whatsapp');
+
+            const campoNome =
+                document.getElementById('nome-whatsapp');
+
+            const campoMensagem =
+                document.getElementById('mensagem-whatsapp');
+
+            const mensagemValidacao =
+                document.getElementById('mensagem-validacao');
+
+            botaoWhatsApp.addEventListener('click', function () {
+                const nome = campoNome.value.trim();
+                const mensagem = campoMensagem.value.trim();
+
+                if (nome === '' || mensagem === '') {
+                    mensagemValidacao.textContent =
+                        'Preencha seu nome e sua mensagem antes de continuar.';
+
+                    mensagemValidacao.style.display = 'block';
+                    return;
+                }
+
+                mensagemValidacao.style.display = 'none';
+
+                const textoWhatsApp =
+                    'Nome: ' + nome +
+                    '\n\nMensagem:\n' + mensagem;
+
+                const numeroWhatsApp = '5514997354643';
+
+                const enderecoWhatsApp =
+                    'https://wa.me/' +
+                    numeroWhatsApp +
+                    '?text=' +
+                    encodeURIComponent(textoWhatsApp);
+
+                navigator.sendBeacon('/Home/RegistrarContatoWhatsApp');
+
+                window.open(enderecoWhatsApp, '_blank');
+            });
+        });
+    </script>
+}
+
 
 
 
