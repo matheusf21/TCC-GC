@@ -180,6 +180,126 @@ public class HomeController : Controller
         ViewBag.RotulosGrafico = rotulosGrafico;
         ViewBag.ValoresGrafico = valoresGrafico;
 
+        // Totais de faturamento
+
+        ViewBag.FaturamentoHoje =
+            _context.RegistrosFaturamento
+                .Where(registro =>
+                    registro.DataRegistro >= hoje &&
+                    registro.DataRegistro < amanha)
+                .Sum(registro => (decimal?)registro.Valor) ?? 0;
+
+        ViewBag.FaturamentoMes =
+            _context.RegistrosFaturamento
+                .Where(registro =>
+                    registro.DataRegistro >= inicioMes &&
+                    registro.DataRegistro < amanha)
+                .Sum(registro => (decimal?)registro.Valor) ?? 0;
+
+        var inicioAno = new DateTime(hoje.Year, 1, 1);
+
+        ViewBag.FaturamentoAno =
+            _context.RegistrosFaturamento
+                .Where(registro =>
+                    registro.DataRegistro >= inicioAno &&
+                    registro.DataRegistro < amanha)
+                .Sum(registro => (decimal?)registro.Valor) ?? 0;
+
+
+        // Gráfico dos últimos 7 dias
+
+        var inicioSeteDias = hoje.AddDays(-6);
+
+        var registrosSeteDias = _context.RegistrosFaturamento
+            .Where(registro =>
+                registro.DataRegistro >= inicioSeteDias &&
+                registro.DataRegistro < amanha)
+            .ToList();
+
+        var rotulosSeteDias = new List<string>();
+        var valoresSeteDias = new List<decimal>();
+
+        for (int i = 0; i < 7; i++)
+        {
+            var data = inicioSeteDias.AddDays(i);
+
+            rotulosSeteDias.Add(data.ToString("dd/MM"));
+
+            valoresSeteDias.Add(
+                registrosSeteDias
+                    .Where(registro =>
+                        registro.DataRegistro.Date == data.Date)
+                    .Sum(registro => registro.Valor)
+            );
+        }
+
+        ViewBag.RotulosFaturamentoSeteDias = rotulosSeteDias;
+        ViewBag.ValoresFaturamentoSeteDias = valoresSeteDias;
+
+
+        // Gráfico do mês atual
+
+        var registrosMes = _context.RegistrosFaturamento
+            .Where(registro =>
+                registro.DataRegistro >= inicioMes &&
+                registro.DataRegistro < amanha)
+            .ToList();
+
+        var rotulosMes = new List<string>();
+        var valoresMes = new List<decimal>();
+
+        for (int dia = 1; dia <= hoje.Day; dia++)
+        {
+            var data = new DateTime(
+                hoje.Year,
+                hoje.Month,
+                dia
+            );
+
+            rotulosMes.Add(data.ToString("dd/MM"));
+
+            valoresMes.Add(
+                registrosMes
+                    .Where(registro =>
+                        registro.DataRegistro.Date == data.Date)
+                    .Sum(registro => registro.Valor)
+            );
+        }
+
+        ViewBag.RotulosFaturamentoMes = rotulosMes;
+        ViewBag.ValoresFaturamentoMes = valoresMes;
+
+
+        // Gráfico do ano atual
+
+        var registrosAno = _context.RegistrosFaturamento
+            .Where(registro =>
+                registro.DataRegistro >= inicioAno &&
+                registro.DataRegistro < amanha)
+            .ToList();
+
+        var nomesMeses = new[]
+        {
+    "Jan", "Fev", "Mar", "Abr",
+    "Mai", "Jun", "Jul", "Ago",
+    "Set", "Out", "Nov", "Dez"
+};
+
+        var valoresAno = new List<decimal>();
+
+        for (int mes = 1; mes <= 12; mes++)
+        {
+            valoresAno.Add(
+                registrosAno
+                    .Where(registro =>
+                        registro.DataRegistro.Month == mes)
+                    .Sum(registro => registro.Valor)
+            );
+        }
+
+        ViewBag.RotulosFaturamentoAno = nomesMeses;
+        ViewBag.ValoresFaturamentoAno = valoresAno;
+
         return View();
     }
 

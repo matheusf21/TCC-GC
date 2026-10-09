@@ -30,6 +30,8 @@ http://localhost:5259/Home/Login
 
 http://localhost:5259/Home/Dashboard
 
+http://localhost:5259/Faturamento/Cadastrar
+
 Usuário: admin
 Senha: 123456
 
@@ -39,4 +41,8 @@ dotnet watch run --no-hot-reload
 BAIXAR BANCO DE DADOS:
 
 dotnet ef database update
+
+
+usar quando: O projeto ainda está executando e bloqueando o arquivo .exe, então o dotnet build não consegue substituí-lo.
+Stop-Process -Id 14656
 

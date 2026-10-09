@@ -135,6 +135,33 @@ namespace GabrielConstrucaoMVC.Migrations
 
                     b.ToTable("Produtos");
                 });
+
+            modelBuilder.Entity("GabrielConstrucaoMVC.Models.RegistroFaturamento", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataRegistro")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<string>("FormaPagamento")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar(30)");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RegistrosFaturamento");
+                });
 #pragma warning restore 612, 618
         }
     }

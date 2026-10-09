@@ -14,5 +14,6 @@ namespace GabrielConstrucaoMVC.Data
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ContatoWhatsApp> ContatosWhatsApp { get; set; }
+        public DbSet<RegistroFaturamento> RegistrosFaturamento { get; set; }
     }
 }

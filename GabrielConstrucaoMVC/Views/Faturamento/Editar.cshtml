@@ -1,0 +1,153 @@
+@model GabrielConstrucaoMVC.Models.RegistroFaturamento
+
+@{
+    ViewData["Title"] = "Editar Faturamento";
+}
+
+@section Styles {
+    <style>
+        .pagina-faturamento {
+            padding-top: 140px;
+            padding-bottom: 60px;
+            min-height: 650px;
+            background-color: #f7f7f7;
+        }
+
+        .faturamento-formulario {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .faturamento-formulario h1 {
+            margin-bottom: 10px;
+            color: #0b1c39;
+        }
+
+        .faturamento-formulario>p {
+            margin-bottom: 25px;
+            color: #666666;
+        }
+
+        .faturamento-formulario label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0b1c39;
+        }
+
+        .faturamento-formulario .form-control {
+            border-radius: 7px;
+        }
+
+        .faturamento-acoes {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .pagina-faturamento select.form-control {
+            display: block !important;
+            width: 100%;
+        }
+
+        .pagina-faturamento .nice-select {
+            display: none !important;
+        }
+    </style>
+}
+
+<div class="pagina-faturamento">
+    <div class="container">
+
+        <div class="faturamento-formulario">
+
+            <h1>Editar Faturamento</h1>
+
+            <p>
+                Altere os dados do lançamento selecionado.
+            </p>
+
+            <form asp-controller="Faturamento" asp-action="Editar" method="post">
+                <input asp-for="Id" type="hidden" />
+
+                <div asp-validation-summary="All" class="text-danger mb-3">
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Valor">
+                        Valor faturado
+                    </label>
+
+                    <input asp-for="Valor" type="text" inputmode="decimal" class="form-control"
+                           placeholder="Exemplo: 150,00" />
+
+                    <span asp-validation-for="Valor" class="text-danger">
+                    </span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DataRegistro">
+                        Data e hora
+                    </label>
+
+                    <input asp-for="DataRegistro" type="datetime-local" class="form-control" />
+
+                    <span asp-validation-for="DataRegistro" class="text-danger">
+                    </span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="FormaPagamento">
+                        Forma de pagamento
+                    </label>
+
+                    <select asp-for="FormaPagamento" class="form-control">
+
+                        <option value="">
+                            Selecione uma forma de pagamento
+                        </option>
+
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Cartão de débito">
+                            Cartão de débito
+                        </option>
+                        <option value="Cartão de crédito">
+                            Cartão de crédito
+                        </option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Descricao">
+                        Descrição
+                    </label>
+
+                    <textarea asp-for="Descricao" class="form-control" rows="4" maxlength="200"
+                              placeholder="Informação opcional sobre o lançamento"></textarea>
+
+                    <span asp-validation-for="Descricao" class="text-danger">
+                    </span>
+                </div>
+
+                <div class="faturamento-acoes">
+                    <button type="submit" class="btn btn-success">
+                        Salvar lançamento
+                    </button>
+
+                    <a asp-controller="Faturamento" asp-action="Index" class="btn btn-secondary">
+                        Voltar
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+</div>
