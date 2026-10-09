@@ -1,508 +1,903 @@
 @{
     ViewData["Title"] = "Painel Administrativo";
 }
-
 @section Styles {
     <style>
         .pagina-dashboard {
-            padding-top: 140px;
-            padding-bottom: 60px;
-            min-height: 650px;
-            background-color: #f7f7f7;
+            padding-top: 110px;
+            min-height: 100vh;
+            background-color: #f4f6f9;
         }
 
-        .dashboard-titulo {
-            margin-bottom: 35px;
+        .dashboard-layout {
+            display: flex;
+            min-height: calc(100vh - 110px);
         }
 
-        .dashboard-titulo h1 {
-            color: #0b1c39;
+        /* MENU LATERAL */
+
+        .dashboard-sidebar {
+            width: 260px;
+            min-width: 260px;
+            padding: 28px 18px;
+            background-color: #0b1c39;
+            color: #ffffff;
         }
 
-        .dashboard-titulo p {
+        .dashboard-sidebar-marca {
+            padding: 0 12px 25px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .dashboard-sidebar-marca h2 {
+            margin-bottom: 6px;
+            color: #ffffff;
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .dashboard-sidebar-marca p {
             margin-bottom: 0;
-            color: #666666;
+            color: #aeb8ca;
+            font-size: 13px;
         }
 
-        .dashboard-card {
+        .dashboard-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .dashboard-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 8px;
+            color: #d9dfeb !important;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .dashboard-menu-link:hover,
+        .dashboard-menu-link.ativo {
+            background-color: #ff5f13;
+            color: #ffffff !important;
+        }
+
+        .dashboard-menu-icone {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 27px;
+            height: 27px;
+            border-radius: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        .dashboard-menu-separador {
+            height: 1px;
+            margin: 18px 10px;
+            background-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .dashboard-menu-link.sair:hover {
+            background-color: #dc3545;
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+
+        .dashboard-conteudo {
+            flex: 1;
+            min-width: 0;
+            padding: 32px;
+        }
+
+        .dashboard-cabecalho {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .dashboard-cabecalho h1 {
+            margin-bottom: 6px;
+            color: #0b1c39;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .dashboard-cabecalho p {
+            margin-bottom: 0;
+            color: #6c757d;
+        }
+
+        .dashboard-cabecalho-acoes {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .dashboard-cabecalho-acoes .btn {
+            padding: 10px 17px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* INDICADORES */
+
+        .indicador-card {
             height: 100%;
-            padding: 30px;
+            padding: 22px;
             background-color: #ffffff;
-            border: 1px solid #eeeeee;
+            border: 1px solid #e9edf2;
             border-radius: 12px;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
-            text-align: center;
+            box-shadow: 0 4px 16px rgba(11, 28, 57, 0.05);
         }
 
-        .dashboard-card h3 {
-            margin-bottom: 12px;
-            font-size: 22px;
-            color: #0b1c39;
+        .indicador-cabecalho {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
         }
 
-        .dashboard-card p {
-            min-height: 48px;
+        .indicador-cabecalho h3 {
             margin-bottom: 0;
-            color: #666666;
+            color: #536071;
+            font-size: 14px;
+            font-weight: 600;
         }
 
-        .dashboard-card .btn {
-            min-width: 170px;
-            margin-top: 10px;
-        }
-
-        .dashboard-numero {
-            margin: 15px 0;
+        .indicador-icone {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 37px;
+            height: 37px;
+            border-radius: 9px;
+            background-color: #fff0e9;
             color: #ff5f13;
-            font-size: 42px;
+            font-size: 17px;
+        }
+
+        .indicador-icone.verde {
+            background-color: #e8f7ef;
+            color: #198754;
+        }
+
+        .indicador-valor {
+            margin: 16px 0 7px;
+            color: #0b1c39;
+            font-size: 30px;
             font-weight: 800;
             line-height: 1;
         }
 
-        .faturamento-valor {
+        .indicador-valor.faturamento {
             color: #198754;
-            font-size: 32px;
+            font-size: 26px;
         }
 
-        .dashboard-grafico {
-            padding: 30px;
+        .indicador-descricao {
+            margin-bottom: 0;
+            color: #8993a1;
+            font-size: 12px;
+        }
+
+        /* PAINÉIS */
+
+        .dashboard-painel {
+            height: 100%;
+            padding: 25px;
             background-color: #ffffff;
-            border: 1px solid #eeeeee;
+            border: 1px solid #e9edf2;
             border-radius: 12px;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 16px rgba(11, 28, 57, 0.05);
         }
 
-        .dashboard-grafico h3 {
-            margin-bottom: 8px;
-            color: #0b1c39;
-            font-size: 22px;
-        }
-
-        .dashboard-grafico>p {
-            margin-bottom: 30px;
-            color: #666666;
-        }
-
-        .grafico-barras {
+        .dashboard-painel-cabecalho {
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
-            gap: 15px;
-            height: 280px;
+            gap: 20px;
+            margin-bottom: 22px;
         }
 
-        .grafico-coluna {
+        .dashboard-painel-cabecalho h3 {
+            margin-bottom: 6px;
+            color: #0b1c39;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .dashboard-painel-cabecalho p {
+            margin-bottom: 0;
+            color: #7b8491;
+            font-size: 13px;
+        }
+
+        /* GRÁFICO DE FATURAMENTO */
+
+        .faturamento-filtro label {
+            display: block;
+            margin-bottom: 6px;
+            color: #536071;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        #periodo-faturamento {
+            display: block !important;
+            width: 190px;
+            min-width: 190px;
+            height: 39px;
+            padding: 7px 12px;
+            border: 1px solid #dfe4ea;
+            border-radius: 7px;
+            background-color: #ffffff;
+            font-size: 13px;
+        }
+
+        .faturamento-total-periodo {
+            margin-bottom: 17px;
+            color: #7b8491;
+            font-size: 14px;
+        }
+
+        .faturamento-total-periodo strong {
+            margin-left: 5px;
+            color: #198754;
+            font-size: 20px;
+        }
+
+        .faturamento-canvas-container {
+            position: relative;
+            width: 100%;
+            height: 330px;
+        }
+
+        #grafico-faturamento {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* GRÁFICO DE CONTATOS */
+
+        .grafico-contatos {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 12px;
+            height: 245px;
+        }
+
+        .grafico-contato-coluna {
             display: flex;
             flex: 1;
             flex-direction: column;
             align-items: center;
             height: 100%;
-            min-width: 45px;
+            min-width: 38px;
         }
 
-        .grafico-valor {
+        .grafico-contato-valor {
             margin-bottom: 6px;
             color: #0b1c39;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
         }
 
-        .grafico-area-barra {
+        .grafico-contato-area {
             display: flex;
             align-items: flex-end;
-            justify-content: center;
-            width: 55px;
-            height: 210px;
-            background-color: #f3f3f3;
-            border-radius: 8px 8px 0 0;
+            width: 43px;
+            height: 180px;
             overflow: hidden;
+            border-radius: 7px 7px 0 0;
+            background-color: #f0f2f5;
         }
 
-        .grafico-barra {
+        .grafico-contato-barra {
             width: 100%;
             min-height: 3px;
             background-color: #ff5f13;
-            border-radius: 8px 8px 0 0;
-            transition: height 0.3s ease;
+            border-radius: 7px 7px 0 0;
         }
 
-        .grafico-data {
+        .grafico-contato-data {
             margin-top: 8px;
-            color: #666666;
+            color: #7b8491;
+            font-size: 11px;
+        }
+
+        /* ACESSOS RÁPIDOS */
+
+        .acesso-rapido-lista {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .acesso-rapido {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 74px;
+            padding: 15px;
+            border: 1px solid #e9edf2;
+            border-radius: 9px;
+            color: #0b1c39 !important;
+            text-decoration: none !important;
+            transition: all 0.2s ease;
+        }
+
+        .acesso-rapido:hover {
+            border-color: #ff5f13;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 14px rgba(11, 28, 57, 0.07);
+        }
+
+        .acesso-rapido-icone {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            border-radius: 9px;
+            background-color: #fff0e9;
+            color: #ff5f13;
+        }
+
+        .acesso-rapido strong {
+            display: block;
+            margin-bottom: 2px;
             font-size: 13px;
         }
 
-        .dashboard-acoes {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 10px;
+        .acesso-rapido span span {
+            color: #8993a1;
+            font-size: 11px;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @@media (max-width: 991px) {
+            .dashboard-layout {
+                display: block;
+            }
+
+            .dashboard-sidebar {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .dashboard-menu {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-menu-separador {
+                display: none;
+            }
+
+            .dashboard-conteudo {
+                padding: 25px 18px;
+            }
         }
 
         @@media (max-width: 768px) {
-            .grafico-barras {
-                gap: 5px;
-                overflow-x: auto;
+            .pagina-dashboard {
+                padding-top: 95px;
             }
 
-            .grafico-area-barra {
-                width: 40px;
-            }
-
-            .dashboard-acoes {
+            .dashboard-cabecalho,
+            .dashboard-painel-cabecalho {
+                align-items: stretch;
                 flex-direction: column;
             }
 
-            .dashboard-acoes .btn {
+            .dashboard-cabecalho-acoes {
                 width: 100%;
             }
 
-            .faturamento-grafico {
-                padding: 30px;
-                background-color: #ffffff;
-                border: 1px solid #eeeeee;
-                border-radius: 12px;
-                box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+            .dashboard-cabecalho-acoes .btn {
+                flex: 1;
             }
 
-            .faturamento-grafico-cabecalho {
-                display: flex;
-                align-items: flex-end;
-                justify-content: space-between;
-                gap: 20px;
-                margin-bottom: 20px;
+            .dashboard-menu {
+                grid-template-columns: 1fr;
             }
 
-            .faturamento-grafico-cabecalho h3 {
-                margin-bottom: 8px;
-                color: #0b1c39;
-                font-size: 22px;
-            }
-
-            .faturamento-grafico-cabecalho p {
-                margin-bottom: 0;
-                color: #666666;
-            }
-
-            .faturamento-grafico-cabecalho label {
-                display: block;
-                margin-bottom: 6px;
-                color: #0b1c39;
-                font-weight: 600;
+            .acesso-rapido-lista {
+                grid-template-columns: 1fr;
             }
 
             #periodo-faturamento {
-                min-width: 180px;
-            }
-
-            .faturamento-total-periodo {
-                margin-bottom: 20px;
-                color: #666666;
-                font-size: 15px;
-            }
-
-            .faturamento-total-periodo strong {
-                color: #198754;
-                font-size: 22px;
+                width: 100%;
+                min-width: 0;
             }
 
             .faturamento-canvas-container {
-                position: relative;
-                width: 100%;
-                height: 340px;
+                height: 290px;
+                overflow-x: auto;
             }
 
-            #grafico-faturamento {
-                width: 100% !important;
-                height: 100% !important;
+            .grafico-contatos {
+                gap: 6px;
+                overflow-x: auto;
             }
 
-            @@media (max-width: 768px) {
-                .faturamento-grafico-cabecalho {
-                    flex-direction: column;
-                    align-items: stretch;
-                }
-
-                #periodo-faturamento {
-                    width: 100%;
-                }
-            }
-
-            #periodo-faturamento {
-                display: block !important;
-                width: 100%;
-            }
-
-            #periodo-faturamento+.nice-select {
-                display: none !important;
+            .grafico-contato-area {
+                width: 35px;
             }
         }
     </style>
 }
 
+@{
+    var rotulosContatos =
+        ViewBag.RotulosGrafico as List<string>
+        ?? new List<string>();
+
+    var valoresContatos =
+        ViewBag.ValoresGrafico as List<int>
+        ?? new List<int>();
+
+    var maiorValorContatos = valoresContatos.Any()
+        ? valoresContatos.Max()
+        : 0;
+
+    var quantidadeDadosContatos = Math.Min(
+        rotulosContatos.Count,
+        valoresContatos.Count
+    );
+}
+
 <div class="pagina-dashboard">
-    <div class="container">
+    <div class="dashboard-layout">
 
-        <div class="dashboard-titulo">
-            <h1>Painel Administrativo</h1>
+        <!-- Menu lateral -->
+        <aside class="dashboard-sidebar">
 
-            <p>
-                Gerencie os produtos, acompanhe os contatos e consulte
-                o faturamento registrado pela empresa.
-            </p>
-        </div>
-
-        <!-- Produtos e contatos -->
-        <div class="row">
-
-            <div class="col-md-8 mb-4">
-                <div class="dashboard-card">
-                    <h3>Produtos</h3>
-
-                    <p>
-                        Cadastre, edite e exclua produtos das áreas
-                        de Construção e Pet.
-                    </p>
-
-                    <a asp-controller="Produtos" asp-action="Index" class="btn btn-success">
-                        Administrar Produtos
-                    </a>
-                </div>
+            <div class="dashboard-sidebar-marca">
+                <h2>Gabriel Construção</h2>
+                <p>Painel administrativo</p>
             </div>
 
-            <div class="col-md-4 mb-4">
-                <div class="dashboard-card">
-                    <h3>Total de contatos</h3>
+            <nav class="dashboard-menu">
 
-                    <div class="dashboard-numero">
-                        @ViewBag.TotalContatosWhatsApp
-                    </div>
+                <a asp-controller="Home" asp-action="Dashboard" class="dashboard-menu-link ativo">
 
-                    <p>
-                        Total de contatos iniciados pelo site
-                        através do WhatsApp.
-                    </p>
-                </div>
-            </div>
+                    <span class="dashboard-menu-icone">
+                        <i class="ti-dashboard"></i>
+                    </span>
 
-            <div class="col-md-6 mb-4">
-                <div class="dashboard-card">
-                    <h3>Contatos hoje</h3>
+                    Visão geral
+                </a>
 
-                    <div class="dashboard-numero">
-                        @ViewBag.ContatosHoje
-                    </div>
+                <a asp-controller="Produtos" asp-action="Index" class="dashboard-menu-link">
 
-                    <p>
-                        Contatos iniciados pelo site durante o dia de hoje.
-                    </p>
-                </div>
-            </div>
+                    <span class="dashboard-menu-icone">
+                        <i class="ti-package"></i>
+                    </span>
 
-            <div class="col-md-6 mb-4">
-                <div class="dashboard-card">
-                    <h3>Contatos neste mês</h3>
+                    Produtos
+                </a>
 
-                    <div class="dashboard-numero">
-                        @ViewBag.ContatosMes
-                    </div>
+                <a asp-controller="Faturamento" asp-action="Cadastrar" class="dashboard-menu-link">
 
-                    <p>
-                        Contatos iniciados pelo site durante o mês atual.
-                    </p>
-                </div>
-            </div>
+                    <span class="dashboard-menu-icone">
+                        <i class="ti-plus"></i>
+                    </span>
 
-        </div>
-
-        @{
-            var rotulosGrafico =
-                ViewBag.RotulosGrafico as List<string>
-                ?? new List<string>();
-
-            var valoresGrafico =
-                ViewBag.ValoresGrafico as List<int>
-                ?? new List<int>();
-
-            var maiorValor = valoresGrafico.Any()
-                ? valoresGrafico.Max()
-                : 0;
-        }
-
-        <!-- Gráfico de contatos -->
-        <div class="row">
-
-            <div class="col-12 mb-4">
-                <div class="dashboard-grafico">
-
-                    <h3>Contatos iniciados nos últimos 7 dias</h3>
-
-                    <p>
-                        Quantidade de pessoas que acessaram o WhatsApp
-                        através do site em cada dia.
-                    </p>
-
-                    <div class="grafico-barras">
-
-                        @for (int i = 0; i < rotulosGrafico.Count; i++)
-                        {
-                            var valor = valoresGrafico[i];
-
-                            var altura = maiorValor > 0
-                                ? valor * 100 / maiorValor
-                                : 0;
-
-                            <div class="grafico-coluna">
-
-                                <span class="grafico-valor">
-                                    @valor
-                                </span>
-
-                                <div class="grafico-area-barra">
-                                    <div class="grafico-barra" style="height: @(altura)%;">
-                                    </div>
-                                </div>
-
-                                <span class="grafico-data">
-                                    @rotulosGrafico[i]
-                                </span>
-
-                            </div>
-                        }
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Indicadores de faturamento -->
-        <div class="row">
-
-            <div class="col-md-4 mb-4">
-                <div class="dashboard-card">
-                    <h3>Faturamento hoje</h3>
-
-                    <div class="dashboard-numero faturamento-valor">
-                        @(Convert.ToDecimal(
-                            ViewBag.FaturamentoHoje ?? 0
-                        ).ToString("C2"))
-                    </div>
-
-                    <p>
-                        Valores registrados durante o dia de hoje.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="dashboard-card">
-                    <h3>Faturamento neste mês</h3>
-
-                    <div class="dashboard-numero faturamento-valor">
-                        @(Convert.ToDecimal(
-                            ViewBag.FaturamentoMes ?? 0
-                        ).ToString("C2"))
-                    </div>
-
-                    <p>
-                        Somatório dos lançamentos do mês atual.
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-4 mb-4">
-                <div class="dashboard-card">
-                    <h3>Faturamento neste ano</h3>
-
-                    <div class="dashboard-numero faturamento-valor">
-                        @(Convert.ToDecimal(
-                            ViewBag.FaturamentoAno ?? 0
-                        ).ToString("C2"))
-                    </div>
-
-                    <p>
-                        Somatório dos lançamentos do ano atual.
-                    </p>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Gráfico de faturamento -->
-        <div class="row">
-            <div class="col-12 mb-4">
-                <div class="faturamento-grafico">
-
-                    <div class="faturamento-grafico-cabecalho">
-                        <div>
-                            <h3>Faturamento</h3>
-
-                            <p>
-                                Compare os valores registrados ao longo do período.
-                            </p>
-                        </div>
-
-                        <div>
-                            <label for="periodo-faturamento">
-                                Período
-                            </label>
-
-                            <select id="periodo-faturamento" class="form-control">
-                                <option value="seteDias">
-                                    Últimos 7 dias
-                                </option>
-
-                                <option value="mes">
-                                    Este mês
-                                </option>
-
-                                <option value="ano">
-                                    Este ano
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="faturamento-total-periodo">
-                        Total no período:
-                        <strong id="total-faturamento-periodo">
-                            R$ 0,00
-                        </strong>
-                    </div>
-
-                    <div class="faturamento-canvas-container">
-                        <canvas id="grafico-faturamento"></canvas>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- Ações do faturamento -->
-        <div class="dashboard-acoes">
-
-            <div>
-                <a asp-controller="Faturamento" asp-action="Cadastrar" class="btn btn-success">
                     Registrar faturamento
                 </a>
 
-                <a asp-controller="Faturamento" asp-action="Index" class="btn btn-primary">
-                    Ver histórico
+                <a asp-controller="Faturamento" asp-action="Index" class="dashboard-menu-link">
+
+                    <span class="dashboard-menu-icone">
+                        <i class="ti-agenda"></i>
+                    </span>
+
+                    Histórico
                 </a>
+
+                <div class="dashboard-menu-separador"></div>
+
+                <a asp-controller="Home" asp-action="Logout" class="dashboard-menu-link sair">
+
+                    <span class="dashboard-menu-icone">
+                        <i class="ti-power-off"></i>
+                    </span>
+
+                    Sair
+                </a>
+
+            </nav>
+
+        </aside>
+
+        <!-- Conteúdo principal -->
+        <main class="dashboard-conteudo">
+
+            <!-- Cabeçalho -->
+            <div class="dashboard-cabecalho">
+
+                <div>
+                    <h1>Visão geral</h1>
+
+                    <p>
+                        Acompanhe os contatos e o faturamento
+                        registrado pela empresa.
+                    </p>
+                </div>
+
+                <div class="dashboard-cabecalho-acoes">
+
+                    <a asp-controller="Produtos" asp-action="Index" class="btn btn-outline-dark">
+                        Produtos
+                    </a>
+
+                    <a asp-controller="Faturamento" asp-action="Cadastrar" class="btn btn-success">
+                        Novo faturamento
+                    </a>
+
+                </div>
+
             </div>
 
-            <a asp-controller="Home" asp-action="Logout" class="btn btn-danger">
-                Sair
-            </a>
+            <!-- Indicadores de faturamento -->
+            <div class="row">
 
-        </div>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="indicador-card">
+
+                        <div class="indicador-cabecalho">
+                            <h3>Faturamento hoje</h3>
+
+                            <span class="indicador-icone verde">
+                                <i class="ti-stats-up"></i>
+                            </span>
+                        </div>
+
+                        <div class="indicador-valor faturamento">
+                            @(Convert.ToDecimal(
+                                ViewBag.FaturamentoHoje ?? 0
+                            ).ToString("C2"))
+                        </div>
+
+                        <p class="indicador-descricao">
+                            Valores registrados durante o dia.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="indicador-card">
+
+                        <div class="indicador-cabecalho">
+                            <h3>Faturamento do mês</h3>
+
+                            <span class="indicador-icone verde">
+                                <i class="ti-calendar"></i>
+                            </span>
+                        </div>
+
+                        <div class="indicador-valor faturamento">
+                            @(Convert.ToDecimal(
+                                ViewBag.FaturamentoMes ?? 0
+                            ).ToString("C2"))
+                        </div>
+
+                        <p class="indicador-descricao">
+                            Total registrado no mês atual.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="indicador-card">
+
+                        <div class="indicador-cabecalho">
+                            <h3>Faturamento do ano</h3>
+
+                            <span class="indicador-icone verde">
+                                <i class="ti-bar-chart"></i>
+                            </span>
+                        </div>
+
+                        <div class="indicador-valor faturamento">
+                            @(Convert.ToDecimal(
+                                ViewBag.FaturamentoAno ?? 0
+                            ).ToString("C2"))
+                        </div>
+
+                        <p class="indicador-descricao">
+                            Total registrado no ano atual.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Gráfico principal de faturamento -->
+            <div class="row">
+
+                <div class="col-12 mb-4">
+                    <div class="dashboard-painel">
+
+                        <div class="dashboard-painel-cabecalho">
+
+                            <div>
+                                <h3>Faturamento</h3>
+
+                                <p>
+                                    Compare os valores registrados durante
+                                    o período selecionado.
+                                </p>
+                            </div>
+
+                            <div class="faturamento-filtro">
+
+                                <label for="periodo-faturamento">
+                                    Período exibido
+                                </label>
+
+                                <select id="periodo-faturamento" class="form-control">
+
+                                    <option value="seteDias">
+                                        Últimos 7 dias
+                                    </option>
+
+                                    <option value="mes">
+                                        Este mês
+                                    </option>
+
+                                    <option value="ano">
+                                        Este ano
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="faturamento-total-periodo">
+                            Total no período:
+
+                            <strong id="total-faturamento-periodo">
+                                R$ 0,00
+                            </strong>
+                        </div>
+
+                        <div class="faturamento-canvas-container">
+                            <canvas id="grafico-faturamento"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Indicadores de contatos -->
+            <div class="row">
+
+                <div class="col-xl-4 col-md-4 mb-4">
+                    <div class="indicador-card">
+
+                        <div class="indicador-cabecalho">
+                            <h3>Total de contatos</h3>
+
+                            <span class="indicador-icone">
+                                <i class="ti-comment-alt"></i>
+                            </span>
+                        </div>
+
+                        <div class="indicador-valor">
+                            @ViewBag.TotalContatosWhatsApp
+                        </div>
+
+                        <p class="indicador-descricao">
+                            Contatos iniciados pelo site.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-md-4 mb-4">
+                    <div class="indicador-card">
+
+                        <div class="indicador-cabecalho">
+                            <h3>Contatos hoje</h3>
+
+                            <span class="indicador-icone">
+                                <i class="ti-mobile"></i>
+                            </span>
+                        </div>
+
+                        <div class="indicador-valor">
+                            @ViewBag.ContatosHoje
+                        </div>
+
+                        <p class="indicador-descricao">
+                            Contatos iniciados durante o dia.
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-md-4 mb-4">
+                    <div class="indicador-card">
+
+                        <div class="indicador-cabecalho">
+                            <h3>Contatos no mês</h3>
+
+                            <span class="indicador-icone">
+                                <i class="ti-calendar"></i>
+                            </span>
+                        </div>
+
+                        <div class="indicador-valor">
+                            @ViewBag.ContatosMes
+                        </div>
+
+                        <p class="indicador-descricao">
+                            Contatos iniciados no mês atual.
+                        </p>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Gráfico de contatos e acessos rápidos -->
+            <div class="row">
+
+                <div class="col-xl-8 mb-4">
+                    <div class="dashboard-painel">
+
+                        <div class="dashboard-painel-cabecalho">
+
+                            <div>
+                                <h3>Contatos dos últimos 7 dias</h3>
+
+                                <p>
+                                    Acessos ao WhatsApp iniciados pelo site.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="grafico-contatos">
+
+                            @for (int i = 0;
+                                  i < quantidadeDadosContatos;
+                                  i++)
+                            {
+                                var valor = valoresContatos[i];
+
+                                var altura = maiorValorContatos > 0
+                                    ? valor * 100 / maiorValorContatos
+                                    : 0;
+
+                                <div class="grafico-contato-coluna">
+
+                                    <span class="grafico-contato-valor">
+                                        @valor
+                                    </span>
+
+                                    <div class="grafico-contato-area">
+
+                                        <div class="grafico-contato-barra" style="height: @(altura)%;">
+                                        </div>
+
+                                    </div>
+
+                                    <span class="grafico-contato-data">
+                                        @rotulosContatos[i]
+                                    </span>
+
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Acessos rápidos -->
+                <div class="col-xl-4 mb-4">
+                    <div class="dashboard-painel">
+
+                        <div class="dashboard-painel-cabecalho">
+
+                            <div>
+                                <h3>Acessos rápidos</h3>
+
+                                <p>
+                                    Gerencie as principais áreas.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <div class="acesso-rapido-lista">
+
+                            <a asp-controller="Produtos" asp-action="Index" class="acesso-rapido">
+
+                                <span class="acesso-rapido-icone">
+                                    <i class="ti-package"></i>
+                                </span>
+
+                                <span>
+                                    <strong>Produtos</strong>
+                                    <span>Gerenciar catálogo</span>
+                                </span>
+
+                            </a>
+
+                            <a asp-controller="Faturamento" asp-action="Cadastrar" class="acesso-rapido">
+
+                                <span class="acesso-rapido-icone">
+                                    <i class="ti-plus"></i>
+                                </span>
+
+                                <span>
+                                    <strong>Novo registro</strong>
+                                    <span>Registrar faturamento</span>
+                                </span>
+
+                            </a>
+
+                            <a asp-controller="Faturamento" asp-action="Index" class="acesso-rapido">
+
+                                <span class="acesso-rapido-icone">
+                                    <i class="ti-agenda"></i>
+                                </span>
+
+                                <span>
+                                    <strong>Histórico</strong>
+                                    <span>Consultar lançamentos</span>
+                                </span>
+
+                            </a>
+
+                            <a asp-controller="Home" asp-action="Index" class="acesso-rapido">
+
+                                <span class="acesso-rapido-icone">
+                                    <i class="ti-home"></i>
+                                </span>
+
+                                <span>
+                                    <strong>Visualizar site</strong>
+                                    <span>Abrir página inicial</span>
+                                </span>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
 
     </div>
 </div>
-
 
 @section Scripts {
     @{
@@ -529,16 +924,30 @@
         var valoresAno =
             ViewBag.ValoresFaturamentoAno as List<decimal>
             ?? new List<decimal>();
+
+        var jsonRotulosSeteDias =
+            System.Text.Json.JsonSerializer.Serialize(rotulosSeteDias);
+
+        var jsonValoresSeteDias =
+            System.Text.Json.JsonSerializer.Serialize(valoresSeteDias);
+
+        var jsonRotulosMes =
+            System.Text.Json.JsonSerializer.Serialize(rotulosMes);
+
+        var jsonValoresMes =
+            System.Text.Json.JsonSerializer.Serialize(valoresMes);
+
+        var jsonRotulosAno =
+            System.Text.Json.JsonSerializer.Serialize(rotulosAno);
+
+        var jsonValoresAno =
+            System.Text.Json.JsonSerializer.Serialize(valoresAno);
     }
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const seletor =
-                document.getElementById('periodo-faturamento');
-
-            const canvas =
-                document.getElementById('grafico-faturamento');
-
+            const seletor = document.getElementById('periodo-faturamento');
+            const canvas = document.getElementById('grafico-faturamento');
             const totalElemento =
                 document.getElementById('total-faturamento-periodo');
 
@@ -559,45 +968,18 @@
 
             const dadosFaturamento = {
                 seteDias: {
-                    rotulos: @Html.Raw(
-                                            System.Text.Json.JsonSerializer.Serialize(
-                                            rotulosSeteDias
-                                            )
-                                            ),
-
-                    valores: @Html.Raw(
-                                            System.Text.Json.JsonSerializer.Serialize(
-                                            valoresSeteDias
-                                            )
-                                            )
+                    rotulos: @Html.Raw(jsonRotulosSeteDias),
+                    valores: @Html.Raw(jsonValoresSeteDias)
                     },
 
                 mes: {
-                    rotulos: @Html.Raw(
-                                            System.Text.Json.JsonSerializer.Serialize(
-                                            rotulosMes
-                                            )
-                                            ),
-
-                    valores: @Html.Raw(
-                                            System.Text.Json.JsonSerializer.Serialize(
-                                            valoresMes
-                                            )
-                                            )
+                    rotulos: @Html.Raw(jsonRotulosMes),
+                    valores: @Html.Raw(jsonValoresMes)
                     },
 
                 ano: {
-                    rotulos: @Html.Raw(
-                                            System.Text.Json.JsonSerializer.Serialize(
-                                            rotulosAno
-                                            )
-                                            ),
-
-                    valores: @Html.Raw(
-                                            System.Text.Json.JsonSerializer.Serialize(
-                                            valoresAno
-                                            )
-                                            )
+                    rotulos: @Html.Raw(jsonRotulosAno),
+                    valores: @Html.Raw(jsonValoresAno)
                     }
             };
 
@@ -608,6 +990,23 @@
                 });
             }
 
+            function desenharMensagem(
+                contexto,
+                largura,
+                altura,
+                mensagem
+            ) {
+                contexto.fillStyle = '#7b8491';
+                contexto.font = '14px Arial';
+                contexto.textAlign = 'center';
+
+                contexto.fillText(
+                    mensagem,
+                    largura / 2,
+                    altura / 2
+                );
+            }
+
             function desenharGrafico(periodo) {
                 const dados = dadosFaturamento[periodo];
 
@@ -615,22 +1014,51 @@
                     return;
                 }
 
-                const rotulos = dados.rotulos;
-                const valores = dados.valores.map(Number);
+                const rotulos = Array.isArray(dados.rotulos)
+                    ? dados.rotulos
+                    : [];
 
-                const total = valores.reduce(function (soma, valor) {
-                    return soma + valor;
-                }, 0);
+                const valores = Array.isArray(dados.valores)
+                    ? dados.valores.map(Number)
+                    : [];
+
+                const quantidadeDados = Math.min(
+                    rotulos.length,
+                    valores.length
+                );
+
+                const rotulosValidos =
+                    rotulos.slice(0, quantidadeDados);
+
+                const valoresValidos =
+                    valores.slice(0, quantidadeDados);
+
+                const total = valoresValidos.reduce(
+                    function (soma, valor) {
+                        return soma + valor;
+                    },
+                    0
+                );
 
                 totalElemento.textContent = formatarMoeda(total);
 
                 const contexto = canvas.getContext('2d');
 
-                const largura =
-                    canvas.parentElement.clientWidth;
+                if (!contexto) {
+                    return;
+                }
 
-                const altura =
-                    canvas.parentElement.clientHeight;
+                const container = canvas.parentElement;
+
+                const largura = Math.max(
+                    container.clientWidth,
+                    300
+                );
+
+                const altura = Math.max(
+                    container.clientHeight,
+                    250
+                );
 
                 const proporcao =
                     window.devicePixelRatio || 1;
@@ -657,23 +1085,20 @@
                     altura
                 );
 
-                if (rotulos.length === 0) {
-                    contexto.fillStyle = '#666666';
-                    contexto.font = '14px Arial';
-                    contexto.textAlign = 'center';
-
-                    contexto.fillText(
-                        'Nenhum faturamento registrado no período.',
-                        largura / 2,
-                        altura / 2
+                if (quantidadeDados === 0) {
+                    desenharMensagem(
+                        contexto,
+                        largura,
+                        altura,
+                        'Nenhum faturamento registrado no período.'
                     );
 
                     return;
                 }
 
-                const margemEsquerda = 65;
+                const margemEsquerda = 75;
                 const margemDireita = 25;
-                const margemSuperior = 25;
+                const margemSuperior = 30;
                 const margemInferior = 45;
 
                 const larguraGrafico =
@@ -683,9 +1108,9 @@
                     altura - margemSuperior - margemInferior;
 
                 const maiorValor =
-                    Math.max(...valores, 1);
+                    Math.max(...valoresValidos, 1);
 
-                contexto.strokeStyle = '#e5e5e5';
+                contexto.strokeStyle = '#e7ebef';
                 contexto.lineWidth = 1;
 
                 for (let linha = 0; linha <= 4; linha++) {
@@ -711,7 +1136,7 @@
                         maiorValor -
                         (maiorValor / 4) * linha;
 
-                    contexto.fillStyle = '#777777';
+                    contexto.fillStyle = '#8993a1';
                     contexto.font = '11px Arial';
                     contexto.textAlign = 'right';
 
@@ -723,31 +1148,77 @@
                 }
 
                 const intervaloRotulos =
-                    rotulos.length > 15
-                        ? Math.ceil(rotulos.length / 10)
+                    rotulosValidos.length > 15
+                        ? Math.ceil(rotulosValidos.length / 10)
                         : 1;
 
-                const pontos = valores.map(function (valor, indice) {
-                    const divisor =
-                        rotulos.length > 1
-                            ? rotulos.length - 1
-                            : 1;
+                const divisor =
+                    rotulosValidos.length > 1
+                        ? rotulosValidos.length - 1
+                        : 1;
 
-                    const x =
-                        margemEsquerda +
-                        (larguraGrafico / divisor) * indice;
+                const pontos = valoresValidos.map(
+                    function (valor, indice) {
+                        const x =
+                            rotulosValidos.length === 1
+                                ? margemEsquerda + larguraGrafico / 2
+                                : margemEsquerda +
+                                (larguraGrafico / divisor) * indice;
 
-                    const y =
-                        margemSuperior +
-                        alturaGrafico -
-                        (valor / maiorValor) * alturaGrafico;
+                        const y =
+                            margemSuperior +
+                            alturaGrafico -
+                            (valor / maiorValor) * alturaGrafico;
 
-                    return {
-                        x: x,
-                        y: y,
-                        valor: valor
-                    };
-                });
+                        return {
+                            x: x,
+                            y: y
+                        };
+                    }
+                );
+
+                if (pontos.length > 0) {
+                    const degrade =
+                        contexto.createLinearGradient(
+                            0,
+                            margemSuperior,
+                            0,
+                            margemSuperior + alturaGrafico
+                        );
+
+                    degrade.addColorStop(
+                        0,
+                        'rgba(255, 95, 19, 0.20)'
+                    );
+
+                    degrade.addColorStop(
+                        1,
+                        'rgba(255, 95, 19, 0.02)'
+                    );
+
+                    contexto.beginPath();
+
+                    contexto.moveTo(
+                        pontos[0].x,
+                        margemSuperior + alturaGrafico
+                    );
+
+                    pontos.forEach(function (ponto) {
+                        contexto.lineTo(
+                            ponto.x,
+                            ponto.y
+                        );
+                    });
+
+                    contexto.lineTo(
+                        pontos[pontos.length - 1].x,
+                        margemSuperior + alturaGrafico
+                    );
+
+                    contexto.closePath();
+                    contexto.fillStyle = degrade;
+                    contexto.fill();
+                }
 
                 contexto.beginPath();
                 contexto.strokeStyle = '#ff5f13';
@@ -773,7 +1244,9 @@
 
                 pontos.forEach(function (ponto, indice) {
                     contexto.beginPath();
-                    contexto.fillStyle = '#ff5f13';
+                    contexto.fillStyle = '#ffffff';
+                    contexto.strokeStyle = '#ff5f13';
+                    contexto.lineWidth = 3;
 
                     contexto.arc(
                         ponto.x,
@@ -784,33 +1257,53 @@
                     );
 
                     contexto.fill();
+                    contexto.stroke();
 
-                    if (
+                    const mostrarRotulo =
                         indice % intervaloRotulos === 0 ||
-                        indice === rotulos.length - 1
-                    ) {
-                        contexto.fillStyle = '#666666';
+                        indice === rotulosValidos.length - 1;
+
+                    if (mostrarRotulo) {
+                        contexto.fillStyle = '#7b8491';
                         contexto.font = '11px Arial';
                         contexto.textAlign = 'center';
 
                         contexto.fillText(
-                            rotulos[indice],
+                            rotulosValidos[indice],
                             ponto.x,
-                            altura - 18
+                            altura - 17
                         );
                     }
                 });
             }
 
-            seletor.addEventListener('change', function () {
-                desenharGrafico(seletor.value);
-            });
+            seletor.addEventListener(
+                'change',
+                function () {
+                    desenharGrafico(seletor.value);
+                }
+            );
 
-            window.addEventListener('resize', function () {
-                desenharGrafico(seletor.value);
-            });
+            let temporizadorRedimensionamento;
 
-            desenharGrafico('seteDias');
+            window.addEventListener(
+                'resize',
+                function () {
+                    clearTimeout(temporizadorRedimensionamento);
+
+                    temporizadorRedimensionamento = setTimeout(
+                        function () {
+                            desenharGrafico(seletor.value);
+                        },
+                        150
+                    );
+                }
+            );
+
+            desenharGrafico(
+                seletor.value || 'seteDias'
+            );
         });
     </script>
 }
+
