@@ -117,6 +117,14 @@ namespace GabrielConstrucaoMVC.Controllers
                 return RedirectToAction("Login", "Home");
             }
 
+            if (registro.DataRegistro > DateTime.Now)
+            {
+                ModelState.AddModelError(
+                    "DataRegistro",
+                    "Não é permitido registrar faturamento em uma data futura."
+                );
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(registro);
@@ -127,5 +135,6 @@ namespace GabrielConstrucaoMVC.Controllers
 
             return RedirectToAction("Index");
         }
+
     }
 }

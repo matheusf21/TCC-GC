@@ -79,38 +79,6 @@ public class HomeController : Controller
 
         return View();
     }
-    public IActionResult AdminMessages()
-    {
-        if (HttpContext.Session.GetString("AdminLogado") != "true")
-        {
-            return RedirectToAction("Login");
-        }
-
-        var mensagens = _context.Messages
-            .OrderByDescending(m => m.DataEnvio)
-            .ToList();
-
-        return View(mensagens);
-    }
-
-    [HttpPost]
-    public IActionResult ExcluirMensagem(int id)
-    {
-        if (HttpContext.Session.GetString("AdminLogado") != "true")
-        {
-            return RedirectToAction("Login");
-        }
-
-        var mensagem = _context.Messages.Find(id);
-
-        if (mensagem != null)
-        {
-            _context.Messages.Remove(mensagem);
-            _context.SaveChanges();
-        }
-
-        return RedirectToAction("AdminMessages");
-    }
 
     public IActionResult Error()
     {
