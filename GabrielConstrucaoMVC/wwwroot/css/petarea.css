@@ -1,0 +1,341 @@
+.filter-bar {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.filter-buttons .btn-filter {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 8px 20px;
+    margin: 5px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+    color: #333;
+}
+
+.filter-buttons .btn-filter:hover,
+.filter-buttons .btn-filter.active {
+    background: #ff5f13;
+    border-color: #ff5f13;
+    color: #fff;
+}
+
+.search-box {
+    position: relative;
+    max-width: 300px;
+    margin-left: auto;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 40px;
+    font-size: 14px;
+}
+
+.search-box button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    background: #ff5f13;
+    border: none;
+    border-radius: 40px;
+    padding: 6px 15px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.pet-produto-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    position: relative;
+}
+
+.pet-produto-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.pet-produto-img {
+    overflow: hidden;
+    position: relative;
+}
+
+.pet-produto-img img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 12px;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.pet-produto-card:hover .pet-produto-img img {
+    transform: scale(1.05);
+}
+
+.pet-produto-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #ff5f13;
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.pet-produto-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.pet-produto-content h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #0b1c39;
+}
+
+.pet-produto-content .preco {
+    font-size: 24px;
+    font-weight: 800;
+    color: #ff5f13;
+    margin: 10px 0;
+}
+
+.pet-produto-content p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn-pet {
+    display: inline-block;
+    background: #ff5f13;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    border: none;
+    text-decoration: none;
+}
+
+.btn-pet:hover {
+    background: #0b1c39;
+    color: #fff;
+}
+
+.pet-produto-categoria {
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #ff5f13;
+    font-weight: 600;
+}
+
+.sidebar-widget {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+}
+
+.sidebar-widget h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.sidebar-widget h4:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background: #ff5f13;
+}
+
+.cat-list li {
+    margin-bottom: 12px;
+}
+
+.cat-list li a {
+    color: #555;
+    transition: 0.3s;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cat-list li a:hover {
+    color: #ff5f13;
+    padding-left: 5px;
+}
+
+.recent-product-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.recent-product-img {
+    width: 70px;
+    min-width: 70px;
+    height: 70px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.recent-product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.recent-product-info h5 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.recent-product-info p {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 0;
+}
+
+.pet-destaque-bg {
+    background: #f9f9fc;
+    border-radius: 30px;
+    padding: 50px 30px;
+    margin: 60px 0;
+}
+
+.pet-icon-feature {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.pet-icon-feature .icon {
+    font-size: 48px;
+    color: #ff5f13;
+    margin-bottom: 20px;
+}
+
+.pet-icon-feature h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.single-slider.hero-overly.slider-height2 {
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat;
+}
+
+.slider-height2 {
+    min-height: 590px;
+}
+
+.unidade-preco {
+    color: #777;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.produto-sem-imagem {
+    width: 100%;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+    color: #777;
+}
+
+.produto-fora-estoque {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #dc3545;
+    color: #ffffff;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* QUANTIDADE E TOTAL DO PRODUTO */
+
+.controle-quantidade {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+}
+
+.quantidade-produto {
+    width: 70px;
+    height: 38px;
+    padding: 5px 8px;
+    border: 1px solid #dddddd;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.total-produto {
+    display: block;
+    margin-bottom: 16px;
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.total-produto .valor-total {
+    color: #ff5f13;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* AJUSTES PARA CELULAR */
+
+@media (max-width: 768px) {
+    .slider-height2 {
+        min-height: 350px;
+    }
+
+    .filter-bar .row>div {
+        margin-bottom: 15px;
+    }
+
+    .search-box {
+        margin-left: 0;
+        max-width: 100%;
+    }
+}

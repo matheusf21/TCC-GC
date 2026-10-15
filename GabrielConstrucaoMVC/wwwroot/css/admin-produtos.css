@@ -1,0 +1,133 @@
+ /* Cadstrar */
+ .pagina-cadastro-produto {
+     padding-top: 140px !important;
+     padding-bottom: 50px;
+     min-height: 600px;
+ }
+
+ #Categoria {
+     display: block !important;
+ }
+
+ #Categoria+.nice-select {
+     display: none !important;
+ }
+
+ .pagina-cadastro-produto select.form-control {
+     display: block !important;
+     width: 100%;
+ }
+
+ .pagina-cadastro-produto .nice-select {
+     display: none !important;
+ }
+
+ /* Editar */
+ .imagem-produto-atual {
+     width: 120px;
+     height: 120px;
+     object-fit: cover;
+     border-radius: 5px;
+     margin-bottom: 10px;
+ }
+
+ .pagina-editar-produto {
+     padding-top: 140px !important;
+     padding-bottom: 50px;
+     min-height: 600px;
+ }
+
+ #Categoria {
+     display: block !important;
+ }
+
+ #Categoria+.nice-select {
+     display: none !important;
+ }
+
+ #Area,
+ #Categoria,
+ #UnidadeMedida {
+     display: block !important;
+ }
+
+ #Area+.nice-select,
+ #Categoria+.nice-select,
+ #UnidadeMedida+.nice-select {
+     display: none !important;
+ }
+
+ .pagina-editar-produto select.form-control {
+     display: block !important;
+     width: 100%;
+ }
+
+ .pagina-editar-produto .nice-select {
+     display: none !important;
+ }
+
+ /* Excluir */
+ .pagina-excluir-produto {
+     padding-top: 140px !important;
+     padding-bottom: 50px;
+     min-height: 600px;
+ }
+
+ /* Index */
+ .imagem-produto-admin {
+     width: 70px;
+     height: 70px;
+     object-fit: cover;
+     border-radius: 5px;
+ }
+
+ .pagina-admin-produtos {
+     padding-top: 140px !important;
+     padding-bottom: 50px;
+     min-height: 600px;
+ }
+
+ .coluna-acoes {
+     width: 220px;
+     text-align: center !important;
+     vertical-align: middle !important;
+ }
+
+ .acoes-produto {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 6px;
+     width: 100%;
+     flex-wrap: nowrap;
+ }
+
+ .botao-acao {
+     display: inline-block;
+     padding: 8px 14px;
+     border-radius: 4px;
+     color: white !important;
+     text-decoration: none !important;
+     font-size: 13px;
+     line-height: 1.2;
+ }
+
+ .editar-produto {
+     background-color: #f0ad4e;
+ }
+
+ .excluir-produto {
+     background-color: #dc3545;
+ }
+
+ .editar-produto:hover {
+     background-color: #d99632;
+ }
+
+ .excluir-produto:hover {
+     background-color: #bb2d3b;
+ }
+
+ .preco-produto {
+     white-space: nowrap;
+ }

@@ -1,0 +1,136 @@
+ .contact-info-card {
+     background: #fff;
+     border-radius: 16px;
+     padding: 35px 20px;
+     text-align: center;
+     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+     transition: all 0.3s ease;
+     height: 100%;
+ }
+
+ .contact-info-card:hover {
+     transform: translateY(-5px);
+     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+ }
+
+ .contact-info-card .icon {
+     font-size: 48px;
+     color: #ff5f13;
+     margin-bottom: 20px;
+     display: inline-block;
+ }
+
+ .contact-info-card h3 {
+     font-size: 22px;
+     font-weight: 700;
+     margin-bottom: 15px;
+     color: #0b1c39;
+ }
+
+ .contact-info-card p {
+     color: #666;
+     margin-bottom: 0;
+     font-size: 14.5px;
+ }
+
+ .form-control {
+     border-radius: 8px;
+     border: 1px solid #e0e0e0;
+     padding: 12px 20px;
+ }
+
+ .form-control:focus {
+     border-color: #ff5f13;
+     box-shadow: none;
+ }
+
+ .contact-title {
+     font-size: 36px;
+     font-weight: 700;
+     margin-bottom: 50px;
+     position: relative;
+     display: inline-block;
+     text-align: center;
+     width: 100%;
+ }
+
+ .contact-title:after {
+     content: '';
+     position: absolute;
+     left: 50%;
+     transform: translateX(-50%);
+     bottom: -15px;
+     width: 80px;
+     height: 3px;
+     background: #ff5f13;
+ }
+
+ .map-wrapper {
+     margin-top: 60px;
+     border-radius: 16px;
+     overflow: hidden;
+     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+ }
+
+ .btn-enviar {
+     background: #ff5f13;
+     color: #fff;
+     border: none;
+     padding: 12px 35px;
+     border-radius: 40px;
+     font-weight: 600;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     transition: all 0.3s;
+ }
+
+ .btn-enviar:hover {
+     background: #0b1c39;
+     color: #fff;
+ }
+
+ .single-slider.hero-overly.slider-height2 {
+     background-size: cover !important;
+     background-position: center center !important;
+     background-repeat: no-repeat;
+ }
+
+ .slider-height2 {
+     min-height: 590px;
+ }
+
+ @media (max-width: 768px) {
+     .contact-info-card {
+         margin-bottom: 20px;
+     }
+
+     .slider-height2 {
+         min-height: 350px;
+     }
+
+     .whatsapp-form {
+         padding: 30px;
+         background-color: #ffffff;
+         border: 1px solid #eeeeee;
+         border-radius: 16px;
+         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+     }
+
+     .whatsapp-form h3 {
+         margin-bottom: 12px;
+         color: #0b1c39;
+         font-size: 24px;
+         font-weight: 700;
+     }
+
+     .whatsapp-form>p {
+         margin-bottom: 25px;
+         color: #666666;
+     }
+
+     .whatsapp-form label {
+         margin-bottom: 8px;
+         color: #0b1c39;
+         font-weight: 600;
+     }
+ }
