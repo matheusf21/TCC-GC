@@ -41,4 +41,4 @@ document.addEventListener('DOMContentLoaded', function () {
 
         window.open(enderecoWhatsApp, '_blank');
     });
-});
+}); 
