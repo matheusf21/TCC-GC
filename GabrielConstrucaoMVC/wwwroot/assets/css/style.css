@@ -7181,3 +7181,66 @@ del {
 
 /* Não altera a altura – mantém a definição original do template */
 /* A altura já vem do .slider-height2 (590px padrão) */
+
+/* =========================================
+   ESTILOS DA SEÇÃO DE SERVIÇOS (CARDS)
+   ========================================= */
+
+.single-service-card {
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Sombra suave */
+    transition: all 0.3s ease;
+    height: 100%; /* Garante que todos os cards tenham a mesma altura */
+    display: flex;
+    flex-direction: column;
+}
+
+.single-service-card:hover {
+    transform: translateY(-8px); /* Efeito de subir ao passar o mouse */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Controla a imagem para não ficar gigante */
+.single-service-card .service-img {
+    width: 100%;
+    height: 250px; /* Altura fixa para todas as imagens ficarem alinhadas */
+    overflow: hidden;
+}
+
+.single-service-card .service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Corta a imagem perfeitamente sem distorcer */
+    transition: transform 0.5s ease;
+}
+
+.single-service-card:hover .service-img img {
+    transform: scale(1.05); /* Zoom leve na imagem ao passar o mouse */
+}
+
+/* Estilo do texto do card */
+.single-service-card .service-content {
+    padding: 25px 20px;
+    text-align: center;
+    flex-grow: 1; /* Faz o conteúdo preencher o resto do card */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.single-service-card .service-content h4 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #0e132a;
+    text-transform: capitalize;
+}
+
+.single-service-card .service-content p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 0;
+}

@@ -1,74 +1,81 @@
-﻿a.navbar-brand {
+﻿/* Configurações Básicas do ASP.NET (Mantidas, mas sem afetar nossos links) */
+a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;
 }
 
-a {
-  color: #0077cc;
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+button.accept-policy { font-size: 1rem; line-height: inherit; }
+.footer { position: absolute; bottom: 0; width: 100%; white-space: nowrap; line-height: 60px; }
+
+/* =========================================
+   ESTILOS DO NOSSO CABEÇALHO (HARMONIZADOS)
+   ========================================= */
+
+/* 1. Menu de navegação */
+.main-menu nav ul {
+    display: flex;
+    align-items: center;
+    margin: 0;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+/* Ajusta o padding do template para ficar mais compacto e elegante */
+.main-menu nav ul li a {
+    padding: 30px 15px !important;
+    font-weight: 500;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
-}
-
-/* Configuração da área de redes sociais */
+/* 2. Redes Sociais */
 .header-social-links {
     display: flex;
     align-items: center;
-    gap: 15px; /* Espaçamento entre os ícones */
+    gap: 18px; /* Espaçamento uniforme entre os ícones */
 }
 
 .header-social-links a {
     color: #ff5f13 !important; /* Cor laranja */
-    font-size: 20px;
+    font-size: 18px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-/* Efeito de espelhamento e cor ao passar o mouse */
+/* Efeito super elegante ao passar o mouse: sobe um pouquinho e fica branco */
 .header-social-links a:hover,
 .header-social-links a:focus {
-    color: #ffffff !important; /* Fica branco no hover */
-    transform: scaleX(-1); /* Efeito espelho */
+    color: #ffffff !important; 
+    transform: translateY(-3px) scale(1.1); 
 }
 
-/* Garante que os ícones herdem a cor do link */
 .header-social-links a i {
     color: inherit !important;
+}
+
+/* 3. Botão de Contato */
+.btn-contato {
+    background-color: #ff5f13 !important;
+    color: #ffffff !important; /* Força o texto a ser branco */
+    padding: 12px 30px !important; /* Ajuste do tamanho interno */
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    border-radius: 5px !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    line-height: normal !important;
+    transition: all 0.3s ease !important;
+    border: none;
+    box-shadow: 0 4px 10px rgba(255, 95, 19, 0.3); /* Sombra laranja suave */
+}
+
+.btn-contato:hover {
+    background-color: #e04e0a !important; /* Laranja mais escuro no hover */
+    color: #ffffff !important;
+    box-shadow: 0 6px 15px rgba(255, 95, 19, 0.5);
+    transform: translateY(-2px);
 }
