@@ -221,7 +221,6 @@
     min-height: 590px;
 }
 
-@media (max-width: 768px) {
     .section-heading h2 {
         font-size: 32px;
     }
@@ -252,4 +251,134 @@
     .slider-height2 {
         min-height: 350px;
     }
-}
+
+    .sobre-kicker {
+        display: inline-block;
+        color: #ff5a0f;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-size: 13px;
+    }
+
+    .sobre-destaques {
+        list-style: none;
+        padding: 0;
+        margin: 24px 0 0;
+    }
+
+    .sobre-destaques li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+
+    .sobre-destaques i {
+        color: #ff5a0f;
+        margin-top: 5px;
+    }
+
+    .sobre-foto-wrap {
+        position: relative;
+    }
+
+    .sobre-foto-wrap::before {
+        content: "";
+        position: absolute;
+        top: 18px;
+        left: -18px;
+        right: 18px;
+        bottom: -18px;
+        border: 3px solid #ff5a0f;
+        border-radius: 12px;
+        z-index: 0;
+    }
+
+    .sobre-foto-wrap img {
+        position: relative;
+        z-index: 1;
+    }
+
+    .sobre-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 32px 24px;
+        height: 100%;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(10, 20, 60, .07);
+        transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .sobre-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 36px rgba(10, 20, 60, .12);
+    }
+
+    .sobre-card .icon {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+        background: #fff1ea;
+        color: #ff5a0f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+    }
+
+    .sobre-card h4 {
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .sobre-card p {
+        margin: 0;
+        font-size: 15px;
+    }
+
+    .sobre-passo {
+        position: relative;
+        padding: 0 12px;
+        text-align: center;
+    }
+
+    .sobre-passo .num {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 16px;
+        border-radius: 50%;
+        background: #ff5a0f;
+        color: #fff;
+        font-weight: 800;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sobre-info {
+        background: #fff;
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: 0 10px 30px rgba(10, 20, 60, .07);
+        height: 100%;
+    }
+
+    .sobre-info p {
+        margin-bottom: 14px;
+    }
+
+    .sobre-info i {
+        color: #ff5a0f;
+        width: 22px;
+    }
+
+    /* Equipe: fotos com a mesma proporção para os cards ficarem alinhados */
+    .team-card .team-img img {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        object-position: top center;
+    }
