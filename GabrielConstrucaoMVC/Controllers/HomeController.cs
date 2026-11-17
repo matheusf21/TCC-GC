@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using GabrielConstrucaoMVC.Models;
@@ -66,13 +67,30 @@ public class HomeController : Controller
     public IActionResult Login(string usuario, string senha)
     {
         var admin = _context.Admins
-            .FirstOrDefault(a => a.Usuario == usuario && a.Senha == senha);
+            .FirstOrDefault(a => a.Usuario == usuario);
 
         if (admin != null)
         {
-            HttpContext.Session.SetString("AdminLogado", "true");
+            var passwordHasher = new PasswordHasher<Admin>();
 
-            return RedirectToAction("Dashboard", "Home");
+            var resultado = passwordHasher.VerifyHashedPassword(
+                admin,
+                admin.Senha,
+                senha
+            );
+
+            if (resultado != PasswordVerificationResult.Failed)
+            {
+                HttpContext.Session.SetString(
+                    "AdminLogado",
+                    "true"
+                );
+
+                return RedirectToAction(
+                    "Dashboard",
+                    "Home"
+                );
+            }
         }
 
         ViewBag.Erro = "Usuário ou senha inválidos.";

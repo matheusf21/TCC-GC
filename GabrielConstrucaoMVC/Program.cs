@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using GabrielConstrucaoMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using GabrielConstrucaoMVC.Models;
@@ -47,12 +48,28 @@ using (var scope = app.Services.CreateScope())
 
     if (!context.Admins.Any())
     {
-        context.Admins.Add(new Admin
-        {
-            Usuario = "admin",
-            Senha = "123456"
-        });
+        var senhaInicial = app.Configuration["AdminSeed:Password"];
 
+        if (string.IsNullOrWhiteSpace(senhaInicial))
+        {
+            throw new InvalidOperationException(
+                "A senha inicial do administrador não foi configurada."
+            );
+        }
+
+        var admin = new Admin
+        {
+            Usuario = "admin"
+        };
+
+        var passwordHasher = new PasswordHasher<Admin>();
+
+        admin.Senha = passwordHasher.HashPassword(
+            admin,
+            senhaInicial
+        );
+
+        context.Admins.Add(admin);
         context.SaveChanges();
     }
 }
