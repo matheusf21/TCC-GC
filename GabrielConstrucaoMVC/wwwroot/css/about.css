@@ -221,6 +221,7 @@
     min-height: 590px;
 }
 
+@media (max-width: 768px) {
     .section-heading h2 {
         font-size: 32px;
     }
@@ -251,6 +252,7 @@
     .slider-height2 {
         min-height: 350px;
     }
+}
 
     .sobre-kicker {
         display: inline-block;

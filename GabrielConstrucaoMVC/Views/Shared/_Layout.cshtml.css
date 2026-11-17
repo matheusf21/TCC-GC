@@ -79,3 +79,29 @@ button.accept-policy { font-size: 1rem; line-height: inherit; }
     box-shadow: 0 6px 15px rgba(255, 95, 19, 0.5);
     transform: translateY(-2px);
 }
+
+.btn-contato-mobile {
+    background: #ff5f13;
+    color: #fff !important;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-contato-mobile:hover {
+    background: #e04e0a;
+    color: #fff !important;
+}
+
+.logo img {
+    max-height: 70px;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        max-height: 55px;
+    }
+}

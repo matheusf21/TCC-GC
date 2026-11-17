@@ -1,32 +1,100 @@
-/* Normal desktop :1200px. */
-@media (min-width: 1200px) and (max-width: 1500px) {
+/* =====================================================================
+   responsive.css - ajustes globais para celular e tablet
+   Carregado depois do style.css em Views/Shared/_Layout.cshtml
+   ===================================================================== */
 
+/* ---- Base ---------------------------------------------------------- */
+img { max-width: 100%; height: auto; }
+iframe { max-width: 100%; }
 
+/* ---- Animacao fadeInUp (animate.min.css nao existe no projeto) ------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 40px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+.animated { animation-duration: 1s; animation-fill-mode: both; }
+.fadeInUp { animation-name: fadeInUp; }
+
+/* ---- Menu mobile (slicknav.css nao existe no projeto) --------------- */
+.slicknav_menu { font-size: 16px; box-sizing: border-box; }
+.slicknav_menu * { box-sizing: border-box; }
+.slicknav_menu::before, .slicknav_menu::after { content: " "; display: table; }
+.slicknav_menu::after { clear: both; }
+
+.slicknav_btn {
+  position: relative;
+  display: block;
+  float: right;
+  padding: 10px 12px;
+  line-height: 1.1;
+  cursor: pointer;
+  border-radius: 4px;
+  background: rgba(11, 28, 57, 0.85);
+}
+.slicknav_menu .slicknav_menutxt { display: block; float: left; }
+.slicknav_menu .slicknav_icon { float: left; margin: 0; }
+.slicknav_menu .slicknav_icon-bar {
+  display: block;
+  width: 24px;
+  height: 3px;
+  border-radius: 2px;
+}
+.slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar { margin-top: 4px; }
+
+.slicknav_nav {
+  clear: both;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  overflow: hidden;
+  background: #0b1c39;
+  border-radius: 0 0 8px 8px;
+}
+.slicknav_nav ul, .slicknav_nav li { display: block; list-style: none; margin: 0; padding: 0; }
+.slicknav_nav a {
+  display: block;
+  padding: 14px 20px;
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+}
+.slicknav_nav a:hover { color: #ff5f13; }
+
+/* ---- Login (desktop) */
+.login-container { margin: 180px auto 100px; max-width: 500px; }
+
+/* ---- Tablet e celular (ate 991px) ----------------------------------- */
+@media (max-width: 991px) {
+  .header-area .main-header { padding: 6px 0; }
+  .main-header .logo img { max-height: 52px; width: auto; }
+  .header-area .slicknav_btn { top: -46px; }
 }
 
-
-/* Normal desktop :992px. */
-@media (min-width: 992px) and (max-width: 1200px) {
-
-
-}
-
- 
-/* Tablet desktop :768px. */
-@media (min-width: 768px) and (max-width: 991px) {
-
-
-}
-
- 
-/* small mobile :320px. */
+/* ---- Celular (ate 767px) -------------------------------------------- */
 @media (max-width: 767px) {
+  body { overflow-x: hidden; }
 
- 
+  /* formularios: 16px evita o zoom automatico do iPhone ao focar o campo */
+  input, select, textarea, .form-control { font-size: 16px; }
+
+  /* botoes e links com area de toque confortavel */
+  .btn { padding-top: 12px; padding-bottom: 12px; }
+
+  /* secoes menos "altas" */
+  .section-padding, .pt-90 { padding-top: 50px; }
+  .pb-90 { padding-bottom: 50px; }
+
+  /* login */
+  .login-container { margin: 120px auto 60px; max-width: 500px; padding: 0 15px; }
+  .login-container .card-body { padding: 1.5rem !important; }
+
+  /* rodape */
+  .footer-area .single-footer-caption { margin-bottom: 30px; }
 }
- 
-/* Large Mobile :480px. */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-.container {width:450px}
- 
+
+/* ---- Celular pequeno (ate 575px) ------------------------------------ */
+@media (max-width: 575px) {
+  h1 { font-size: 34px; }
+  h2 { font-size: 26px; }
+  .container, .container-fluid { padding-left: 16px; padding-right: 16px; }
 }

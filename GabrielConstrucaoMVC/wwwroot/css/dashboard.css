@@ -408,7 +408,17 @@
             }
 
             .dashboard-menu {
-                grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 6px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .dashboard-menu-link {
+                width: auto;
+                flex: 0 0 auto;
+                white-space: nowrap;
             }
 
             .acesso-rapido-lista {
