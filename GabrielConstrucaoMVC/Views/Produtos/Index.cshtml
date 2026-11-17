@@ -19,8 +19,8 @@
             Cadastrar Produto
         </a>
 
-        <a asp-controller="Home" asp-action="Logout" class="btn btn-danger mb-3">
-            Sair
+        <a asp-controller="Home" asp-action="Dashboard" class="btn btn-danger mb-3">
+            Voltar para o Dashboard
         </a>
         
 
@@ -34,62 +34,62 @@
         {
             <div class="table-responsive">
                 <table class="table table-striped tabela-produtos">
-                <thead>
-                    <tr>
-                        <th>Imagem</th>
-                        <th>Nome</th>
-                        <th>Categoria</th>
-                        <th>Área</th>
-                        <th>Preço</th>
-                        <th>Unidade</th>
-                        <th>Mais vendido</th>
-                        <th>Fora de estoque</th>
-                        <th class="coluna-acoes">Ações</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach (var produto in Model)
-                    {
+                    <thead>
                         <tr>
-                            <td>
-                                @if (!string.IsNullOrEmpty(produto.NomeImagem))
-                                {
-                                    <img src="/uploads/produtos/@produto.NomeImagem" alt="Imagem do produto"
-                                         class="imagem-produto-admin" />
-                                }
-                                else
-                                {
-                                    <span>Sem imagem</span>
-                                }
-                            </td>
-
-                            <td>@produto.Nome</td>
-                            <td>@produto.Categoria</td>
-                            <td>@produto.Area</td>
-                            <td class="preco-produto">
-                                @produto.Preco.ToString("C2")
-                            </td>
-                            <td>@produto.UnidadeMedida</td>
-                            <td>@(produto.MaisVendido ? "Sim" : "Não")</td>
-                            <td>@(produto.ForaDeEstoque ? "Sim" : "Não")</td>
-
-                            <td class="coluna-acoes">
-                                <div class="acoes-produto">
-                                    <a asp-action="Editar" asp-route-id="@produto.Id" class="botao-acao editar-produto">
-                                        Editar
-                                    </a>
-
-                                    <a asp-action="Excluir" asp-route-id="@produto.Id" class="botao-acao excluir-produto">
-                                        Excluir
-                                    </a>
-                                </div>
-                            </td>
+                            <th>Imagem</th>
+                            <th>Nome</th>
+                            <th>Categoria</th>
+                            <th>Área</th>
+                            <th>Preço</th>
+                            <th>Unidade</th>
+                            <th>Mais vendido</th>
+                            <th>Fora de estoque</th>
+                            <th class="coluna-acoes">Ações</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-                </div>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var produto in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(produto.NomeImagem))
+                                    {
+                                        <img src="/uploads/produtos/@produto.NomeImagem" alt="Imagem do produto"
+                                             class="imagem-produto-admin" />
+                                    }
+                                    else
+                                    {
+                                        <span>Sem imagem</span>
+                                    }
+                                </td>
+
+                                <td>@produto.Nome</td>
+                                <td>@produto.Categoria</td>
+                                <td>@produto.Area</td>
+                                <td class="preco-produto">
+                                    @produto.Preco.ToString("C2")
+                                </td>
+                                <td>@produto.UnidadeMedida</td>
+                                <td>@(produto.MaisVendido ? "Sim" : "Não")</td>
+                                <td>@(produto.ForaDeEstoque ? "Sim" : "Não")</td>
+
+                                <td class="coluna-acoes">
+                                    <div class="acoes-produto">
+                                        <a asp-action="Editar" asp-route-id="@produto.Id" class="botao-acao editar-produto">
+                                            Editar
+                                        </a>
+
+                                        <a asp-action="Excluir" asp-route-id="@produto.Id" class="botao-acao excluir-produto">
+                                            Excluir
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
         }
 
