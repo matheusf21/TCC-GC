@@ -37,9 +37,8 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-2">
                                 <div class="logo">
-                                    <a href="/">
-                                        <img src="/assets/img/logo/logo.png" alt="Gabriel Construção"
-                                             class="logo-principal">
+                                    <a href="/" class="big-logo">
+                                        <img src="/assets/img/logo/logo.png" alt="Gabriel Construção">
                                     </a>
                                 </div>
                             </div>
@@ -56,6 +55,7 @@
                                             <li><a href="/Home/Products">Produtos</a></li>
                                             <li><a href="/Home/Services">Serviços</a></li>
                                             <li><a href="/Home/PetArea">Área Pet</a></li>
+                                            <li class="d-lg-none"><a href="/Home/Contact">Contato</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -66,12 +66,12 @@
                                        aria-label="WhatsApp">
                                         <i class="fab fa-whatsapp" aria-hidden="true"></i>
                                     </a>
-                                    <a href="https://www.instagram.com/gabri.elconstrucoes?utm_source=ig_web_button_share_sheet&rpxt=ZDNlZDc0MzIxNw=="
-                                       target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                    <a href="https://www.instagram.com/gabri.elconstrucoes?utm_source=ig_web_button_share_sheet&rpxt=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"
+                                       aria-label="Instagram">
                                         <i class="fab fa-instagram" aria-hidden="true"></i>
                                     </a>
-                                    <a href="https://web.facebook.com/Gabrielconstrucao/?locale=pt_BR&_rdc=1&_rdr#"
-                                       target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                    <a href="https://web.facebook.com/Gabrielconstrucao/?locale=pt_BR&_rdc=1&_rdr#" target="_blank" rel="noopener noreferrer"
+                                       aria-label="Facebook">
                                         <i class="fab fa-facebook-f" aria-hidden="true"></i>
                                     </a>
                                 </div>
@@ -84,13 +84,9 @@
                             </div>
 
                             <!-- Mobile Menu -->
-                            <div class="d-flex d-lg-none justify-content-end mb-2">
-                                <a href="/Home/Contact" class="btn btn-contato-mobile">
-                                    Contato
-                                </a>
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
                             </div>
-
-                            <div class="mobile_menu d-block d-lg-none"></div>
 
                         </div>
                     </div>
@@ -100,118 +96,40 @@
         <!-- Header End -->
     </header>
 
-    @RenderBody()
+@RenderBody()
 
-    <!-- Footer Start -->
-    <footer>
+<!-- Footer Start -->
+<footer>
 
-        <div class="footer-main">
+    <div class="footer-main">
 
-            <div class="footer-area footer-padding">
+        <div class="footer-area footer-padding">
 
-                <div class="container">
+            <div class="container">
 
-                    <div class="row justify-content-between">
+                <div class="row justify-content-between">
 
-                        <!-- Logo Footer -->
-                        <div class="col-lg-4 col-md-4 col-sm-8">
+                    <!-- Logo Footer -->
+                    <div class="col-lg-4 col-md-4 col-sm-8">
 
-                            <div class="single-footer-caption mb-30">
+                        <div class="single-footer-caption mb-30">
 
-                                <div class="footer-logo">
+                            <div class="footer-logo">
 
-                                    <a href="/">
-                                        <img src="/assets/img/logo/logo2_footer.png" alt="Gabriel Construção">
-                                    </a>
-
-                                </div>
-
-                                <div class="footer-tittle">
-
-                                    <div class="footer-pera">
-
-                                        <p class="info1">
-                                            Atuamos no setor da construção civil com excelência,
-                                            oferecendo soluções personalizadas para cada cliente.
-                                        </p>
-
-                                    </div>
-
-                                </div>
+                                <a href="/">
+                                    <img src="/assets/img/logo/logo2_footer.png" alt="Gabriel Construção">
+                                </a>
 
                             </div>
 
-                        </div>
+                            <div class="footer-tittle">
 
-                        <!-- Links -->
-                        <div class="col-lg-2 col-md-4 col-sm-5">
+                                <div class="footer-pera">
 
-                            <div class="single-footer-caption mb-50">
-
-                                <div class="footer-tittle">
-
-                                    <h4>Links Rápidos</h4>
-
-                                    <ul>
-
-                                        <li>
-                                            <a href="/Home/About">Sobre</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="/Home/Services">Serviços</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">Projetos</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="/Home/Contact">Contato</a>
-                                        </li>
-
-                                    </ul>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <!-- Contato -->
-                        <div class="col-lg-3 col-md-4 col-sm-7">
-
-                            <div class="single-footer-caption mb-50">
-
-                                <div class="footer-tittle">
-
-                                    <h4>Contato</h4>
-
-                                    <div class="footer-pera">
-
-                                        <p class="info1">
-                                            Av. Arthur Balsi, Nº620.
-                                            Barra Bonita, SP.
-                                        </p>
-
-                                    </div>
-
-                                    <ul>
-
-                                        <li>
-                                            <a href="https://wa.me/5514997354643" target="_blank">
-                                                Telefone: (14) 99735-4643
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a
-                                                href="mailto:gabrielconstrucao1@gmail.com?subject=Contato%20pelo%20site%20-%20Gabriel%20Construção">
-                                                gabrielconstrucao1@gmail.com
-                                            </a>
-                                        </li>
-
-                                    </ul>
+                                    <p class="info1">
+                                        Atuamos no setor da construção civil com excelência,
+                                        oferecendo soluções personalizadas para cada cliente.
+                                    </p>
 
                                 </div>
 
@@ -221,12 +139,88 @@
 
                     </div>
 
-                    <!-- Copyright -->
-                    <div class="row align-items-center">
+                    <!-- Links -->
+                    <div class="col-lg-2 col-md-4 col-sm-5">
 
-                        <div class="col-xl-12">
+                        <div class="single-footer-caption mb-50">
+
+                            <div class="footer-tittle">
+
+                                <h4>Links Rápidos</h4>
+
+                                <ul>
+
+                                    <li>
+                                        <a href="/Home/About">Sobre</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/Home/Services">Serviços</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">Projetos</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/Home/Contact">Contato</a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
 
                         </div>
+
+                    </div>
+
+                    <!-- Contato -->
+                    <div class="col-lg-3 col-md-4 col-sm-7">
+
+                        <div class="single-footer-caption mb-50">
+
+                            <div class="footer-tittle">
+
+                                <h4>Contato</h4>
+
+                                <div class="footer-pera">
+
+                                    <p class="info1">
+                                        Av. Arthur Balsi, Nº620.
+                                        Barra Bonita, SP.
+                                    </p>
+
+                                </div>
+
+                                <ul>
+
+                                    <li>
+                                        <a href="https://wa.me/5514997354643" target="_blank">
+                                            Telefone: (14) 99735-4643
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a
+                                            href="mailto:gabrielconstrucao1@gmail.com?subject=Contato%20pelo%20site%20-%20Gabriel%20Construção">
+                                            gabrielconstrucao1@gmail.com
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Copyright -->
+                <div class="row align-items-center">
+
+                    <div class="col-xl-12">
 
                     </div>
 
@@ -236,30 +230,38 @@
 
         </div>
 
-    </footer>
-    <!-- Footer End -->
+    </div>
 
-    <!-- Scripts -->
-    <!-- Scripts -->
-    <script src="/assets/js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="/assets/js/popper.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/jquery.slicknav.min.js"></script>
-    <script src="/assets/js/owl.carousel.min.js"></script>
-    <script src="/assets/js/slick.min.js"></script>
-    <script src="/assets/js/gijgo.min.js"></script>
-    <script src="/assets/js/wow.min.js"></script>
-    <script src="/assets/js/animated.headline.js"></script>
-    <script src="/assets/js/jquery.magnific-popup.js"></script>
-    <script src="/assets/js/jquery.scrollUp.min.js"></script>
-    <script src="/assets/js/jquery.nice-select.min.js"></script>
-    <script src="/assets/js/jquery.sticky.js"></script>
-    <script src="/assets/js/jquery.counterup.min.js"></script>
-    <script src="/assets/js/plugins.js"></script>
-    <script src="/assets/js/main.js"></script>
+</footer>
+<!-- Footer End -->
 
-    @await RenderSectionAsync("Scripts", required: false)
+<!-- Scripts -->
+<!-- Scripts -->
+<script src="/assets/js/vendor/modernizr-3.5.0.min.js"></script>
+<script src="/assets/js/vendor/jquery-1.12.4.min.js"></script>
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/jquery.slicknav.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/slick.min.js"></script>
+<script src="/assets/js/gijgo.min.js"></script>
+<script src="/assets/js/wow.min.js"></script>
+<script src="/assets/js/animated.headline.js"></script>
+<script src="/assets/js/jquery.magnific-popup.js"></script>
+<script src="/assets/js/jquery.scrollUp.min.js"></script>
+<script src="/assets/js/jquery.nice-select.min.js"></script>
+<script src="/assets/js/jquery.sticky.js"></script>
+<script src="/assets/js/jquery.counterup.min.js"></script>
+<script src="/assets/js/plugins.js"></script>
+<script src="/assets/js/main.js"></script>
+<script>
+    // Botão Contato fixo no cabeçalho mobile, ao lado do botão MENU
+    $(function () {
+        $('.slicknav_btn').after('<a href="/Home/Contact" class="mobile-contact-btn">Contato</a>');
+    });
+</script>
+
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

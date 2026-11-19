@@ -98,3 +98,36 @@ iframe { max-width: 100%; }
   h2 { font-size: 26px; }
   .container, .container-fluid { padding-left: 16px; padding-right: 16px; }
 }
+
+/* ---- Botao Contato no cabecalho mobile ------------------------------ */
+@media (max-width: 991px) {
+  .header-area .slicknav_btn,
+  .header-area .mobile-contact-btn {
+    height: 40px;
+    top: -46px;
+  }
+  .header-area .slicknav_btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+  }
+  .header-area .mobile-contact-btn {
+    position: relative;
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+    padding: 0 16px;
+    background: #ff5f13;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(255, 95, 19, 0.35);
+  }
+  .header-area .mobile-contact-btn:hover { background: #e04e0a; color: #fff; }
+}

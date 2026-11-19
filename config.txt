@@ -1,4 +1,6 @@
 
+git config --global user.name matheusf21
+git config --global user.email matheusferreiradelima21@gmail.com
 
 
 git config --global user.name NicolasCastro08
@@ -34,6 +36,8 @@ http://localhost:5259/Faturamento/Cadastrar
 
 Usuário: admin
 Senha: 123456
+
+dotnet user-secrets set "AdminSeed:Password" "gabrielconstrucao123"  
 
 dotnet watch run
 dotnet watch run --no-hot-reload

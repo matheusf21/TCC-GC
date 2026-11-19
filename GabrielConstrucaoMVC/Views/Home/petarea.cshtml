@@ -79,7 +79,7 @@
 
             <div class="row">
                 <!-- Grade de produtos -->
-                <div class="col-lg-8">
+                <div class="col-12">
                     <div class="row" id="products-grid">
 
                         @if (!Model.Any())
@@ -109,7 +109,7 @@
                                     _ => categoriaFiltro
                                 };
 
-                                <div class="col-xl-6 col-lg-6 col-md-6 produto-item mb-30" data-categoria="@categoriaFiltro"
+                                <div class="col-xl-3 col-lg-4 col-md-6 produto-item mb-30" data-categoria="@categoriaFiltro"
                                      data-nome="@produto.Nome.ToLowerInvariant()">
 
                                     <div class="pet-produto-card"
@@ -126,7 +126,7 @@
 
                                             @if (!string.IsNullOrEmpty(produto.NomeImagem))
                                             {
-                                                <img src="/uploads/produtos/@produto.NomeImagem" alt="@produto" />
+                                                <img src="/uploads/produtos/@produto.NomeImagem" alt="@produto.Nome" />
                                             }
                                             else
                                             {
@@ -193,83 +193,86 @@
                    
                 </div>
 
-                <!-- Sidebar direita -->
-                <div class="col-lg-4">
+                <!-- Categorias e destaques (abaixo da grade) -->
+                <div class="col-lg-6">
                     <div class="sidebar-widget">
                         <h4>Categorias</h4>
                         <ul class="list cat-list">
                             <li>
-                                Ração
-                                <span>(@(Model.Count(p => p.Categoria == "Ração")))</span>
-                            </a>
-                        </li>
+                                <a href="#" data-filter-cat="racao">
+                                    Ração
+                                    <span>(@(Model.Count(p => p.Categoria == "Ração")))</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-filter-cat="acessorios">
+                                    Acessórios
+                                    <span>(@(Model.Count(p => p.Categoria == "Acessórios")))</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-filter-cat="higiene">
+                                    Higiene
+                                    <span>(@(Model.Count(p => p.Categoria == "Higiene")))</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-filter-cat="brinquedos">
+                                    Brinquedos
+                                    <span>(@(Model.Count(p => p.Categoria == "Brinquedos")))</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-                        <li>
-                            Acessórios
-                            <span>(@(Model.Count(p => p.Categoria == "Acessórios")))</span>
-                        </a>
-                    </li>
+                <div class="col-lg-6">
+                    <div class="sidebar-widget">
+                        <h4>Produtos em Destaque</h4>
 
-                    <li>
+                        @{
+                            var produtosDestaque = Model
+                                .Where(produto => produto.MaisVendido)
+                                .Take(3)
+                                .ToList();
+                        }
 
-                        Higiene
-                        <span>(@(Model.Count(p => p.Categoria == "Higiene")))</span>
-                    </a>
-                </li>
-
-                <li>
-
-                    Brinquedos
-                    <span>(@(Model.Count(p => p.Categoria == "Brinquedos")))</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="sidebar-widget">
-        <h4>Produtos em Destaque</h4>
-
-        @{
-            var produtosDestaque = Model
-                .Where(produto => produto.MaisVendido)
-                .Take(3)
-                .ToList();
-        }
-
-        @if (produtosDestaque.Any())
-        {
-            @foreach (var produto in produtosDestaque)
-            {
-                <div class="recent-product-item">
-
-                    <div class="recent-product-img">
-                        @if (!string.IsNullOrEmpty(produto.NomeImagem))
+                        @if (produtosDestaque.Any())
                         {
-                            <img src="/uploads/produtos/@produto.NomeImagem" alt="@produto.Nome" />
+                            @foreach (var produto in produtosDestaque)
+                            {
+                                <a asp-controller="Home" asp-action="Contact" asp-route-produto="@produto.Id"
+                                   class="recent-product-item" title="Entrar em contato sobre @produto.Nome">
+
+                                    <div class="recent-product-img">
+                                        @if (!string.IsNullOrEmpty(produto.NomeImagem))
+                                        {
+                                            <img src="/uploads/produtos/@produto.NomeImagem" alt="@produto.Nome" />
+                                        }
+                                        else
+                                        {
+                                            <span>Sem imagem</span>
+                                        }
+                                    </div>
+
+                                    <div class="recent-product-info">
+                                        <h5>@produto.Nome</h5>
+                                        <p>@produto.Preco.ToString("C2")</p>
+                                        <span class="recent-product-cta">Entrar em contato &rarr;</span>
+                                    </div>
+
+                                </a>
+                            }
                         }
                         else
                         {
-                            <span>Sem imagem</span>
+                            <p>Nenhum produto em destaque.</p>
                         }
                     </div>
-
-                    <div class="recent-product-info">
-                        <h5>@produto.Nome</h5>
-                        <p>@produto.Preco.ToString("C2")</p>
-                    </div>
-
                 </div>
-            }
-        }
-        else
-        {
-            <p>Nenhum produto em destaque.</p>
-        }
-    </div>
-</div>
-</div>
-</div>
-</section>
+            </div>
+        </div>
+    </section>
 
 <!-- Diferenciais -->
 <div class="container">
